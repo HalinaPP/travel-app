@@ -2,7 +2,6 @@ const { InternalServerError, MongoDuplicateError } = require('./errors-list');
 const logger = require('../logging/logger');
 
 module.exports = (err, path) => {
-  // Handle mongoose duplicate errors
   if (err.code === 11000) {
     err = new MongoDuplicateError(
       `'${Object.keys(err.keyValue)}' already used`
