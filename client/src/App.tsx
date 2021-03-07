@@ -4,18 +4,18 @@ import Country from './components/Country';
 import CountriesList from './components/CountriesList';
 import Footer from './components/Footer';
 
-const App = () => (
-        <Router>
-            <Switch>
-                <Route path="/country">
-                    <Country/>
-                </Route>
-                <Route exact path="/">
-                    <CountriesList/>
-                </Route>
-            </Switch>
-            <Footer/>
-        </Router>
+const App: React.FC = () => (
+  <Router>
+    <Switch>
+      <Route path="/country">
+        <Country />
+      </Route>
+      <Route exact path="/">
+        <CountriesList />
+      </Route>
+    </Switch>
+    <Footer />
+  </Router>
 );
 
 export default App;
