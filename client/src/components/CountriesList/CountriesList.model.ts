@@ -1,5 +1,5 @@
 export interface CountriesListProps{
-
+  inputText: string,
 }
 
 export type Country = {
