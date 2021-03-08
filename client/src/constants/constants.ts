@@ -1,4 +1,14 @@
 export const imagesPath = './src/assets/images/';
+export const COUNTRIES_LIST = [
+  "Belarus",
+  "Canada",
+  "Georgia",
+  "Ireland",
+  "Kazakhstan",
+  "Norway",
+  "Romania",
+  "Switzerland",
+];
 export const FOOTER_COPYRIGHT = {
   developers: [
     { link: 'https://github.com/bramov', name: '@bramov' },
