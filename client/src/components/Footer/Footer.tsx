@@ -4,7 +4,7 @@ import { FOOTER_COPYRIGHT } from '../../constants/constants';
 
 const Footer: FC = () => (
   <footer>
-    <div className="dev-list">
+    <div className='dev-list'>
       {FOOTER_COPYRIGHT.developers.map((item) => (
         <a href={item.link} key={item.name}>
           {item.name}
