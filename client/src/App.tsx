@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 import Country from './components/Country';
 import CountriesList from './components/CountriesList';
 import Footer from './components/Footer';
