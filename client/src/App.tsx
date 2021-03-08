@@ -7,10 +7,12 @@ import Header from './components/Header';
 
 const App = () => {
   let [ inputText, setInputText ] = useState<string>('');
+  let isMain: boolean = true;
   return (
     <Router>
       <Header inputText={inputText}
-              onInputChange={setInputText} />
+              onInputChange={setInputText}
+              isMain={isMain} />
       <Switch>
         <Route path="/country">
           <Country/>
