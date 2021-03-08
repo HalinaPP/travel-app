@@ -1,13 +1,37 @@
 export const imagesPath = './src/assets/images/';
 export const COUNTRIES_LIST = [
-  "Belarus",
-  "Canada",
-  "Georgia",
-  "Ireland",
-  "Kazakhstan",
-  "Norway",
-  "Romania",
-  "Switzerland",
+  {
+    name: 'Belarus',
+    capital: 'Minsk',
+  },
+  {
+    name: 'Canada',
+    capital: 'Ottawa',
+  },
+  {
+    name: 'Georgia',
+    capital: 'Tbilisi',
+  },
+  {
+    name: 'Ireland',
+    capital: 'Dublin',
+  },
+  {
+    name: 'Kazakhstan',
+    capital: 'Nur-Sultan',
+  },
+  {
+    name: 'Norway',
+    capital: 'Oslo',
+  },
+  {
+    name: 'Romania',
+    capital: 'Bucharest',
+  },
+  {
+    name: 'Switzerland',
+    capital: 'Bern',
+},
 ];
 export const FOOTER_COPYRIGHT = {
   developers: [
