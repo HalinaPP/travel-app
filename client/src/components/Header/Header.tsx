@@ -9,7 +9,7 @@ const Header: FC<HeaderProps> = (props: HeaderProps) => {
    <header>
        <div>Logo</div>
        <Search inputText={inputText}
-               onInputChange={onInputChange}/>
+               onInputChange={onInputChange} />
        <div>lang</div>
    </header>
   );

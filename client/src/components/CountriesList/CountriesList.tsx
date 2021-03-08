@@ -7,9 +7,6 @@ import { Country } from './CountriesList.model';
 
 const CountriesList: FC = () => {
   let [ inputText, setInputText ] = useState<string>('');
-  const inputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputText(event.target.value)
-  };
   const filterByNameAndCapital = (country: Country) => {
     return (country.name.toLowerCase().includes(inputText.toLowerCase())
       || country.capital.toLowerCase().includes(inputText.toLowerCase()));
@@ -17,7 +14,7 @@ const CountriesList: FC = () => {
   return (
     <React.Fragment>
       <Header inputText={inputText}
-              onInputChange={inputChange}/>
+              onInputChange={setInputText} />
       <div>
         <ul>
           {
