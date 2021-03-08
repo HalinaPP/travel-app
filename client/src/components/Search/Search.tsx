@@ -1,10 +1,8 @@
 import './styles.scss';
 import React, { FC, FormEvent } from 'react';
-import { SearchProps } from '../Search/Search.model';
+import { SearchProps } from './Search.model';
 
-const Search: FC<SearchProps> = (props: SearchProps) => {
-  const { inputText, onInputChange } = props;
-
+const Search: FC<SearchProps> = ({ inputText, onInputChange }) => {
   const onInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     onInputChange(event.target.value);
   }

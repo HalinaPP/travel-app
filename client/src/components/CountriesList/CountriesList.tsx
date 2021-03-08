@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 import { COUNTRIES_LIST } from '../../constants/constants';
 import { CountriesListProps, Country } from './CountriesList.model';
 
-const CountriesList: FC<CountriesListProps> = (props: CountriesListProps) => {
-  const { inputText } = props;
+const CountriesList: FC<CountriesListProps> = ({ inputText }) => {
   const filterByNameAndCapital = (country: Country) => {
     return (country.name.toLowerCase().includes(inputText.toLowerCase())
       || country.capital.toLowerCase().includes(inputText.toLowerCase()));

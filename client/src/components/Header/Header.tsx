@@ -3,17 +3,13 @@ import React, { FC } from 'react';
 import Search from '../Search/';
 import { HeaderProps } from './Header.model';
 
-const Header: FC<HeaderProps> = (props: HeaderProps) => {
-  const { inputText, onInputChange, isMain } = props;
-
-  const searchComponent = isMain
-    ? <Search inputText={inputText}
-          onInputChange={onInputChange} />
-    : null;
+const Header: FC<HeaderProps> = ({ inputText, onInputChange, isMain }) => {
   return (
    <header>
        <div>Logo</div>
-       {searchComponent}
+       {isMain
+        && <Search inputText={inputText}
+                   onInputChange={onInputChange} />}
        <div>lang</div>
    </header>
   );
