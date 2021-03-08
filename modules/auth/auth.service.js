@@ -1,10 +1,6 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
-const validateData = (user) => {
-
-}
-
 const encryptPassword = async (password) => {
   const salt = await bcrypt.genSalt(10);
   return await bcrypt.hash(password, salt);
@@ -20,18 +16,16 @@ const createAccessToken = (user) => {
       name: user.nickname,
       id: user._id,
     },
-    process.env.TOKEN_SECRET
+    process.env.TOKEN_SECRET,
+    {
+      expiresIn: '5h'
+    }
   );
 }
 
-const createRefreshToken = (user) => {
-
-}
 
 module.exports = {
-  validateData,
   encryptPassword,
   comparePasswords,
-  createAccessToken,
-  createRefreshToken,
+  createAccessToken
 }

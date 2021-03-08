@@ -1,14 +1,11 @@
 const express = require('express');
 const wrap = require('../../common/errors/async-error-wrapper');
 const User = require('./auth.user.schema');
-const bcrypt = require("bcryptjs");
 const router = express.Router();
 const {
   createAccessToken,
-  createRefreshToken,
   comparePasswords,
   encryptPassword } = require('./auth.service');
-
 
 router.post(
   '/register',
@@ -44,11 +41,13 @@ router.post(
     }
     const validPassword = await comparePasswords(req.body.password, user.password);
     if (!validPassword) {
-      return res.status(403).json({error: "Password is wrong"});
+      return res.status(403).json({
+        error: "Password is wrong"
+      });
     }
 
     const accessToken = createAccessToken(user);
-    //const refreshToken = createRefreshToken(user);
+
 
     res.status(200).json({
       error: null,
@@ -56,8 +55,7 @@ router.post(
         message: 'Login successful',
         data:
           {
-            accessToken,
-            //refreshToken
+            token: accessToken
           },
       }
     })
