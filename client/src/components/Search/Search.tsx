@@ -4,6 +4,7 @@ import { SearchProps } from '../Search/Search.model';
 
 const Search: FC<SearchProps> = (props: SearchProps) => {
   const { inputText, onInputChange } = props;
+
   const onInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     onInputChange(event.target.value);
   }
@@ -11,13 +12,17 @@ const Search: FC<SearchProps> = (props: SearchProps) => {
     onInputChange(inputText);
     event.preventDefault();
   }
+
   return (
         <form className="search-container"
               onSubmit={onSubmit} >
           <input className="search-input"
+                type="search"
                  placeholder="Search"
                  value={inputText}
-                 onChange={onInput} />
+                 onChange={onInput}
+                 autoFocus
+                 autoComplete="false" />
           <button className="search-button"
                   type="submit" />
         </form>
