@@ -1,5 +1,32 @@
+.search-container {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  background-color: #2A8086;
+  ;
+}
+
 .search-input {
   background: #E6E9EF;
   box-shadow: inset 4px 4px 5px #D1D9E6, inset -4px -4px 5px #FFFFFF;
   border-radius: 27px;
+  border: none;
+  text-indent: 4px;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.search-button {
+  border: none;
+  background-color: transparent;
+  background-image: url('../../assets/images/search_icon.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 32px;
+  height: 32px;
+
+  &:hover {
+    cursor: pointer;
+  }
 }

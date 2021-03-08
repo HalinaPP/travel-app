@@ -19,9 +19,7 @@ const Search: FC<SearchProps> = (props: SearchProps) => {
                  value={inputText}
                  onChange={onInput} />
           <button className="search-button"
-                  type="submit" >
-            Search
-          </button>
+                  type="submit" />
         </form>
   );
 }
