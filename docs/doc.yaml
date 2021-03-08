@@ -80,7 +80,42 @@ paths:
           description: country not found
         '400':
           description: 'invalid Country ID. ID must be objectID'
-          
+    post:
+      tags:
+        - rating
+      summary: create new rating for place
+      parameters:
+        - in: path
+          name: countryId
+          required: true
+          schema:
+            $ref: '#/components/schemas/Rating'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              title: example
+              properties:
+                placeId:
+                  type: string
+                  description: The place's id
+                userId:
+                  type: string
+                  description: The user's id
+                rating:
+                  type: integer
+                  description: The place's rating
+              required:
+                - placeId
+                - userId
+                - rating
+      responses:
+        '200':
+          description: The rating has been added
+        '400':
+          description: 'Bad request'
 components:
   schemas:
     Country:
@@ -146,3 +181,20 @@ components:
                   type: string
                 description:
                   type: string
+    Rating:
+      type: object
+      required:
+          - placeId
+          - userId
+          - rating
+      properties:
+        placeId: 
+          type: string
+          format: objectId
+        userId:
+          type: string
+          format: objectId
+        rating:
+          type: integer
+          minimum: 0
+          maximum: 5
