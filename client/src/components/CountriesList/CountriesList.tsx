@@ -15,20 +15,6 @@ const CountriesList: FC<CountriesListProps> = ({ inputText }) => {
     );
   };
   return (
-    // <React.Fragment>
-    //   <div>
-    //     <ul>
-    //       {
-    //         COUNTRIES_LIST
-    //           .filter(filterByNameAndCapital)
-    //           .map((country) => {
-    //           return <li key={country.name}>{country.name}</li>
-    //         })
-    //       }
-    //     </ul>
-    //   </div>
-    //   <Link to={'/country/1'}>Country1</Link>
-    // </React.Fragment>
     <main>
       <section className="promo">
         <div className="wrapper">

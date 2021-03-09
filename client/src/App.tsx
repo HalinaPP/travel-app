@@ -17,12 +17,12 @@ const App = () => {
         <Route path="/country">
           <Country />
         </Route>
-        <Route path="/">
+        {/* <Route path="/">
           <Country />
-        </Route>
-        {/* <Route exact path="/">
-          <CountriesList inputText={"any"} />
         </Route> */}
+        <Route exact path="/">
+          <CountriesList inputText={"any"} />
+        </Route>
       </Switch>
       <Footer />
     </Router>

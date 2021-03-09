@@ -3,8 +3,6 @@ import React, { FC } from "react";
 
 const Video: FC = () => (
   <iframe
-    // width="560"
-    // height={315}
     title={"2"}
     style={{ height: 604, width: '100%' }}
     src="https://www.youtube.com/embed/wYFKlfr-ELU"
