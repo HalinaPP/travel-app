@@ -2,7 +2,13 @@ const express = require('express');
 const wrap = require('../../common/errors/async-error-wrapper');
 const User = require('./auth.user.schema');
 const router = express.Router();
+const { StatusCodes, ReasonPhrases } = require('http-status-codes');
 const {
+  NotFoundError,
+  AlreadyExistsError,
+  WrongPasswordError } = require('../../common/errors/errors-list');
+const {
+  validateData,
   createAccessToken,
   comparePasswords,
   encryptPassword } = require('./auth.service');
@@ -10,21 +16,23 @@ const {
 router.post(
   '/register',
   wrap(async (req, res) => {
+    const { nickname, password } = req.body;
+    const validData = validateData(nickname, password);
+    if (!validData) {
+      return res.status(StatusCodes.BAD_REQUEST).send(ReasonPhrases.BAD_REQUEST);
+    }
     const userExists = await User
-      .findOne({ nickname: req.body.nickname });
+      .findOne({ nickname });
     if (userExists) {
-      return res.status(400).json({error: 'That user already exists'})
+      throw new AlreadyExistsError(nickname)
     } else {
-      const password = await encryptPassword(req.body.password);
-      const user = new User({
-        nickname: req.body.nickname,
-        password,
-      })
+      const encryptedPassword = await encryptPassword(password);
+      const user = new User({ nickname, password: encryptedPassword });
       try {
-        const savedUser = await user.save();
-        res.status(201).json({ error: null, data: savedUser })
+        await user.save();
+        res.status(StatusCodes.CREATED).send(ReasonPhrases.CREATED);
       } catch(error) {
-        res.status(400).json({ error })
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(ReasonPhrases.INTERNAL_SERVER_ERROR);
       }
     }
 
@@ -35,15 +43,18 @@ router.post(
 router.post(
   '/login',
   wrap(async (req, res) => {
-    const user = await User.findOne({nickname: req.body.nickname})
+    const { nickname, password } = req.body;
+    const validData = validateData(nickname, password);
+    if (!validData) {
+      return res.status(StatusCodes.BAD_REQUEST).send(ReasonPhrases.BAD_REQUEST);
+    }
+    const user = await User.findOne({ nickname })
     if (!user) {
-      return res.status(403).json({error: 'User not found!'})
+      throw new NotFoundError(nickname)
     }
     const validPassword = await comparePasswords(req.body.password, user.password);
     if (!validPassword) {
-      return res.status(403).json({
-        error: "Password is wrong"
-      });
+      throw new WrongPasswordError(nickname)
     }
 
     const accessToken = createAccessToken(user);
@@ -51,6 +62,7 @@ router.post(
 
     res.status(200).json({
       error: null,
+      statusText: ReasonPhrases.ACCEPTED,
       data: {
         message: 'Login successful',
         data:

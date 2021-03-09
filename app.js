@@ -30,7 +30,7 @@ app.get('/', async (req, res) => {
   try {
     res.sendFile(__dirname + path + 'index.html')
   } catch (e) {
-    res.status(500).json({ message: 'Похоже, билд реакта сломался'})
+    res.status(StatusCodes.NO_CONTENT).send(ReasonPhrases.NO_CONTENT)
   }
 })
 

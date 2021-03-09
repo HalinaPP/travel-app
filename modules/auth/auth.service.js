@@ -1,6 +1,10 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
+const validateData = (log, pass) => {
+  return (log && pass && log !== '' && pass !== '')
+}
+
 const encryptPassword = async (password) => {
   const salt = await bcrypt.genSalt(10);
   return await bcrypt.hash(password, salt);
@@ -25,6 +29,7 @@ const createAccessToken = (user) => {
 
 
 module.exports = {
+  validateData,
   encryptPassword,
   comparePasswords,
   createAccessToken
