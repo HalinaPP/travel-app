@@ -7,7 +7,7 @@ const validateData = (log, pass) => {
 }
 
 const encryptPassword = async (password) => {
-  const salt = await bcrypt.genSalt(process.env.SALT_ROUNDS);
+  const salt = await bcrypt.genSalt(10);
   return await bcrypt.hash(password, salt);
 }
 

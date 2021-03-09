@@ -6,6 +6,7 @@ const { StatusCodes, ReasonPhrases } = require('http-status-codes');
 const {
   NotFoundError,
   AlreadyExistsError,
+  InvalidRequestBodyError,
   WrongPasswordError } = require('../../common/errors/errors-list');
 const {
   validateData,
@@ -19,8 +20,9 @@ router.post(
     const { nickname, password } = req.body;
     const validData = validateData(nickname, password);
     if (!validData) {
-      return res.status(StatusCodes.BAD_REQUEST).send(ReasonPhrases.BAD_REQUEST);
+      throw new InvalidRequestBodyError();
     }
+    console.log(nickname, password);
     const userExists = await User
       .findOne({ nickname });
     if (userExists) {
@@ -46,13 +48,13 @@ router.post(
     const { nickname, password } = req.body;
     const validData = validateData(nickname, password);
     if (!validData) {
-      return res.status(StatusCodes.BAD_REQUEST).send(ReasonPhrases.BAD_REQUEST);
+      throw new InvalidRequestBodyError();
     }
     const user = await User.findOne({ nickname })
     if (!user) {
       throw new NotFoundError(nickname)
     }
-    const validPassword = await comparePasswords(nickname, password);
+    const validPassword = await comparePasswords(password, user.password);
     if (!validPassword) {
       throw new WrongPasswordError(nickname)
     }

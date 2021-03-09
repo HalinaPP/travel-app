@@ -36,6 +36,15 @@ class InternalServerError extends Error {
   }
 }
 
+class InvalidRequestBodyError extends Error {
+  constructor() {
+    super();
+    this.status = StatusCodes.BAD_REQUEST;
+    this.statusText = ReasonPhrases.BAD_REQUEST;
+    this.reason = 'provided data is invalid';
+  }
+}
+
 class WrongPasswordError extends Error {
   constructor(entity) {
     super();
@@ -59,6 +68,7 @@ module.exports = {
   AlreadyExistsError,
   NotFoundError,
   InternalServerError,
+  InvalidRequestBodyError,
   WrongPasswordError,
   MongoDuplicateError,
 };
