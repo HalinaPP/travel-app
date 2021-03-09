@@ -1,12 +1,13 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const { EXPIRES_IN } = require('./constants');
 
 const validateData = (log, pass) => {
   return (log && pass && log !== '' && pass !== '')
 }
 
 const encryptPassword = async (password) => {
-  const salt = await bcrypt.genSalt(10);
+  const salt = await bcrypt.genSalt(process.env.SALT_ROUNDS);
   return await bcrypt.hash(password, salt);
 }
 
@@ -22,7 +23,7 @@ const createAccessToken = (user) => {
     },
     process.env.TOKEN_SECRET,
     {
-      expiresIn: '5h'
+      expiresIn: EXPIRES_IN
     }
   );
 }

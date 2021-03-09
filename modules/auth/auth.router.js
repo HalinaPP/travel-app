@@ -52,15 +52,14 @@ router.post(
     if (!user) {
       throw new NotFoundError(nickname)
     }
-    const validPassword = await comparePasswords(req.body.password, user.password);
+    const validPassword = await comparePasswords(nickname, password);
     if (!validPassword) {
       throw new WrongPasswordError(nickname)
     }
 
     const accessToken = createAccessToken(user);
 
-
-    res.status(200).json({
+    res.status(StatusCodes.ACCEPTED).json({
       error: null,
       statusText: ReasonPhrases.ACCEPTED,
       data: {
