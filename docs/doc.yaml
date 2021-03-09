@@ -89,7 +89,8 @@ paths:
           name: countryId
           required: true
           schema:
-            $ref: '#/components/schemas/Rating'
+            type: string
+            title: countryId
       requestBody:
         required: true
         content:
