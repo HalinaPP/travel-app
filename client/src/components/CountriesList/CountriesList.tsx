@@ -2,7 +2,6 @@ import "./countriesList.scss";
 import React, { FC } from "react";
 import { Link } from "react-router-dom";
 import Carousel from "react-elastic-carousel";
-// import promoBg from '../../assets/images/ireland.jpg';
 import heartIcon from "../../assets/icons/heart.png";
 
 import { COUNTRIES_LIST } from "../../constants/constants";

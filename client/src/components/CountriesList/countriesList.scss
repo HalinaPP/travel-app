@@ -178,7 +178,7 @@
       background-color: transparent;
       border-color: #19707d;
       color: #19707d;
-      &:hover {
+      &:hover:enabled {
         background-color: #19707d;
       }
     }
