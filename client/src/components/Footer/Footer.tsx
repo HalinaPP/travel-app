@@ -50,7 +50,7 @@ const Footer: FC = () => (
           <div className='youtube'>
             <img src={youtubeLogo} className='icon' alt='youtube link' />
             <a href='https://youtu.be/TA-sqieWo9k' className='link'>
-              {/* {layouts[lang].youtube} */}
+              app review
             </a>
           </div>
         </div>
