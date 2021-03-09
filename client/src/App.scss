@@ -5,62 +5,63 @@
   overflow: hidden;
 }
 
-header {
-  & > .wrapper {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
+// header {
+//   & > .wrapper {
+//     display: flex;
+//     flex-direction: row;
+//     align-items: center;
+//     justify-content: space-between;
+//     color: red;
+//   }
 
-  height: 11rem;
-  background-color: #2a8086;
-  box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.1);
-  z-index: 1;
+//   height: 11rem;
+//   background-color: #2a8086;
+//   box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.1);
+//   z-index: 1;
 
-  .users-block {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+//   .users-block {
+//     display: flex;
+//     flex-direction: row;
+//     align-items: center;
 
-    & > * {
-      margin: auto 1.5rem;
-    }
+//     & > * {
+//       margin: auto 1.5rem;
+//     }
 
-    .avatar {
-      width: 5.6rem;
-      height: 5.6rem;
-      border-radius: 50%;
-      background-image: url("./assets/avatar-mock.png");
-      background-size: contain;
-      background-position: center;
-    }
-    .search-block {
-      input.search {
-        display: none;
-        // background-color: red;
-      }
-      .search__icon,
-      .settings {
-        display: inline-block;
-        width: 3rem;
-        height: 3rem;
-        background-image: url("./assets/icons/search.png");
-        background-size: contain;
-        background-position: center;
-      }
-    }
+//     .avatar {
+//       width: 5.6rem;
+//       height: 5.6rem;
+//       border-radius: 50%;
+//       background-image: url("./assets/avatar-mock.png");
+//       background-size: contain;
+//       background-position: center;
+//     }
+//     .search-block {
+//       input.search {
+//         display: none;
+//         // background-color: red;
+//       }
+//       // .search__icon,
+//       // .settings {
+//       //   display: inline-block;
+//       //   width: 3rem;
+//       //   height: 3rem;
+//       //   background-image: url("./assets/icons/search.png");
+//       //   background-size: contain;
+//       //   background-position: center;
+//       // }
+//     }
 
-    .settings {
-      display: inline-block;
-      width: 3rem;
-      height: 3rem;
-      background-image: url("./assets/icons/settings.png");
-      background-size: contain;
-      background-position: center;
-    }
-  }
-}
+//     .settings {
+//       display: inline-block;
+//       width: 3rem;
+//       height: 3rem;
+//       background-image: url("./assets/icons/settings.png");
+//       background-size: contain;
+//       background-position: center;
+//     }
+//   }
+// }
 
 main {
   // height: calc(100vh - 31rem);

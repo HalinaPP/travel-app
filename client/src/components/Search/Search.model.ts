@@ -1,3 +1,4 @@
-export interface SearchProps{
-
+export interface SearchProps {
+  inputText: string,
+  onInputChange: Function,
 }
