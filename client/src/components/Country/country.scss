@@ -1,0 +1,105 @@
+main.country {
+  background-color: #f6f9fa;
+  background-image: url("../../assets/ui/countries-bg.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: bottom;
+}
+
+main {
+  width: 100%;
+
+  .title {
+    font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+      "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.4rem;
+    text-transform: uppercase;
+    color: #0d444d;
+  }
+  .subtitle {
+    font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+      "Droid Sans", "Helvetica Neue", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 1.9rem;
+  }
+}
+
+.info-block {
+  background: url("../../assets/images/Canada.jpg");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  width: 100%;
+  height: 100rem;
+}
+
+.video-block {
+  .title-block {
+    position: relative;
+    margin: 2.7rem 0 2.4rem;
+    .capital {
+      color: #8a8a8a;
+    }
+    .btn--ghost {
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      width: 5.2rem;
+      height: 5.2rem;
+      color: transparent;
+      background-image: url("../../assets/icons/heart.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 2.4rem;
+
+      cursor: pointer;
+      transition: background-color 250ms linear;
+      &:hover {
+        background-color: rgba(25, 112, 125, 0.25);
+        transition: background-color 250ms linear;
+      }
+    }
+  }
+}
+
+.sight-slider {
+  margin: 13rem auto 4.5rem;
+  .subtitle {
+    margin-bottom: 2.2rem;
+    padding-left: 8.5rem;
+    color: #0d444d;
+    font-weight: 500;
+  }
+}
+
+.about {
+& > .wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 52rem;
+}
+  .text-block {
+    padding-left: 8.5rem;
+    width: 42.9rem;
+    .title {
+      margin: 3rem 0 3.4rem;
+    }
+    .content {
+      font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+        "Droid Sans", "Helvetica Neue", sans-serif;
+      font-weight: 400;
+      font-size: 1.4rem;
+      line-height: 2rem;
+
+      margin: 0.8rem 0 3.3rem;
+      max-width: 48rem;
+    }
+
+  }
+}
