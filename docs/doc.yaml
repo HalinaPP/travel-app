@@ -1,9 +1,9 @@
 openapi: 3.0.0
 servers: [
-  {
+{
   'url': '/',
   "description": "",
-  }
+}
 ]
 info:
   description: This is a simple Travel App API
@@ -43,7 +43,7 @@ paths:
           required: true
           schema:
             type: string
-            format: objectId  
+            format: objectId
         - in: query
           name: lang
           description: optional language
@@ -68,14 +68,14 @@ paths:
                             photoUrl:
                               type: string
                             localizations:
-                                type: array
-                                items:
-                                  type: object
-                                  properties:
-                                    name:
-                                      type: string
-                                    description:
-                                      type: string
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  name:
+                                    type: string
+                                  description:
+                                    type: string
         '404':
           description: country not found
         '400':
@@ -117,6 +117,79 @@ paths:
           description: The rating has been added
         '400':
           description: 'Bad request'
+  /auth/login:
+    post:
+      tags:
+        - login
+      summary: route to log in a user
+      description: route to send POST request and get response
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nickname:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '202':
+          description: Accepted - The data is accepted
+          content:
+            application/json:
+              schema:
+                properties:
+                  errors:
+                    type: integer
+                    nullable: true
+                  statusText:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                      data:
+                        type: object
+                        properties:
+                          token:
+                            type: string
+        '400':
+          description: Bad request - Provided data is invalid
+        '401':
+          description: Unathorised - Wrong password
+        '404':
+          description: Not found - There is no such user
+        '500':
+          description: Internal server error
+  /auth/register:
+    post:
+      tags:
+        - register
+      summary: route to register a user
+      description: route to send POST request and get response
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nickname:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '201':
+          description: Created - User is registered
+        '400':
+          description: Bad request - Provided data is invalid
+        '409':
+          description: Conflict - Such user already exists
+        '500':
+          description: Internal server error
 components:
   schemas:
     Country:
@@ -158,7 +231,7 @@ components:
             properties:
               name:
                 type: string
-              capital: 
+              capital:
                 type: string
               description:
                 type: string
@@ -168,20 +241,32 @@ components:
         - countryId
         - photoUrl
       properties:
-        countryId: 
+        countryId:
           type: string
           format: objectId
         photoUrl:
           type: string
         localizations:
-            type: array
-            items:
-              type: object
-              properties:
-                name:
-                  type: string
-                description:
-                  type: string
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+    User:
+      type: object
+      required:
+        - nickname
+        - password
+      properties:
+        nickname:
+          type: string
+          example: bramov
+        password:
+          type: string
+          example: $2a$10$ypwWQJDHE7ZS4pVu2EEvzuR2HR7K3.mp897TGBWLgm6kILEOlHviy
     Rating:
       type: object
       required:

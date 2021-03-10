@@ -1,4 +1,38 @@
 export const imagesPath = './src/assets/images/';
+export const COUNTRIES_LIST = [
+  {
+    name: 'Belarus',
+    capital: 'Minsk',
+  },
+  {
+    name: 'Canada',
+    capital: 'Ottawa',
+  },
+  {
+    name: 'Georgia',
+    capital: 'Tbilisi',
+  },
+  {
+    name: 'Ireland',
+    capital: 'Dublin',
+  },
+  {
+    name: 'Kazakhstan',
+    capital: 'Nur-Sultan',
+  },
+  {
+    name: 'Norway',
+    capital: 'Oslo',
+  },
+  {
+    name: 'Romania',
+    capital: 'Bucharest',
+  },
+  {
+    name: 'Switzerland',
+    capital: 'Bern',
+},
+];
 export const FOOTER_COPYRIGHT = {
   developers: [
     { link: 'https://github.com/bramov', name: '@bramov' },
