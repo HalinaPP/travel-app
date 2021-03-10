@@ -28,19 +28,22 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
 app.get('/', async (req, res) => {
   try {
-    res.sendFile(__dirname + buildPath + 'index.html')
+    res.sendFile(__dirname + buildPath + 'index.html');
   } catch (e) {
-    res.status(StatusCodes.NO_CONTENT).send(ReasonPhrases.NO_CONTENT)
+    res.status(StatusCodes.NO_CONTENT).send(ReasonPhrases.NO_CONTENT);
   }
-})
+});
 
 // Routers
 const countryRouter = require('./modules/countries/country.router');
 const authRouter = require('./modules/auth/auth.router');
+const ratingRouter = require('./modules/rating/rating.router');
 
 app.use('/countries', countryRouter);
 
 app.use('/auth', authRouter);
+
+app.use('/countries/:id', ratingRouter);
 
 app.use((req, res) => {
   res.status(StatusCodes.NOT_IMPLEMENTED).send(ReasonPhrases.NOT_IMPLEMENTED);

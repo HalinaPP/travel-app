@@ -1,6 +1,7 @@
 const express = require('express');
 const wrap = require('../../common/errors/async-error-wrapper');
 const Rating = require('./rating.schema');
+const { StatusCodes, ReasonPhrases } = require('http-status-codes');
 
 const router = express.Router();
 
@@ -12,7 +13,13 @@ router.post(
       userId: req.body.userId,
       rating: req.body.rating,
     });
-
-    await rating.save();
+    try {
+      await rating.save();
+      res.status(StatusCodes.CREATED).send(ReasonPhrases.CREATED);
+    } catch (error) {
+      throw new InternalServerError();
+    }
   }),
 );
+
+module.exports = router;
