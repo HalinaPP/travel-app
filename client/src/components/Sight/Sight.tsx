@@ -1,10 +1,10 @@
-import "./sight.scss";
-import React, { FC } from "react";
-import Carousel from "react-elastic-carousel";
-import { SIGHTS } from "../../constants/constants";
+import './sight.scss';
+import React, { FC } from 'react';
+import Carousel from 'react-elastic-carousel';
+import { SIGHTS } from '../../constants/constants';
 
 const Sight: FC = () => {
-  const countryName = "belarus";
+  const countryName = 'belarus';
   return (
     <Carousel itemsToScroll={1} itemsToShow={3} isRTL={false} pagination={false} className="slider">
       {SIGHTS[countryName].map((item) => (

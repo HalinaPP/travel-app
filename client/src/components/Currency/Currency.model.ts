@@ -1,3 +1,1 @@
-export interface CurrencyProps{
-
-}
+export interface CurrencyProps { smt?: string }

@@ -1,3 +1,1 @@
-export interface MapProps{
-
-}
+export interface MapProps { smt?: string }

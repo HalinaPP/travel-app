@@ -1,16 +1,16 @@
-import "./country.scss";
-import React, { FC } from "react";
-import { useParams } from "react-router-dom";
-import Sight from "../Sight/Sight";
-import Weather from "../Weather/Weather";
-import Currency from "../Currency/Currency";
-import Time from "../Time/Time";
-import Map from "../Map/Map";
-import Video from "../Video/Video";
+import './country.scss';
+import React, { FC } from 'react';
+import { useParams } from 'react-router-dom';
+import Sight from '../Sight/Sight';
+import Weather from '../Weather/Weather';
+import Currency from '../Currency/Currency';
+import Time from '../Time/Time';
+import Map from '../Map/Map';
+import Video from '../Video/Video';
 
 const Country: FC = () => {
-  let countryName = "Canada";
-  let capital = "Ottawa";
+  const countryName = 'Canada';
+  const capital = 'Ottawa';
 
   return (
     <main className="country">

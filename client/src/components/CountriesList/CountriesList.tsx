@@ -1,19 +1,17 @@
-import "./countriesList.scss";
-import React, { FC } from "react";
-import { Link } from "react-router-dom";
-import Carousel from "react-elastic-carousel";
-import heartIcon from "../../assets/icons/heart.png";
+import './countriesList.scss';
+import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
+import Carousel from 'react-elastic-carousel';
+import heartIcon from '../../assets/icons/heart.png';
 
-import { COUNTRIES_LIST } from "../../constants/constants";
-import { CountriesListProps, Country } from "./CountriesList.model";
+import { COUNTRIES_LIST } from '../../constants/constants';
+import { CountriesListProps, Country } from './CountriesList.model';
 
 const CountriesList: FC<CountriesListProps> = ({ inputText }) => {
-  const filterByNameAndCapital = (country: Country) => {
-    return (
-      country.name.toLowerCase().includes(inputText.toLowerCase()) ||
-      country.capital.toLowerCase().includes(inputText.toLowerCase())
-    );
-  };
+  const filterByNameAndCapital = (country: Country) => (
+    country.name.toLowerCase().includes(inputText.toLowerCase())
+      || country.capital.toLowerCase().includes(inputText.toLowerCase())
+  );
   return (
     <main>
       <section className="promo">

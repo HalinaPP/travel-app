@@ -1,6 +1,6 @@
-import "./search.scss";
-import React, { FC, FormEvent } from "react";
-import { SearchProps } from "./Search.model";
+import './search.scss';
+import React, { FC, FormEvent } from 'react';
+import { SearchProps } from './Search.model';
 
 const Search: FC<SearchProps> = ({ inputText, onInputChange }) => {
   const onInput = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,9 +1,9 @@
-import "./video.scss";
-import React, { FC } from "react";
+import './video.scss';
+import React, { FC } from 'react';
 
 const Video: FC = () => (
   <iframe
-    title={"2"}
+    title={'2'}
     style={{ height: 604, width: '100%' }}
     src="https://www.youtube.com/embed/wYFKlfr-ELU"
     frameBorder="0"

@@ -1,3 +1,3 @@
-export interface WeatherProps{
-
+export interface WeatherProps {
+  smr?: any
 }

@@ -1,3 +1,3 @@
-export interface VideoProps{
-
+export interface VideoProps {
+  smr?: any
 }
