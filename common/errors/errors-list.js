@@ -9,6 +9,15 @@ class BadRequestError extends Error {
   }
 }
 
+class AlreadyExistsError extends Error {
+  constructor(entity) {
+    super();
+    this.status = StatusCodes.CONFLICT;
+    this.statusText = ReasonPhrases.CONFLICT;
+    this.reason = `${entity} already exists`;
+  }
+}
+
 class NotFoundError extends Error {
   constructor(entity) {
     super();
@@ -27,6 +36,24 @@ class InternalServerError extends Error {
   }
 }
 
+class InvalidRequestBodyError extends Error {
+  constructor() {
+    super();
+    this.status = StatusCodes.BAD_REQUEST;
+    this.statusText = ReasonPhrases.BAD_REQUEST;
+    this.reason = 'provided data is invalid';
+  }
+}
+
+class WrongPasswordError extends Error {
+  constructor(entity) {
+    super();
+    this.status = StatusCodes.UNAUTHORIZED;
+    this.statusText = ReasonPhrases.UNAUTHORIZED;
+    this.reason = `wrong password for ${entity}`
+  }
+}
+
 class MongoDuplicateError extends Error {
   constructor(reason) {
     super();
@@ -38,7 +65,10 @@ class MongoDuplicateError extends Error {
 
 module.exports = {
   BadRequestError,
+  AlreadyExistsError,
   NotFoundError,
   InternalServerError,
+  InvalidRequestBodyError,
+  WrongPasswordError,
   MongoDuplicateError,
 };
