@@ -1,4 +1,6 @@
 export const imagesPath = './src/assets/images/';
+export const LANGS = {en:'en', ru:'ru',be:'be'};
+
 export const COUNTRIES_LIST = [
   {
     name: 'Belarus',
