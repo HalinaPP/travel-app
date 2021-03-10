@@ -13,7 +13,7 @@ const Country: FC = () => {
   let capital = "Ottawa";
 
   return (
-    <main className='country'>
+    <main className="country">
       <section className="info-block">
         <Weather />
         <Time />
