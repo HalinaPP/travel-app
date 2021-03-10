@@ -1,14 +1,12 @@
 import './video.scss';
 import React, { FC } from 'react';
+import ReactPlayer from 'react-player';
+import { VideoProps } from './Video.model';
 
-const Video: FC = () => (
-  <iframe
-    title={'2'}
-    style={{ height: 604, width: '100%' }}
-    src="https://www.youtube.com/embed/wYFKlfr-ELU"
-    frameBorder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowFullScreen
-  ></iframe>
+const Video: FC<VideoProps> = ({ src }) => (
+  <ReactPlayer url={src}
+    height="60.4rem"
+    width="100%"
+    controls />
 );
 export default Video;

@@ -29,7 +29,7 @@ const Country: FC = () => {
               ♡
             </a>
           </div>
-          <Video />
+          <Video src='https://www.youtube.com/embed/wYFKlfr-ELU'/>
         </div>
       </section>
 
