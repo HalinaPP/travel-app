@@ -43,7 +43,7 @@ app.use('/countries', countryRouter);
 
 app.use('/auth', authRouter);
 
-app.use('/countries/:id', ratingRouter);
+app.use('/:id', ratingRouter);
 
 app.use((req, res) => {
   res.status(StatusCodes.NOT_IMPLEMENTED).send(ReasonPhrases.NOT_IMPLEMENTED);

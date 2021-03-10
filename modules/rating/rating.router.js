@@ -1,13 +1,13 @@
 const express = require('express');
 const wrap = require('../../common/errors/async-error-wrapper');
 const Rating = require('./rating.schema');
-const { StatusCodes, ReasonPhrases } = require('http-status-codes');
 
 const router = express.Router();
 
 router.post(
   '/:id',
   wrap(async (req, res) => {
+    console.log('!');
     const rating = new Rating({
       placeId: req.body.placeId,
       userId: req.body.userId,
@@ -15,9 +15,9 @@ router.post(
     });
     try {
       await rating.save();
-      res.status(StatusCodes.CREATED).send(ReasonPhrases.CREATED);
+      res.status(201);
     } catch (error) {
-      throw new InternalServerError();
+      console.log(error.message);
     }
   }),
 );
