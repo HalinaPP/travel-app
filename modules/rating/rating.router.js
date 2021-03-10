@@ -1,6 +1,8 @@
 const express = require('express');
 const wrap = require('../../common/errors/async-error-wrapper');
 const Rating = require('./rating.schema');
+const { InternalServerError } = require('../../common/errors/errors-list');
+const { StatusCodes, ReasonPhrases } = require('http-status-codes');
 
 const router = express.Router();
 
@@ -15,9 +17,9 @@ router.post(
     });
     try {
       await rating.save();
-      res.status(201);
+      res.status(StatusCodes.CREATED).send(ReasonPhrases.CREATED);
     } catch (error) {
-      console.log(error.message);
+      throw new InternalServerError();
     }
   }),
 );
