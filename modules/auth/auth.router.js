@@ -6,6 +6,7 @@ const { StatusCodes, ReasonPhrases } = require('http-status-codes');
 const {
   NotFoundError,
   AlreadyExistsError,
+  InternalServerError,
   InvalidRequestBodyError,
   WrongPasswordError } = require('../../common/errors/errors-list');
 const {
@@ -22,7 +23,6 @@ router.post(
     if (!validData) {
       throw new InvalidRequestBodyError();
     }
-    console.log(nickname, password);
     const userExists = await User
       .findOne({ nickname });
     if (userExists) {
@@ -34,7 +34,7 @@ router.post(
         await user.save();
         res.status(StatusCodes.CREATED).send(ReasonPhrases.CREATED);
       } catch(error) {
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(ReasonPhrases.INTERNAL_SERVER_ERROR);
+        throw new InternalServerError();
       }
     }
 
@@ -58,20 +58,22 @@ router.post(
     if (!validPassword) {
       throw new WrongPasswordError(nickname)
     }
-
-    const accessToken = createAccessToken(user);
-
-    res.status(StatusCodes.ACCEPTED).json({
-      error: null,
-      statusText: ReasonPhrases.ACCEPTED,
-      data: {
-        message: 'Login successful',
-        data:
-          {
-            token: accessToken
-          },
-      }
-    })
+    try {
+      const accessToken = createAccessToken(user);
+      res.status(StatusCodes.ACCEPTED).json({
+        error: null,
+        statusText: ReasonPhrases.ACCEPTED,
+        data: {
+          message: 'Login successful',
+          data:
+            {
+              token: accessToken
+            },
+        }
+      })
+    } catch(e) {
+      throw new InternalServerError();
+    }
   })
 );
 
