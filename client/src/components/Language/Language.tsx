@@ -11,12 +11,13 @@ const Language: FC<LanguageProps> = ({ currLang, onSelectChange}) => {
   }
 
   const handleChange = ({target}:ChangeEvent<HTMLSelectElement>)=>{
+    console.log(target.value);
     onSelectChange(target.value);
   }
 
 
   return (
-   <select value={currLang} onSelect={handleChange}>
+   <select value={currLang} onChange={handleChange}>
        {getLangsItems()}
    </select>
   );

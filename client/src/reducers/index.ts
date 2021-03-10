@@ -9,7 +9,7 @@ export interface StateModel {
   };
 }
 
-const initialState: StateModel = {
+export const initialState: StateModel = {
   lang: LANGS.ru,
 };
 
