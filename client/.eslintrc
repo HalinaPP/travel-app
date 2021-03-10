@@ -20,6 +20,13 @@
   "rules": {
     "no-plusplus": "off",
     "no-console": "warn",
+    "@typescript-eslint/no-empty-interface": [
+      "warn",
+      {
+        "allowSingleExtends": false
+      }
+    ],
+    "import/extensions": 0,
     "max-len": [
       "warn",
       {
