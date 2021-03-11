@@ -8,7 +8,7 @@ const currState = localStorageState ? JSON.parse(localStorageState) : initialSta
 console.log('curr', currState);
 
 export const store = createStore(reducer, currState, compose(applyMiddleware(thunk)));
-//const store = createStore(reducer, currState);
+// const store = createStore(reducer, currState);
 
 store.subscribe(() => { localStorage.setItem('travelApp131-state', JSON.stringify(store.getState())); });
 

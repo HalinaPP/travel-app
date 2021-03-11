@@ -1,9 +1,9 @@
+import { Dispatch } from 'redux';
 import { ACTIONS } from '../actions/constants';
 import { LANGS } from '../constants/constants';
 import { travelApi } from '../utils/apiConnect';
-import { Dispatch } from 'redux';
 import { setCountries } from '../actions/index';
-import {CountryProps} from '../components/Country/Country.model';
+import { CountryProps } from '../components/Country/Country.model';
 
 export interface StateModel {
   lang: string;

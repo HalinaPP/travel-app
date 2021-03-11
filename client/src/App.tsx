@@ -1,7 +1,7 @@
 import { Provider } from 'react-redux';
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import store from './store';
+import { store } from './store';
 import Country from './components/Country';
 import CountriesList from './components/CountriesList';
 import Footer from './components/Footer';

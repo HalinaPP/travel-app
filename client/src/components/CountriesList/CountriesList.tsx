@@ -1,5 +1,5 @@
 import './countriesList.scss';
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Carousel from 'react-elastic-carousel';
 import heartIcon from '../../assets/icons/heart.png';
@@ -7,11 +7,9 @@ import heartIcon from '../../assets/icons/heart.png';
 import { COUNTRIES_LIST } from '../../constants/constants';
 import { CountriesListProps, Country } from './CountriesList.model';
 
-const CountriesList: FC<CountriesListProps> = ({ inputText,getCountries }) => {
-  const filterByNameAndCapital = (country: Country) => (
-    country.name.toLowerCase().includes(inputText.toLowerCase())
-      || country.capital.toLowerCase().includes(inputText.toLowerCase())
-  );
+const CountriesList: FC<CountriesListProps> = ({ inputText, getCountries }) => {
+  const filterByNameAndCapital = (country: Country) => country.name.toLowerCase().includes(inputText.toLowerCase())
+    || country.capital.toLowerCase().includes(inputText.toLowerCase());
 
   useEffect(() => {
     getCountries();

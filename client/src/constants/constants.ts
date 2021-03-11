@@ -3,7 +3,7 @@ export const LANGS = { en: 'en', ru: 'ru', be: 'be' };
 
 export const HEADER_JSON = { 'Content-Type': 'application/json' };
 export const SERVER_HOST = 'http://localhost:3005';
-export  const API_COUNTRIES_URLS = `${SERVER_HOST}/`;
+export const API_COUNTRIES_URLS = `${SERVER_HOST}/`;
 
 export const COUNTRIES_LIST = [
   {
