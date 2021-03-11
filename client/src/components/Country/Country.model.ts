@@ -1,3 +1,3 @@
-export interface CountryProps{
-
+export interface CountryProps {
+  smt?: any
 }
