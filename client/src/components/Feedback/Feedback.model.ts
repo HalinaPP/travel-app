@@ -1,3 +1,4 @@
 export interface FeedbackProps {
-  isOpen?: boolean;
+  isOpen: boolean;
+  setIsOpen: any;
 }

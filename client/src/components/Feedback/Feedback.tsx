@@ -3,32 +3,45 @@
 import React, { FC, useState, useEffect } from 'react';
 import './feedback.scss';
 import { SIGHTS } from '../../constants/constants';
+import { FeedbackProps } from './Feedback.model';
 
-const Feedback: any = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const Feedback: any = ({ setIsOpen, isOpen }: FeedbackProps) => {
+  // const [isOpen, setIsOpen] = useState(true);
 
   //any data, need logic:
   const popupTitle = 'big lakes';
   const countryName = 'canada';
   const avatar = '/images/avatar.png';
 
-  const openModal = () => {
-    setIsOpen(true);
-  };
+  // const openModal = () => {
+  //   setIsOpen(true);
+  // };
 
-  const closeModal = () => {
+  const closeModal = (e: any) => {
     setIsOpen(false);
+    if (e.target.classList.contains('feedback__overlay')) {
+      setIsOpen(false);
+    }
   };
 
   useEffect(() => {
     const body = document.querySelector('body');
+    const popup = document.querySelector('feedback__popup');
     // @ts-ignore
     body.style.overflow = isOpen ? 'hidden' : 'auto';
+    if (isOpen) {
+    }
+    popup?.classList;
   }, [isOpen]);
 
   return (
-    <div className="feedback__overlay">
-      <div className="feedback__popup">
+    <div
+      className={isOpen ? 'fadeIn feedback__overlay' : 'fadeOut feedback__overlay'}
+      onClick={(e) => {
+        closeModal(e);
+      }}
+    >
+      <div className={isOpen ? 'slideIn feedback__popup' : 'slideOut feedback__popup'}>
         <div className="popup_image">
           <div className="rating">
             {/* dummy data */}

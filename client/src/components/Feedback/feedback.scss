@@ -7,8 +7,8 @@
   width: 100vw;
   height: 100vh;
 
-  z-index: 10;
-  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+  // background-color: rgba(0, 0, 0, 0.5);
   // opacity: 0.5;
 
   .feedback__popup {
@@ -20,8 +20,7 @@
     padding: 2.8rem;
 
     z-index: 11;
-    animation: slideLeft;
-    background-color: #f6f9fa;;
+    background-color: #f6f9fa;
 
     .popup_image {
       position: relative;
@@ -203,5 +202,65 @@
         }
       }
     }
+  }
+}
+
+.slideIn {
+  animation: slideRight 350ms both;
+}
+
+.slideOut {
+  animation: slideLeft 350ms both;
+}
+
+.fadeIn {
+  animation: fadeIn 370ms both;
+}
+
+.fadeOut {
+  animation: fadeOut 370ms both;
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes slideRight {
+  100% {
+    transform: translateX(0);
+  }
+
+  0% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    z-index: 0;
+    background-color: transparent;
+  }
+
+  100% {
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  100% {
+    z-index: -1;
+    background-color: transparent;
   }
 }

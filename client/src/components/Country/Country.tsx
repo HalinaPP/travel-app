@@ -15,6 +15,12 @@ const Country: FC = () => {
   const capital = 'Ottawa';
   // const [isPopupOpen, setIsPopupOpen] = useState(false);
 
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
   return (
     <main className="country" style={{ overflow: 'hidden' }}>
       <section className="info-block">
@@ -37,11 +43,11 @@ const Country: FC = () => {
       </section>
 
       <section className="sight-slider">
-        <Feedback />
         <div className="wrapper">
           <h3 className="subtitle">Photo gallery</h3>
-          <Sight />
+          <Sight setIsOpen={setIsOpen} />
         </div>
+        <Feedback isOpen={isOpen} setIsOpen={setIsOpen} />
       </section>
 
       <section className="about">
