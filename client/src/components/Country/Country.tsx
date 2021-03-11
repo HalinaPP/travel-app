@@ -1,6 +1,6 @@
+// eslit-disable
 import './country.scss';
 import React, { FC } from 'react';
-import { useParams } from 'react-router-dom';
 import Sight from '../Sight/Sight';
 import Weather from '../Weather/Weather';
 import Currency from '../Currency/Currency';
@@ -14,6 +14,11 @@ const Country: FC = () => {
 
   return (
     <main className="country">
+      <div className="overlay">
+        <div className="feedback__popup">
+
+        </div>
+      </div>
       <section className="info-block">
         <Weather />
         <Time />
