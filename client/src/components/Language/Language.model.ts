@@ -1,5 +1,5 @@
 export interface LanguageProps {
   currLang: string,
-  onSelectChange: Function,
-  
+  onSelectChange: (lang:string)=>void,
+
 }

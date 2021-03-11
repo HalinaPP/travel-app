@@ -1,17 +1,118 @@
+@font-face {
+  font-family: "Rubik";
+  src: url("../src/assets/fonts/Rubik/Rubik-VariableFont_wght.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../src/assets/fonts/Roboto/Roboto-Black.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Roboto Mono";
+  src: url("../src/assets/fonts/Roboto_Mono/RobotoMono-VariableFont_wght.ttf") format("ttf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html {
   font-size: 62.5%;
+  background: #f6f9fa;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+// basic styles
+.wrapper {
+  max-width: 1560px;
+  padding: 0 1rem;
+  margin: auto;
+}
+
+.nav__list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style: none;
+}
+
+.link {
+  margin: 2.6rem;
+  border-bottom: 2px solid transparent;
+  font-family: "Roboto Mono", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  color: #c5e1e5;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1.8rem;
+  font-weight: 500;
+
+  transition: border 200ms linear;
+  &:hover {
+    cursor: pointer;
+    border-bottom: 2px solid #c5e1e5;
+  }
+}
+
+.logo {
+  width: 10.8rem;
+
+  font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-weight: 500;
+  font-size: 3.5rem;
+  line-height: 4.1rem;
+  color: #0d444d;
+}
+
+.btn {
+  display: block;
+  width: 44.8rem;
+  height: 5.4rem;
+  padding: 1.5rem 0;
+
+  background: #2a8088;
+  box-shadow: 0px 2px 20px rgba(185, 213, 217, 0.6);
+  border-radius: 10rem;
+
+  font-family: "Roboto Mono", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-weight: 400;
+  font-size: 1.8rem;
+  line-height: 2.4rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  color: #c5e1e6;
+
+  &--light {
+    width: 25.8rem;
+    background: #ffffff;
+
+    letter-spacing: 0em;
+    font-weight: 400;
+    color: #0d444d;
+  }
+  &--ghost {
+    width: 33.1rem;
+    background-color: transparent;
+    color: #19707D;
+    border: 2px solid #19707D;
+    letter-spacing: 0.1em;
+  }
 }

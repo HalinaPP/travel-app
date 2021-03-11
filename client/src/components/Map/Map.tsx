@@ -1,7 +1,7 @@
-import './styles.scss';
+import './map.scss';
 import React, { FC } from 'react';
 
 const Map: FC = () => (
-  <div>Map</div>
+  <div className='map'></div>
 );
 export default Map;

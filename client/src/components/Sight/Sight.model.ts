@@ -1,3 +1,3 @@
-export interface SightProps{
-
+export interface SightProps {
+  smr?: any
 }

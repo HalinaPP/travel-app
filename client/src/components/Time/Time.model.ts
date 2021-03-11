@@ -1,3 +1,3 @@
-export interface TimeProps{
-
+export interface TimeProps {
+  smr?: any
 }
