@@ -45,17 +45,7 @@ const Auth: FC = () => {
             <button type="submit" className="btn">
               sign up
             </button>
-            {/* нужна ли нам возможность сохранять состояние "в системе"? по идее так и делают */}
-            {/* <label>
-                <input type="checkbox" checked={true} name="remember" /> Remember me
-              </label> */}
           </div>
-          {/* надо или удалить с концами? */}
-          {/* <div className="container">
-              <span className="psw">
-                Forgot <a href="#">password?</a>
-              </span>
-            </div> */}
         </form>
       </div>
     </div>
