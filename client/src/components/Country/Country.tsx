@@ -42,7 +42,7 @@ const Country: FC = () => {
         </div>
       </section>
 
-      <section className="sight-slider">
+      <section className="sight-slider" id="sight">
         <div className="wrapper">
           <h3 className="subtitle">Photo gallery</h3>
           <Sight setIsOpen={setIsOpen} />
