@@ -13,7 +13,6 @@ import Feedback from '../Feedback/Feedback';
 const Country: FC = () => {
   const countryName = 'Canada';
   const capital = 'Ottawa';
-  // const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const [isOpen, setIsOpen] = useState(false);
 
