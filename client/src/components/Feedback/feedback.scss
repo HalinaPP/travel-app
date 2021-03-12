@@ -1,0 +1,264 @@
+.feedback__overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  z-index: -1;
+
+  .feedback__popup {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    width: 54.1rem;
+    padding: 2.8rem;
+
+    z-index: 11;
+    background-color: #f6f9fa;
+
+    .popup_image {
+      position: relative;
+      height: 34.8rem;
+      width: 48.6rem;
+      border-radius: 1.75rem;
+
+      background-image: url("../../assets/images/Canada.jpg");
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+    .rating {
+      position: absolute;
+      right: 1.6rem;
+      bottom: 1.6rem;
+      height: 3.5rem;
+      width: 7rem;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: center;
+
+      background: linear-gradient(91.97deg, #2a8086 14.73%, #0d444c 97.52%);
+      box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+      border-radius: 4rem;
+
+      font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+        "Droid Sans", "Helvetica Neue", sans-serif;
+      font-style: normal;
+      font-weight: 900;
+      font-size: 1.2rem;
+      line-height: 1.85rem;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+
+      cursor: pointer;
+      transition: all 200ms linear;
+
+      &:hover {
+        transform: scale(1.2);
+        transition: all 200ms linear;
+      }
+
+      .icon--star {
+        height: 2rem;
+        width: 2rem;
+        background: url("../../assets/icons/star.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+    }
+
+    .popup_title {
+      margin: 2.2rem auto 3.4rem;
+
+      font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+        "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 4.8rem;
+      line-height: 5.7rem;
+      text-align: center;
+      text-transform: uppercase;
+      color: #0d444d;
+    }
+
+    .btn {
+      display: block;
+      right: 3rem;
+      position: inherit;
+      width: 25.5rem;
+      padding-left: 4rem;
+
+      color: #ad954b;
+      border: 1px solid #ad954b;
+      background-color: transparent;
+      cursor: pointer;
+      transition: all 200ms linear;
+      &:hover {
+        background-color: #ad944b7c;
+        color: white;
+        transition: all 200ms linear;
+      }
+      .btn_icon {
+        position: absolute;
+        left: 2rem;
+        top: 1.4rem;
+        width: 2.4rem;
+        height: 2.4rem;
+      }
+    }
+  }
+
+  .feedback_container {
+    overflow: auto;
+    height: calc(100vh - 61.7rem);
+    margin-top: 13rem;
+    .user__block {
+      position: relative;
+      height: 26rem;
+      margin-bottom: 6.5rem;
+
+      font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+        "Droid Sans", "Helvetica Neue", sans-serif;
+      .rating {
+        top: 1.2rem;
+        right: 0.9rem;
+
+        &:hover {
+          cursor: default;
+          transform: none;
+        }
+      }
+
+      .bubble {
+        position: relative;
+        width: 100%;
+        height: 19rem;
+        padding: 2.8rem 4.5rem;
+
+        background: #ffffff;
+        box-shadow: 0px 2px 30px rgba(0, 0, 0, 0.06);
+        border-radius: 1rem;
+
+        &::after {
+          position: absolute;
+          content: "";
+          left: 8rem;
+          bottom: -1rem;
+
+          height: 2rem;
+          width: 2rem;
+
+          transform: rotate(45deg);
+          background: #ffffff;
+        }
+
+        .date {
+          font-style: normal;
+          font-weight: 400;
+          font-size: 1.4rem;
+          line-height: 1.6rem;
+          color: #b3b3b3;
+        }
+
+        .text {
+          margin: 0.9rem 0 0;
+          font-style: italic;
+          font-weight: 400;
+          font-size: 1.6rem;
+          line-height: 1.9rem;
+          color: #2d2d2d;
+        }
+      }
+      .user_data {
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        margin: 1.5rem 2rem 0.8rem;
+
+        .avatar {
+          width: 6.8rem;
+          height: 6.8rem;
+          border-radius: 50%;
+          margin-right: 2rem;
+        }
+
+        .user_name {
+          display: inline-block;
+          font-style: italic;
+          font-weight: 400;
+          font-size: 1.6rem;
+          line-height: 1.9rem;
+          color: #000000;
+        }
+      }
+    }
+  }
+}
+
+.slideIn {
+  animation: slideRight 350ms both;
+}
+
+.slideOut {
+  animation: slideLeft 350ms both;
+}
+
+.fadeIn {
+  animation: fadeIn 370ms both;
+}
+
+.fadeOut {
+  animation: fadeOut 370ms both;
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes slideRight {
+  100% {
+    transform: translateX(0);
+  }
+
+  0% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    z-index: 0;
+    background-color: transparent;
+  }
+
+  100% {
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  100% {
+    z-index: -1;
+    background-color: transparent;
+  }
+}

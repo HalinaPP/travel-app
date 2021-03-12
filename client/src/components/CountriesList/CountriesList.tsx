@@ -51,14 +51,16 @@ const CountriesList: FC<CountriesListProps> = ({ inputText }) => {
                   <div className="title">Georgia</div>
                   <div className="subtitle">Tbilisi</div>
                 </div>
-                <div className="country-card">
-                  <div className="image-block">
-                    <div className="image"></div>
-                    <div className="image-outline"></div>
+                <Link to="/country" >
+                  <div className="country-card">
+                    <div className="image-block">
+                      <div className="image"></div>
+                      <div className="image-outline"></div>
+                    </div>
+                    <div className="title">Georgia with link</div>
+                    <div className="subtitle">Tbilisi</div>
                   </div>
-                  <div className="title">Georgia</div>
-                  <div className="subtitle">Tbilisi</div>
-                </div>
+                </Link>
               </div>
               <div className="slide">
                 <div className="country-card">

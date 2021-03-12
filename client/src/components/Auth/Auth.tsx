@@ -3,9 +3,6 @@ import React, { FC, useState } from 'react';
 
 const Auth: FC = () => {
   const [isSignIn, setIsSignIn] = useState(false);
-  function closeModal() {
-    console.log('modal close');
-  }
   return (
     <div className="auth__modal">
       <div className="tabs">

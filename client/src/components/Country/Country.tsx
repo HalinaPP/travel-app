@@ -1,24 +1,22 @@
-// eslit-disable
 import './country.scss';
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
+
 import Sight from '../Sight/Sight';
 import Weather from '../Weather/Weather';
 import Currency from '../Currency/Currency';
 import Time from '../Time/Time';
 import Map from '../Map/Map';
 import Video from '../Video/Video';
+import Feedback from '../Feedback/Feedback';
 
 const Country: FC = () => {
   const countryName = 'Canada';
   const capital = 'Ottawa';
 
-  return (
-    <main className="country">
-      <div className="overlay">
-        <div className="feedback__popup">
+  const [isOpen, setIsOpen] = useState(false);
 
-        </div>
-      </div>
+  return (
+    <main className="country" style={{ overflow: 'hidden' }}>
       <section className="info-block">
         <Weather />
         <Time />
@@ -39,11 +37,12 @@ const Country: FC = () => {
         </div>
       </section>
 
-      <section className="sight-slider">
+      <section className="sight-slider" id="sight">
         <div className="wrapper">
           <h3 className="subtitle">Photo gallery</h3>
-          <Sight />
+          <Sight setIsOpen={setIsOpen} />
         </div>
+        <Feedback isOpen={isOpen} setIsOpen={setIsOpen} />
       </section>
 
       <section className="about">
