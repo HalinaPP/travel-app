@@ -17,8 +17,8 @@ const CountriesList: FC<CountriesListProps> = ({ inputText }) => {
       <section className="promo">
         <div className="wrapper">
           <div className="content-block">
-            <h1 className="title">Chose your next trip</h1>
-            <h2 className="subtitle">travell app</h2>
+            <h1 className="title">Choose your next trip</h1>
+            <h2 className="subtitle">travel app</h2>
             <p className="content">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
               dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
@@ -51,14 +51,16 @@ const CountriesList: FC<CountriesListProps> = ({ inputText }) => {
                   <div className="title">Georgia</div>
                   <div className="subtitle">Tbilisi</div>
                 </div>
-                <div className="country-card">
-                  <div className="image-block">
-                    <div className="image"></div>
-                    <div className="image-outline"></div>
+                <Link to="/country" >
+                  <div className="country-card">
+                    <div className="image-block">
+                      <div className="image"></div>
+                      <div className="image-outline"></div>
+                    </div>
+                    <div className="title">Georgia with link</div>
+                    <div className="subtitle">Tbilisi</div>
                   </div>
-                  <div className="title">Georgia</div>
-                  <div className="subtitle">Tbilisi</div>
-                </div>
+                </Link>
               </div>
               <div className="slide">
                 <div className="country-card">
