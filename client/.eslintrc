@@ -23,6 +23,7 @@
     "arrow-parens":"off",
     "no-plusplus": "off",
     "no-console": "warn",
+    "linebreak-style": ["warn", "unix"],
     "@typescript-eslint/no-empty-interface": [
       "warn",
       {

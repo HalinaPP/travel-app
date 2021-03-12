@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import './App.scss';
 import Header from './components/Header';
 import { Context } from './utils/Context';
+import ScrollToTop from './components/ScrollToTop';
 
 const App = () => {
   const initialLang = localStorage.getItem('currLangTravelApp') || 'ru';
@@ -25,6 +26,7 @@ const App = () => {
     <Provider store={store}>
       <Context.Provider value={{ lang: currLang, setLang: (lang: string) => setCurrLang(lang) }}>
         <Router basename={currLang}>
+          <ScrollToTop />
           <Switch>
             <Route path="/country">
               <Header inputText={inputText} onInputChange={setInputText} isMain={false} />
@@ -41,6 +43,4 @@ const App = () => {
     </Provider>
   );
 };
-/* <CountriesListContainer inputText={inputText} />
- */
 export default App;

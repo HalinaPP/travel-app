@@ -1,19 +1,22 @@
 import './country.scss';
-import React, { FC } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { FC, useState } from 'react';
+
 import Sight from '../Sight/Sight';
 import Weather from '../Weather/Weather';
 import Currency from '../Currency/Currency';
 import Time from '../Time/Time';
 import Map from '../Map/Map';
 import Video from '../Video/Video';
+import Feedback from '../Feedback/Feedback';
 
 const Country: FC = () => {
   const countryName = 'Canada';
   const capital = 'Ottawa';
 
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <main className="country">
+    <main className="country" style={{ overflow: 'hidden' }}>
       <section className="info-block">
         <Weather />
         <Time />
@@ -29,15 +32,17 @@ const Country: FC = () => {
               ♡
             </a>
           </div>
-          <Video />
+          <Video countryName={countryName}
+            src='https://www.youtube.com/embed/wYFKlfr-ELU'/>
         </div>
       </section>
 
-      <section className="sight-slider">
+      <section className="sight-slider" id="sight">
         <div className="wrapper">
           <h3 className="subtitle">Photo gallery</h3>
-          <Sight />
+          <Sight setIsOpen={setIsOpen} />
         </div>
+        <Feedback isOpen={isOpen} setIsOpen={setIsOpen} />
       </section>
 
       <section className="about">

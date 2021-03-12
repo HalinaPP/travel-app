@@ -1,6 +1,5 @@
 import './countriesList.scss';
 import React, { FC, useCallback, useEffect } from 'react';
-
 import Carousel from 'react-elastic-carousel';
 import heartIcon from '../../assets/icons/heart.png';
 import { COUNTRIES_LIST } from '../../constants/constants';
@@ -32,8 +31,8 @@ const CountriesList: FC<CountriesListProps> = ({ inputText, getCountriesFromApi,
       <section className="promo">
         <div className="wrapper">
           <div className="content-block">
-            <h1 className="title">Chose your next trip</h1>
-            <h2 className="subtitle">travell app</h2>
+            <h1 className="title">Choose your next trip</h1>
+            <h2 className="subtitle">travel app</h2>
             <p className="content">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
               dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
