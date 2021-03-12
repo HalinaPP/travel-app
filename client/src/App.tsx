@@ -6,12 +6,14 @@ import CountriesList from './components/CountriesList';
 import Footer from './components/Footer';
 import './App.scss';
 import Header from './components/Header';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
 const App = () => {
   const [inputText, setInputText] = useState<string>('');
   const isMain = true;
   return (
     <Router>
+      <ScrollToTop />
       <Header
         inputText={'any'}
         isMain={true}
