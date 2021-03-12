@@ -2,7 +2,7 @@ import { CountryProps } from '../Country/Country.model';
 
 export interface CountriesListProps {
   inputText: string;
-  getCountries: () => CountryProps[];
+  getCountriesFromApi: () => void;
 }
 
 export type Country = {

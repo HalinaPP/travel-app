@@ -31,7 +31,7 @@ const App = () => {
             </Route>
             <Route exact path="/">
               <Header inputText={inputText} onInputChange={setInputText} isMain={true} />
-
+                <CountriesListContainer inputText={inputText} />
             </Route>
           </Switch>
           <Footer />

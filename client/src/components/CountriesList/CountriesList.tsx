@@ -7,13 +7,14 @@ import heartIcon from '../../assets/icons/heart.png';
 import { COUNTRIES_LIST } from '../../constants/constants';
 import { CountriesListProps, Country } from './CountriesList.model';
 
-const CountriesList: FC<CountriesListProps> = ({ inputText, getCountries }) => {
+const CountriesList: FC<CountriesListProps> = ({ inputText, getCountriesFromApi }) => {
   const filterByNameAndCapital = (country: Country) => country.name.toLowerCase().includes(inputText.toLowerCase())
     || country.capital.toLowerCase().includes(inputText.toLowerCase());
 
   useEffect(() => {
-    getCountries();
-  }, [getCountries]);
+    console.log('get countries');
+    getCountriesFromApi();
+  }, [getCountriesFromApi]);
 
   return (
     <main>

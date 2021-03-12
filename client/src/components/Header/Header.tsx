@@ -2,7 +2,7 @@ import './header.scss';
 import React, { FC } from 'react';
 import Search from '../Search';
 import { HeaderProps } from './Header.model';
-import { LanguageContainer } from '../../containers/Language.container';
+import Language from '../Language/Language';
 
 const Header: FC<HeaderProps> = ({ inputText, onInputChange, isMain }) => (
   <header>
@@ -12,17 +12,17 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange, isMain }) => (
           <div className="logo">app logo</div>
           <li className="nav__item">
             <a href="#" className="link">
-                About
+              About
             </a>
           </li>
           <li className="nav__item">
             <a href="#" className="link">
-                Map
+              Map
             </a>
           </li>
           <li className="nav__item">
             <a href="#" className="link">
-                Contacts
+              Contacts
             </a>
           </li>
         </ul>
@@ -37,7 +37,7 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange, isMain }) => (
         </div>
       </div>
     </div>
-    <LanguageContainer />
+    <Language />
   </header>
 );
 
