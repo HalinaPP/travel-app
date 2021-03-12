@@ -1,7 +1,3 @@
 export interface CurrencyProps {
-  currencies: Values,
+  currency: string
 }
-
-type Values = {
-  [key: string]: number,
-};

@@ -20,7 +20,7 @@ const Country: FC = () => {
       <section className="info-block">
         <Weather />
         <Time />
-        <Currency currencies={{ 'Российский рубль': 15, Евро: 121, 'Доллар США': 212 }}/>
+        <Currency currency={'CA'}/>
       </section>
 
       <section className="video-block">

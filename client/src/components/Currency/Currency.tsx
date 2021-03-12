@@ -2,8 +2,11 @@ import './styles.scss';
 import React, { FC } from 'react';
 import { CurrencyProps } from './Currency.model';
 
-const Currency: FC<CurrencyProps> = ({ currencies }) => {
+const Currency: FC<CurrencyProps> = (props: CurrencyProps) => {
+  const { currency } = props;
+  const currencies = { 'Российский рубль': 15, Евро: 121, 'Доллар США': 212 };
   const CURRENCY_SYMBOLS: string[] = ['₽', '€', '$'];
+  const CURRENCY_TITLES: string[] = ['Российский рубль', 'Евро', 'Доллар США'];
   const titles: string[] = Object.keys(currencies);
   const values: number[] = Object.values(currencies);
   return (
