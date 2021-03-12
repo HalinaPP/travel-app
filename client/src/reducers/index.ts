@@ -10,12 +10,10 @@ export interface StateModel {
     id: number;
     nickName: string;
   };
-  countries?:CountryProps[]
+  countries?: CountryProps[];
 }
 
-export const initialState: StateModel = {
-
-};
+export const initialState: StateModel = {};
 
 export const reducer = (state = initialState, action: any): StateModel => {
   switch (action.type) {
@@ -31,6 +29,7 @@ export const reducer = (state = initialState, action: any): StateModel => {
 
 export const getCountriesFromApi = () => async (dispatch: Dispatch) => {
   const countries = await travelApi.getCountries();
+  console.log('co=', countries);
   dispatch(setCountries(countries));
   return countries;
 };

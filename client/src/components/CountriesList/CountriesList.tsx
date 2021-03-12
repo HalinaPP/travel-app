@@ -1,20 +1,31 @@
 import './countriesList.scss';
-import React, { FC, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { FC, useCallback, useEffect } from 'react';
+
 import Carousel from 'react-elastic-carousel';
 import heartIcon from '../../assets/icons/heart.png';
-
 import { COUNTRIES_LIST } from '../../constants/constants';
 import { CountriesListProps, Country } from './CountriesList.model';
+import { CountryProps } from '../Country/Country.model';
+import CountriesListItem from '../CountriesListItem/CountriesListItem';
 
-const CountriesList: FC<CountriesListProps> = ({ inputText, getCountriesFromApi }) => {
-  const filterByNameAndCapital = (country: Country) => country.name.toLowerCase().includes(inputText.toLowerCase())
-    || country.capital.toLowerCase().includes(inputText.toLowerCase());
+const CountriesList: FC<CountriesListProps> = ({ inputText, getCountriesFromApi, countries }) => {
+  const filterByNameAndCapital = (country: Country) =>
+    country.name.toLowerCase().includes(inputText.toLowerCase()) ||
+    country.capital.toLowerCase().includes(inputText.toLowerCase());
 
   useEffect(() => {
     console.log('get countries');
     getCountriesFromApi();
   }, [getCountriesFromApi]);
+
+  const getCountriesList = () =>
+    countries?.map(
+      (country: CountryProps, index: number): JSX.Element => (
+        <div className="slide">
+          <CountriesListItem country={country} />
+        </div>
+      ),
+    );
 
   return (
     <main>
@@ -46,78 +57,7 @@ const CountriesList: FC<CountriesListProps> = ({ inputText, getCountriesFromApi 
           </a>
           <div className="slider">
             <Carousel itemsToScroll={1} itemsToShow={3} isRTL={false} pagination={false}>
-              <div className="slide">
-                <div className="country-card">
-                  <div className="image-block">
-                    <div className="image"></div>
-                    <div className="image-outline"></div>
-                  </div>
-                  <div className="title">bela</div>
-                  <div className="subtitle">Tbilisi</div>
-                </div>
-                <div className="country-card">
-                  <div className="image-block">
-                    <div className="image"></div>
-                    <div className="image-outline"></div>
-                  </div>
-                  <div className="title">Georgia</div>
-                  <div className="subtitle">Tbilisi</div>
-                </div>
-              </div>
-              <div className="slide">
-                <div className="country-card">
-                  <div className="image-block">
-                    <div className="image"></div>
-                    <div className="image-outline"></div>
-                  </div>
-                  <div className="title">Georgia</div>
-                  <div className="subtitle">Tbilisi</div>
-                </div>
-                <div className="country-card">
-                  <div className="image-block">
-                    <div className="image"></div>
-                    <div className="image-outline"></div>
-                  </div>
-                  <div className="title">Georgia</div>
-                  <div className="subtitle">Tbilisi</div>
-                </div>
-              </div>
-              <div className="slide">
-                <div className="country-card">
-                  <div className="image-block">
-                    <div className="image"></div>
-                    <div className="image-outline"></div>
-                  </div>
-                  <div className="title">Georgia</div>
-                  <div className="subtitle">Tbilisi</div>
-                </div>
-                <div className="country-card">
-                  <div className="image-block">
-                    <div className="image"></div>
-                    <div className="image-outline"></div>
-                  </div>
-                  <div className="title">Georgia</div>
-                  <div className="subtitle">Tbilisi</div>
-                </div>
-              </div>
-              <div className="slide">
-                <div className="country-card">
-                  <div className="image-block">
-                    <div className="image"></div>
-                    <div className="image-outline"></div>
-                  </div>
-                  <div className="title">Georgia</div>
-                  <div className="subtitle">Tbilisi</div>
-                </div>
-                <div className="country-card">
-                  <div className="image-block">
-                    <div className="image"></div>
-                    <div className="image-outline"></div>
-                  </div>
-                  <div className="title">Georgia</div>
-                  <div className="subtitle">Tbilisi</div>
-                </div>
-              </div>
+              {getCountriesList()}
             </Carousel>
           </div>
         </div>

@@ -20,9 +20,10 @@ const App = () => {
   }, [currLang]);
 
   const isMain = true;
+  console.log('store=', store.getState());
   return (
     <Provider store={store}>
-      <Context.Provider value={{ lang: currLang, setLang: (lang:string) => setCurrLang(lang) }}>
+      <Context.Provider value={{ lang: currLang, setLang: (lang: string) => setCurrLang(lang) }}>
         <Router basename={currLang}>
           <Switch>
             <Route path="/country">
@@ -31,7 +32,7 @@ const App = () => {
             </Route>
             <Route exact path="/">
               <Header inputText={inputText} onInputChange={setInputText} isMain={true} />
-                <CountriesListContainer inputText={inputText} />
+              <CountriesListContainer inputText={inputText} />
             </Route>
           </Switch>
           <Footer />
@@ -41,5 +42,5 @@ const App = () => {
   );
 };
 /* <CountriesListContainer inputText={inputText} />
-*/
+ */
 export default App;

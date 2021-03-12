@@ -18,6 +18,9 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "implicit-arrow-linebreak":"off",
+    "operator-linebreak" : "off",
+    "arrow-parens":"off",
     "no-plusplus": "off",
     "no-console": "warn",
     "@typescript-eslint/no-empty-interface": [

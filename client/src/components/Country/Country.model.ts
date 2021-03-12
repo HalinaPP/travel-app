@@ -1,13 +1,11 @@
 export interface CountryProps {
+  id:string;
   imageUrl: string;
   videoUrl: string;
   currency: string;
   ISOCode: string;
   capitalLocation: number[];
-  localizations: {
-    id: string;
-    name: string;
-    capital: string;
-    description: string;
-  }[];
+  name: string;
+  capital: string;
+  description: string;
 }
