@@ -1,5 +1,5 @@
 export const imagesPath = './src/assets/images/';
-export const LANGS = { en: 'en', ru: 'ru', be: 'be' };
+export const LANGS = { en: 'en', ru: 'ru', bg: 'bg' };
 
 export const HEADER_JSON = { 'Content-Type': 'application/json' };
 export const SERVER_HOST = 'http://localhost:3005';

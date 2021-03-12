@@ -38,7 +38,7 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
 app.get('/', async (req, res) => {
 	try {
-		res.sendFile(__dirname + buildPath + 'index.html');
+		res.sendFile(buildPath + 'index.html');
 	} catch (e) {
 		res.status(StatusCodes.NO_CONTENT).send(ReasonPhrases.NO_CONTENT);
 	}
