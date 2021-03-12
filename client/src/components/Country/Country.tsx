@@ -13,7 +13,6 @@ import Feedback from '../Feedback/Feedback';
 const Country: FC = () => {
   const countryName = 'Canada';
   const capital = 'Ottawa';
-  // const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -42,7 +41,7 @@ const Country: FC = () => {
         </div>
       </section>
 
-      <section className="sight-slider">
+      <section className="sight-slider" id="sight">
         <div className="wrapper">
           <h3 className="subtitle">Photo gallery</h3>
           <Sight setIsOpen={setIsOpen} />
