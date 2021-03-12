@@ -18,12 +18,13 @@ const getRequestInit = (method = 'GET'): RequestInit => {
 
 const getCountries = async ():Promise<CountryProps[]> => {
   const requestInit = getRequestInit();
-
+  console.log('getCountries');
   const apiObject = await fetch(API_COUNTRIES_URLS, requestInit)
     .then(
-      (response: Response): Promise<CountryProps[]> => response.json(),
+
+      (response: Response): Promise<CountryProps[]> => { console.log('json'); return response.json(); },
     )
-    .then((countries: CountryProps[]) => countries)
+    .then((countries: CountryProps[]) => { console.log('con', countries); return countries; })
     .catch((error) => {
       throw new Error(error);
     });

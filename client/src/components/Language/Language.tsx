@@ -1,20 +1,34 @@
 import './styles.scss';
-import React, { ChangeEvent, FC } from 'react';
+import React, { ChangeEvent, useContext, FC } from 'react';
 import { LanguageProps } from './Language.model';
 import { LANGS } from '../../constants/constants';
+import { Context } from '../../utils/Context';
 
 const Language: FC<LanguageProps> = ({ currLang, onSelectChange }) => {
-  const getLangsItems = () => Object.keys(LANGS).map((item) => <option key={item} value={item}>{item}</option>);
+  // const [context, setContext] = useContext(Context);
+  // const {lang, setLang} = useContext<{string, (string)=>void}>(Context);
+  // const setCurrLang = useContext(Context);
+  // const currLangNew = lang;
+  const getLangsItems = () => Object.keys(LANGS).map((item) => (
+    <option key={item} value={item}>
+      {item}
+    </option>
+  ));
 
-  const handleChange = ({ target }:ChangeEvent<HTMLSelectElement>) => {
+  const handleChange = ({ target }: ChangeEvent<HTMLSelectElement>, setLang: (lang: string) => void) => {
     console.log(target.value);
-    onSelectChange(target.value);
+   // onSelectChange(target.value);
+    setLang(target.value);
   };
 
   return (
-    <select value={currLang} onChange={handleChange}>
-      {getLangsItems()}
-    </select>
+    <Context.Consumer>
+      {({ lang, setLang }) => (
+        <select value={lang} onChange={(event: ChangeEvent<HTMLSelectElement>) => handleChange(event, setLang)}>
+          {getLangsItems()}
+        </select>
+      )}
+    </Context.Consumer>
   );
 };
 export default Language;
