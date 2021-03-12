@@ -11,7 +11,6 @@ const Language: FC = () => {
   ));
 
   const handleChange = ({ target }: ChangeEvent<HTMLSelectElement>, setLang: (lang: string) => void) => {
-    console.log(target.value);
     setLang(target.value);
   };
 

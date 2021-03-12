@@ -1,4 +1,4 @@
-const { HTTP_HEADERS, ORIGINS_HOST } = require('./common/constants.ts');
+const { HTTP_HEADERS } = require('./common/constants.ts');
 require('dotenv').config();
 
 const path = require('path');
@@ -29,7 +29,7 @@ app.use((req, res, next) => {
 	});
 	next();
 });
-app.use(cors({ credentials: true, origin: ORIGINS_HOST }));
+app.use(cors({ credentials: true, origin: '*' }));
 app.options('*', cors());
 
 app.use(express.static(buildPath));
@@ -44,7 +44,6 @@ app.get('/', async (req, res) => {
 	}
 });
 
-// Routers
 const countryRouter = require('./modules/countries/country.router');
 const authRouter = require('./modules/auth/auth.router');
 

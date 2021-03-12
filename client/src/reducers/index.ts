@@ -29,7 +29,6 @@ export const reducer = (state = initialState, action: any): StateModel => {
 
 export const getCountriesFromApi = () => async (dispatch: Dispatch) => {
   const countries = await travelApi.getCountries();
-  console.log('co=', countries);
   dispatch(setCountries(countries));
   return countries;
 };

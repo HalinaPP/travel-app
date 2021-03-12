@@ -16,12 +16,9 @@ const App = () => {
   const [currLang, setCurrLang] = useState<string>(initialLang);
 
   useEffect(() => {
-    console.log('change lang', currLang);
     localStorage.setItem('currLangTravelApp', currLang);
   }, [currLang]);
 
-  const isMain = true;
-  console.log('store=', store.getState());
   return (
     <Provider store={store}>
       <Context.Provider value={{ lang: currLang, setLang: (lang: string) => setCurrLang(lang) }}>

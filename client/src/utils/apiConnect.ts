@@ -12,29 +12,20 @@ const getRequestInit = (method = 'GET'): RequestInit => {
     headers,
     mode: 'cors',
     cache: 'default',
-    credentials: 'include',
   };
 };
 
 const getCountries = async (): Promise<CountryProps[]> => {
   const requestInit = getRequestInit();
-  console.log('getCountries');
   const lang = 'ru';
   const apiObject = await fetch(`${API_COUNTRIES_URLS}?lang=${lang}`, requestInit)
     .then(
-      (response: Response): Promise<CountryProps[]> => {
-        console.log('json');
-        return response.json();
-      },
+      (response: Response): Promise<CountryProps[]> => response.json(),
     )
-    .then((countries: CountryProps[]) => {
-      console.log('con', countries);
-      return countries;
-    })
+    .then((countries: CountryProps[]) => countries)
     .catch(error => {
       throw new Error(error);
     });
-  console.log('api=', apiObject);
   return apiObject;
 };
 

@@ -13,7 +13,6 @@ const CountriesList: FC<CountriesListProps> = ({ inputText, getCountriesFromApi,
     country.capital.toLowerCase().includes(inputText.toLowerCase());
 
   useEffect(() => {
-    console.log('get countries');
     getCountriesFromApi();
   }, [getCountriesFromApi]);
 
