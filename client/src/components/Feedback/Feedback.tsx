@@ -1,21 +1,15 @@
 /* eslint-disable prefer-const */
 /* eslint-disable */
-import React, { FC, useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import './feedback.scss';
 import { SIGHTS } from '../../constants/constants';
 import { FeedbackProps } from './Feedback.model';
 
 const Feedback: any = ({ setIsOpen, isOpen }: FeedbackProps) => {
-  // const [isOpen, setIsOpen] = useState(true);
-
   //any data, need logic:
   const popupTitle = 'big lakes';
   const countryName = 'canada';
   const avatar = '/images/avatar.png';
-
-  // const openModal = () => {
-  //   setIsOpen(true);
-  // };
 
   const closeModal = (e: any) => {
     setIsOpen(false);
@@ -29,6 +23,8 @@ const Feedback: any = ({ setIsOpen, isOpen }: FeedbackProps) => {
     const popup = document.querySelector('feedback__popup');
     // @ts-ignore
     body.style.overflow = isOpen ? 'hidden' : 'auto';
+    // @ts-ignore
+    body.style.paddingRight = isOpen ? '17px' : '0';
     if (isOpen) {
     }
     popup?.classList;

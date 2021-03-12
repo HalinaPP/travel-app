@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import {
-  BrowserRouter as Router, Route, Switch,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Country from './components/Country';
 import CountriesList from './components/CountriesList';
 import Footer from './components/Footer';
@@ -26,9 +24,6 @@ const App = () => {
         <Route path="/country">
           <Country />
         </Route>
-        {/* <Route path="/">
-          <Country />
-        </Route> */}
         <Route exact path="/">
           <CountriesList inputText={'any'} />
         </Route>

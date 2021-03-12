@@ -1,4 +1,3 @@
-// eslint-disable
 import './country.scss';
 import React, { FC, useState } from 'react';
 
@@ -15,10 +14,6 @@ const Country: FC = () => {
   const capital = 'Ottawa';
 
   const [isOpen, setIsOpen] = useState(false);
-
-  const openModal = () => {
-    setIsOpen(true);
-  };
 
   return (
     <main className="country" style={{ overflow: 'hidden' }}>

@@ -1,15 +1,12 @@
 import './sight.scss';
-import React, { FC } from 'react';
 import Carousel from 'react-elastic-carousel';
 import { SIGHTS } from '../../constants/constants';
 import { SightProps } from './Sight.model';
-import useScrollToTop from '../hooks/useScrollToTop';
 
 const Sight: any = ({ setIsOpen }: SightProps) => {
   const countryName = 'belarus';
 
   function openPopup() {
-    // ScrollToTop();
     setIsOpen(true);
   }
   return (
