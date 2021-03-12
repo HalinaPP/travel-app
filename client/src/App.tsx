@@ -5,7 +5,7 @@ import CountriesList from './components/CountriesList';
 import Footer from './components/Footer';
 import './App.scss';
 import Header from './components/Header';
-import ScrollToTop from './components/ScrollToTop/ScrollToTop';
+import ScrollToTop from './components/ScrollToTop';
 
 const App = () => {
   const [inputText, setInputText] = useState<string>('');
