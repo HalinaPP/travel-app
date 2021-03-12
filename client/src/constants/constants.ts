@@ -1,38 +1,10 @@
 export const imagesPath = './src/assets/images/';
-export const COUNTRIES_LIST = [
-  {
-    name: 'Belarus',
-    capital: 'Minsk',
-  },
-  {
-    name: 'Canada',
-    capital: 'Ottawa',
-  },
-  {
-    name: 'Georgia',
-    capital: 'Tbilisi',
-  },
-  {
-    name: 'Ireland',
-    capital: 'Dublin',
-  },
-  {
-    name: 'Kazakhstan',
-    capital: 'Nur-Sultan',
-  },
-  {
-    name: 'Norway',
-    capital: 'Oslo',
-  },
-  {
-    name: 'Romania',
-    capital: 'Bucharest',
-  },
-  {
-    name: 'Switzerland',
-    capital: 'Bern',
-  },
-];
+export const LANGS = { en: 'en', ru: 'ru', bg: 'bg' };
+
+export const HEADER_JSON = { 'Content-Type': 'application/json' };
+export const SERVER_HOST = 'http://localhost:3005';
+export const API_COUNTRIES_URLS = `${SERVER_HOST}/countries`;
+
 export const FOOTER_COPYRIGHT = {
   developers: [
     { link: 'https://github.com/bramov', name: '@Bramov' },

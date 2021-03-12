@@ -6,12 +6,12 @@
   border-radius: 2rem;
   box-shadow: 0px 2px 1.5rem rgba(0, 0, 0, 0.06);
 
-    position: fixed;
-    z-index: 1;
-    left: 50%;
-    top: 20%;
-    transform: translate(-50%);
-    overflow: auto;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%);
+  overflow: auto;
 
   .tabs {
     .tab {
@@ -44,7 +44,8 @@
   }
 
   .modal-content {
-    .set-avatar, .user-avatar {
+    .set-avatar,
+    .user-avatar {
       display: block;
       height: 10.27rem;
       width: 10.6rem;
@@ -65,7 +66,7 @@
     .user-avatar {
       // if we want to give the opportunity to change the avatar => next line del
       cursor: none;
-      background-image: url('../../assets/avatar-mock.png');
+      background-image: url("../../assets/avatar-mock.png");
       border-radius: 50%;
     }
 
@@ -101,7 +102,6 @@
       input[type="password"] {
         margin-bottom: 4.6rem;
       }
-
     }
   }
 
