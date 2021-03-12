@@ -1,3 +1,3 @@
 export interface SightProps {
-  setIsOpen: any;
+  setIsOpen(setIsOpen: boolean): void;
 }
