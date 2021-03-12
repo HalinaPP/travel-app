@@ -1,14 +1,14 @@
 import './video.scss';
 import React, { FC } from 'react';
+import { VideoProps } from './Video.model';
 
-const Video: FC = () => (
+const Video: FC<VideoProps> = ({ countryName, src }) => (
   <iframe
-    title={'2'}
-    style={{ height: 604, width: '100%' }}
-    src="https://www.youtube.com/embed/wYFKlfr-ELU"
+    title={`${countryName} video`}
+    src={src}
     frameBorder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowFullScreen
-  ></iframe>
+  />
 );
 export default Video;

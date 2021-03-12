@@ -1,3 +1,4 @@
 export interface VideoProps {
-  smt?: any
+  src: string;
+  countryName: string;
 }
