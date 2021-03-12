@@ -5,8 +5,3 @@ export interface CountriesListProps {
   countries?: CountryProps[];
   getCountriesFromApi: () => void;
 }
-
-export type Country = {
-  name: string;
-  capital: string;
-};

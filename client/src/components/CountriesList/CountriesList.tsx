@@ -2,13 +2,12 @@ import './countriesList.scss';
 import React, { FC, useCallback, useEffect } from 'react';
 import Carousel from 'react-elastic-carousel';
 import heartIcon from '../../assets/icons/heart.png';
-import { COUNTRIES_LIST } from '../../constants/constants';
-import { CountriesListProps, Country } from './CountriesList.model';
+import { CountriesListProps } from './CountriesList.model';
 import { CountryProps } from '../Country/Country.model';
 import CountriesListItem from '../CountriesListItem/CountriesListItem';
 
 const CountriesList: FC<CountriesListProps> = ({ inputText, getCountriesFromApi, countries }) => {
-  const filterByNameAndCapital = (country: Country) =>
+  const filterByNameAndCapital = (country: CountryProps) =>
     country.name.toLowerCase().includes(inputText.toLowerCase()) ||
     country.capital.toLowerCase().includes(inputText.toLowerCase());
 
@@ -17,7 +16,7 @@ const CountriesList: FC<CountriesListProps> = ({ inputText, getCountriesFromApi,
   }, [getCountriesFromApi]);
 
   const getCountriesList = () =>
-    countries?.map(
+    countries?.filter(filterByNameAndCapital).map(
       (country: CountryProps, index: number): JSX.Element => (
         <div className="slide">
           <CountriesListItem country={country} />

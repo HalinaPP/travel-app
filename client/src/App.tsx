@@ -24,13 +24,12 @@ const App = () => {
       <Context.Provider value={{ lang: currLang, setLang: (lang: string) => setCurrLang(lang) }}>
         <Router basename={currLang}>
           <ScrollToTop />
+          <Header inputText={inputText} onInputChange={setInputText} />
           <Switch>
             <Route path="/country">
-              <Header inputText={inputText} onInputChange={setInputText} isMain={false} />
               <Country />
             </Route>
             <Route exact path="/">
-              <Header inputText={inputText} onInputChange={setInputText} isMain={true} />
               <CountriesListContainer inputText={inputText} />
             </Route>
           </Switch>
