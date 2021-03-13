@@ -14,16 +14,28 @@ export interface StateModel {
   currCountry?: CountryProps;
 }
 
-export const initialState: StateModel = {};
+export const initialState: StateModel = {
+  currCountry: {
+    id: '',
+    imageUrl: '',
+    videoUrl: '',
+    currency: '',
+    ISOCode: '',
+    capitalLocation: [0, 0],
+    name: '',
+    capital: '',
+    description: '',
+  },
+};
 
 export const reducer = (state = initialState, action: any): StateModel => {
   switch (action.type) {
-    case ACTIONS.GET_COUNTRIES_API:
+    case ACTIONS.SET_COUNTRIES_API:
       return {
         ...state,
         countries: action.payload,
       };
-    case ACTIONS.GET_COUNTRY_API:
+    case ACTIONS.SET_COUNTRY_API:
       return {
         ...state,
         currCountry: action.payload,

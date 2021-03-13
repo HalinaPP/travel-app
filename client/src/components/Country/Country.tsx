@@ -14,11 +14,12 @@ import { setInnerHtml } from '../../utils/helpers';
 const Country: FC<CurrCountryProps> = ({ currCountry, getCountryByIdFromApi }) => {
   const { id }: { id: string } = useParams();
   console.log(id);
+  console.log('currCountry', currCountry);
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     getCountryByIdFromApi(id);
-  }, [getCountryByIdFromApi, id]);
+  }, [getCountryByIdFromApi, id, currCountry]);
   const styleConfig = { backgroundImage: `url(${currCountry.imageUrl})` };
 
   return (
