@@ -1,12 +1,10 @@
-/* eslint-disable prefer-const */
-/* eslint-disable */
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './feedback.scss';
 import { SIGHTS } from '../../constants/constants';
 import { FeedbackProps } from './Feedback.model';
 
 const Feedback: any = ({ setIsOpen, isOpen }: FeedbackProps) => {
-  //any data, need logic:
+  // any data, need logic:
   const popupTitle = 'big lakes';
   const countryName = 'canada';
   const avatar = '/images/avatar.png';
@@ -19,15 +17,8 @@ const Feedback: any = ({ setIsOpen, isOpen }: FeedbackProps) => {
   };
 
   useEffect(() => {
-    const body = document.querySelector('body');
-    const popup = document.querySelector('feedback__popup');
-    // @ts-ignore
-    body.style.overflow = isOpen ? 'hidden' : 'auto';
-    // @ts-ignore
-    body.style.paddingRight = isOpen ? '17px' : '0';
-    if (isOpen) {
-    }
-    popup?.classList;
+    document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+    document.body.style.paddingRight = isOpen ? '17px' : '0';
   }, [isOpen]);
 
   return (

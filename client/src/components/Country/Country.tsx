@@ -16,7 +16,7 @@ const Country: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <main className="country" style={{ overflow: 'hidden' }}>
+    <main className="country">
       <section className="info-block">
         <Weather />
         <Time />
