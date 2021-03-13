@@ -9,7 +9,6 @@ const router = express.Router();
 router.post(
   '/:id',
   wrap(async (req, res) => {
-    console.log('!');
     const rating = new Rating({
       placeId: req.body.placeId,
       userId: req.body.userId,
