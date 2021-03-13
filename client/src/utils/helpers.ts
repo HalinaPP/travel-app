@@ -1,6 +1,8 @@
-import { Ratings } from '../components/Sight/Sight.model';
+import { Ratings } from '../components/SightsList/SightsList.model';
 
 export const setInnerHtml = (text: string): { __html: string } => ({ __html: text });
 
-export const countRate = (id: string, ratings: Ratings[]): number =>
-  ratings.filter(rating => rating.placeId === id).reduce((prev, curr) => prev + curr.rating, 0);
+export const getSightRatings = (id: string, ratings: Ratings[]): Ratings[] =>
+  ratings.filter(rating => rating.placeId === id);
+
+export const countRate = (ratings: Ratings[]): number => ratings.reduce((prev, curr) => prev + curr.rating, 0);

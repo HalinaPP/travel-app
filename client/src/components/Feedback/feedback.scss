@@ -25,8 +25,6 @@
       height: 34.8rem;
       width: 48.6rem;
       border-radius: 1.75rem;
-
-      background-image: url("../../assets/images/Canada.jpg");
       background-repeat: no-repeat;
       background-size: contain;
       background-position: center;
@@ -47,8 +45,8 @@
       box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
       border-radius: 4rem;
 
-      font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-        "Droid Sans", "Helvetica Neue", sans-serif;
+      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+        'Droid Sans', 'Helvetica Neue', sans-serif;
       font-style: normal;
       font-weight: 900;
       font-size: 1.2rem;
@@ -68,7 +66,7 @@
       .icon--star {
         height: 2rem;
         width: 2rem;
-        background: url("../../assets/icons/star.png");
+        background: url('../../assets/icons/star.png');
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center;
@@ -78,8 +76,8 @@
     .popup_title {
       margin: 2.2rem auto 3.4rem;
 
-      font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
-        "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+      font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+        'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
       font-style: normal;
       font-weight: 400;
       font-size: 4.8rem;
@@ -88,7 +86,14 @@
       text-transform: uppercase;
       color: #0d444d;
     }
-
+    .text {
+      margin: 0.9rem 0 0;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.6rem;
+      line-height: 1.9rem;
+      color: #2d2d2d;
+    }
     .btn {
       display: block;
       right: 3rem;
@@ -119,14 +124,13 @@
   .feedback_container {
     overflow: auto;
     height: calc(100vh - 61.7rem);
-    margin-top: 13rem;
+    margin-top: 1rem;
     .user__block {
       position: relative;
-      height: 26rem;
-      margin-bottom: 6.5rem;
+      margin-bottom: 3rem;
 
-      font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-        "Droid Sans", "Helvetica Neue", sans-serif;
+      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+        'Droid Sans', 'Helvetica Neue', sans-serif;
       .rating {
         top: 1.2rem;
         right: 0.9rem;
@@ -149,7 +153,7 @@
 
         &::after {
           position: absolute;
-          content: "";
+          content: '';
           left: 8rem;
           bottom: -1rem;
 
@@ -166,15 +170,6 @@
           font-size: 1.4rem;
           line-height: 1.6rem;
           color: #b3b3b3;
-        }
-
-        .text {
-          margin: 0.9rem 0 0;
-          font-style: italic;
-          font-weight: 400;
-          font-size: 1.6rem;
-          line-height: 1.9rem;
-          color: #2d2d2d;
         }
       }
       .user_data {

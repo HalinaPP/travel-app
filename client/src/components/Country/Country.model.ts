@@ -1,4 +1,4 @@
-import { Ratings, Sights } from '../Sight/Sight.model';
+import { Ratings, Sights } from '../SightsList/SightsList.model';
 
 export interface CountryProps {
   id: string;

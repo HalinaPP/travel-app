@@ -15,5 +15,4 @@ export interface Ratings {
 export interface SightProps {
   sights: Sights[];
   ratings: Ratings[];
-  setIsOpen(setIsOpen: boolean): void;
 }
