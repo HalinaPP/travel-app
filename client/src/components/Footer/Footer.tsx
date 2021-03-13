@@ -11,7 +11,7 @@ const Footer: FC = () => (
       <nav className='footer__nav nav'>
         <ul className='footer__nav__list nav__list'>
           <div className='logo'>app logo</div>
-          <li className='nav__item'>
+          {/* <li className='nav__item'>
             <a href='#' className='link'>
               About
             </a>
@@ -25,7 +25,7 @@ const Footer: FC = () => (
             <a href='#' className='link'>
               Contacts
             </a>
-          </li>
+          </li> */}
         </ul>
       </nav>
 

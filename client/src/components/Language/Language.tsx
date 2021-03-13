@@ -1,4 +1,4 @@
-import './styles.scss';
+import './language.scss';
 import React, { ChangeEvent, FC } from 'react';
 import { LANGS } from '../../constants/constants';
 import { Context } from '../../utils/Context';

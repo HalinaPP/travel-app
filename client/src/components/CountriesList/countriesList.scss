@@ -118,3 +118,27 @@
     }
   }
 }
+
+@media (max-width: 1280px) {
+  .promo {
+    height: 76rem;
+    .content-block .title {
+      margin-top: 11.3rem;
+      max-width: 51rem;
+      font-size: 5.5rem;
+      line-height: 7.5rem;
+    }
+    .image-block {
+      width: 75.4rem;
+      height: 61.6rem;
+      .image {
+        width: 75.4rem;
+        height: 61.6rem;
+      }
+    }
+  }
+
+  .countries {
+    height: 114rem;
+  }
+}
