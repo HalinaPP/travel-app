@@ -55,7 +55,7 @@ const Country: FC = () => {
   };
 
   return (
-    <main className="country" style={{ overflow: 'hidden' }}>
+    <main className="country">
       <section className="info-block">
         <Weather />
         <Time />
