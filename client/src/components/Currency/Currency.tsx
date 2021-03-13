@@ -19,7 +19,7 @@ const Currency: FC<CurrencyProps> = (props: CurrencyProps) => {
   const [values, setValues] = useState<number[] | string[] | never[]>([]);
 
   useEffect(() => {
-    const lsItem = localStorage.getItem('travelApp131-currency');
+    const lsItem = sessionStorage.getItem('travelApp131-currency');
     if (lsItem) {
       setValues(JSON.parse(lsItem)[props.currency]);
       setLoading(false);
@@ -33,7 +33,7 @@ const Currency: FC<CurrencyProps> = (props: CurrencyProps) => {
           const arr: number[] = Object.values(data.rates);
           currencyCash[data.base] = arr.map(rate => +rate.toFixed(4));
         });
-        localStorage.setItem('travelApp131-currency', JSON.stringify(currencyCash));
+        sessionStorage.setItem('travelApp131-currency', JSON.stringify(currencyCash));
         setLoading(false);
         setValues(currencyCash[props.currency]);
       }).catch(() => {
