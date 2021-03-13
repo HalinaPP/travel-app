@@ -156,4 +156,27 @@
 }
 
 @media (max-width: 640px) {
+  .slider {
+    .slide {
+      width: 35.5vw;
+    }
+    .rec-arrow {
+      width: 3rem;
+      min-width: 3rem;
+      height: 3rem;
+      line-height: 3rem;
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .slider {
+    .slide {
+      width: 30.5vw;
+      .rating {
+        right: 0.3rem;
+        bottom: 0.3rem;
+      }
+    }
+  }
 }
