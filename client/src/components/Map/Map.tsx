@@ -13,15 +13,19 @@ import {
   PolygonGeometry,
 } from 'react-yandex-maps';
 
-import { MapProps } from './Map.model';
+import { MapProps, PlacemarkProps } from './Map.model';
 
 const isObjectManagerFeatureArray = (array: Array<ObjectManagerFeature | ObjectManagerFeatureCollection>):
   array is Array<ObjectManagerFeature> => array.every((el) => el.type === 'Feature');
 
-const balloonPlacemark = (el: any) => <Placemark geometry={ el.coords }
-                                                 properties={{ balloonContent: el.name }}
-                                                 options={{ preset: el.preset ? el.preset : 'islands#blueGovernmentIcon' }}/>;
+const balloonPlacemark = (el: PlacemarkProps) => <Placemark
+  geometry={ el.coords }
+  properties={{ balloonContent: el.name }}
+  options={{ preset: el.preset ? el.preset : 'islands#blueGovernmentIcon' }}
+/>;
+
 const Map: FC<MapProps> = (props: MapProps) => {
+  console.log(props);
   const mapRef = React.useRef<any>(null);
   const setMapRef = useCallback((instance: Ref<any>) => { mapRef.current = instance; }, []);
 
@@ -32,21 +36,21 @@ const Map: FC<MapProps> = (props: MapProps) => {
           lang: 'en',
           quality: 3,
         }).then((result: ObjectManagerFeatureCollection) => {
-        const polygones = result.features;
-        if (!isObjectManagerFeatureArray(polygones)) {
-          return;
-        }
-        const polygonData = polygones.find((el) => el.properties?.iso3166 === props.iso);
-        const polygon: PolygonGeometry = new ymaps.Polygon(polygonData?.geometry.coordinates, {}, {
-          fillOpacity: 0.6,
-          fillImageHref: props.imageHref,
-          fillMethod: 'stretch',
-          strokeColor: '#000',
-          strokeOpacity: 0.5,
-          fillColor: '#3D4C76',
+          const polygones = result.features;
+          if (!isObjectManagerFeatureArray(polygones)) {
+            return;
+          }
+          const polygonData = polygones.find((el) => el.properties?.iso3166 === props.iso);
+          const polygon: PolygonGeometry = new ymaps.Polygon(polygonData?.geometry.coordinates, {}, {
+            fillOpacity: 0.6,
+            fillImageHref: props.imageHref,
+            fillMethod: 'stretch',
+            strokeColor: '#000',
+            strokeOpacity: 0.5,
+            fillColor: '#3D4C76',
+          });
+          mapRef.current.geoObjects.add(polygon);
         });
-        mapRef.current.geoObjects.add(polygon);
-      });
     }
   };
   return (
@@ -63,8 +67,8 @@ const Map: FC<MapProps> = (props: MapProps) => {
         >
           <FullscreenControl />
           <Placemark geometry={props.capitalCoords}
-                     properties={{ balloonContent: `Столица ${props.capitalName}` }}
-                     options={{ preset: 'islands#redGovernmentIcon' }}
+            properties={{ balloonContent: `Столица ${props.capitalName}` }}
+            options={{ preset: 'islands#redGovernmentIcon' }}
           />
           { props.sights.map(balloonPlacemark) }
         </MapYandex>
