@@ -39,9 +39,6 @@ const getOneByLang = async (id, lang) => {
           $match: { 'localizations.lang': lang },
         },
         {
-          $replaceWith: { $mergeObjects: ['$localizations', '$$ROOT'] },
-        },
-        {
           $replaceWith: { $mergeObjects: [{ id: '$_id' }, '$localizations', '$$ROOT'] },
         },
         { $project: placeExcludedFields },
