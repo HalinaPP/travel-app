@@ -1,0 +1,3 @@
+export const ACTIONS = {
+  GET_COUNTRIES_API: 'GET_COUNTRIES_API',
+};

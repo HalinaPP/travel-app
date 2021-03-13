@@ -1,0 +1,15 @@
+#root {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+main {
+  background: #f6f9fa;
+}
+
+footer {
+  height: 20rem;
+  background: #196469;
+}
