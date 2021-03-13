@@ -107,9 +107,53 @@
     }
   }
 }
-
-@media (max-width: 1280px) {
-  .slider .slide {
-    width: 35.9rem;
+@media (max-width: 1420px) {
+  .slider {
+    .slide {
+      height: unset;
+      width: 29vw;
+      aspect-ratio: 1.8 / 1;
+    }
   }
+}
+@media (max-width: 1280px) {
+  .slider {
+    .slide {
+      width: 28vw;
+    }
+  }
+}
+
+@media (max-width: 980px) {
+  .slider {
+    .slide {
+      width: 27vw;
+
+      .rating {
+        right: 1rem;
+        bottom: 1rem;
+        height: 2.5rem;
+        width: 5rem;
+        border-radius: 4rem;
+        font-weight: 800;
+        font-size: 1.2rem;
+        line-height: unset;
+        .icon--star {
+          height: 1.5rem;
+          width: 1.5rem;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 780px) {
+  .slider {
+    .slide {
+      width: 25.5vw;
+    }
+  }
+}
+
+@media (max-width: 640px) {
 }

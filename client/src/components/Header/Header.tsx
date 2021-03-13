@@ -31,21 +31,21 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
         <nav className="header__nav nav">
           <ul className="header__nav__list nav__list">
             <div className="logo">app logo</div>
-            <li className="nav__item">
+            {/* <li className="nav__item">
               <a href="#" className="link">
                 About
               </a>
-            </li>
+            </li> */}
             <li className="nav__item">
               <a href="#" className="link">
                 Map
               </a>
             </li>
-            <li className="nav__item">
+            {/* <li className="nav__item">
               <a href="#" className="link">
                 Contacts
               </a>
-            </li>
+            </li> */}
           </ul>
         </nav>
         <div className="users-block">

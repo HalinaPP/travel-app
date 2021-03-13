@@ -37,6 +37,7 @@ main.country {
     background-size: cover;
     width: 100%;
     height: 100rem;
+    height: 75vh;
   }
 
   .video-block {
@@ -85,7 +86,8 @@ main.country {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      margin-bottom: 52rem;
+      padding-bottom: 22%;
+      margin-bottom: 0;
     }
     .text-block {
       padding-left: 8.5rem;
@@ -109,12 +111,16 @@ main.country {
 
 @media (max-width: 1280px) {
   main.country {
-    height: 250rem;
+
     .info-block {
-      height: 55rem;
+      // height: 70vh;
     }
     .sight-slider {
       margin: 6rem auto 4.5rem;
     }
   }
 }
+
+@media (max-width: 1280px) {
+
+ }
