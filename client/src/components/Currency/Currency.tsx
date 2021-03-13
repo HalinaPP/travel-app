@@ -5,8 +5,9 @@ import React, {
   useState,
   useContext,
 } from 'react';
-import { CurrencyProps, TCurrencyTitle, TCurrencyValue } from './Currency.model';
+import { CurrencyProps, TCurrencyValue } from './Currency.model';
 import { Context } from '../../utils/Context';
+import { CURRENCIES, CURRENCY_SYMBOLS, CURRENCY_TITLES } from './constants';
 
 const apiKey = 'ad62f5f58d475b612757e8490c150c56';
 const baseUrl = `http://data.fixer.io/api/latest?access_key=${apiKey}&base=`;
@@ -16,14 +17,6 @@ const Currency: FC<CurrencyProps> = (props: CurrencyProps) => {
   const { lang: currLang } = useContext(Context);
   const [loading, setLoading] = useState(true);
   const [values, setValues] = useState<number[] | string[] | never[]>([]);
-
-  const CURRENCIES = ['BYN', 'CAD', 'CHF', 'EUR', 'GEL', 'ISK', 'KZT', 'MXN', 'NOK', 'RON'];
-  const CURRENCY_SYMBOLS: string[] = ['₽', '€', '$'];
-  const CURRENCY_TITLES: TCurrencyTitle = {
-    en: ['Russian ruble', 'Euro', 'U.S. dollar'],
-    ru: ['Российский рубль', 'Евро', 'Доллар США'],
-    bg: ['Руска рубла', 'Евро', 'Американски долар'],
-  };
 
   useEffect(() => {
     const lsItem = localStorage.getItem('travelApp131-currency');
