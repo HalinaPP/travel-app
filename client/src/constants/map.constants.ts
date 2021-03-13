@@ -15,3 +15,4 @@ export const loadingModules = ['borders', 'Polygon', 'geoObject.addon.balloon'];
 export const loadingGeometry = '001';
 export const loadingLanguage = 'en';
 export const loadingQuality = 3;
+export const yaMapsApiKey = 'd5fce317-37f1-4ed2-aef6-b06cbd084bdf';

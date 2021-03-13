@@ -9,7 +9,7 @@ import {
   Placemark, FullscreenControl,
   YMapsApi, ObjectManagerFeature,
   ObjectManagerFeatureCollection,
-  PolygonGeometry,
+  PolygonGeometry, TypeSelector,
 } from 'react-yandex-maps';
 
 import { MapProps, PlacemarkProps } from './Map.model';
@@ -18,7 +18,7 @@ import {
   queryLang, minZoom, capitalTranslation,
   fillMethod, fillOpacity, fillColor,
   strokeColor, strokeOpacity, customPreset,
-  loadingModules, loadingGeometry, loadingQuality, loadingLanguage,
+  loadingModules, loadingGeometry, loadingQuality, loadingLanguage, yaMapsApiKey,
 } from '../../constants/map.constants';
 
 const isObjectManagerFeatureArray = (array: Array<ObjectManagerFeature | ObjectManagerFeatureCollection>):
@@ -63,7 +63,7 @@ const Map: FC<MapProps> = (props : MapProps) => {
   };
   return (
     <div className='map'>
-      <YMaps query={{ lang: queryLang }}>
+      <YMaps query={{ lang: queryLang, apikey: yaMapsApiKey }}>
         <MapYandex
           state={{ center: capitalCoords, zoom }}
           options={{ minZoom }}
@@ -79,6 +79,7 @@ const Map: FC<MapProps> = (props : MapProps) => {
             options={{ preset: customPreset }}
           />
           { sights.map(balloonPlacemark) }
+          <TypeSelector mapTypes={[]}/>
         </MapYandex>
       </YMaps>
     </div>
