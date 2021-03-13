@@ -24,10 +24,10 @@ app.use(express.json());
 app.use(requestLogMiddleware);
 
 app.use((req, res, next) => {
-	HTTP_HEADERS.forEach((resHeader) => {
-		res.setHeader(resHeader[0], resHeader[1]);
-	});
-	next();
+  HTTP_HEADERS.forEach((resHeader) => {
+    res.setHeader(resHeader[0], resHeader[1]);
+  });
+  next();
 });
 app.use(cors({ credentials: true, origin: '*' }));
 app.options('*', cors());
@@ -37,22 +37,25 @@ app.use('/favicon.ico', (req, res) => res.sendStatus(StatusCodes.NO_CONTENT));
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
 app.get('/', async (req, res) => {
-	try {
-		res.sendFile(buildPath + 'index.html');
-	} catch (e) {
-		res.status(StatusCodes.NO_CONTENT).send(ReasonPhrases.NO_CONTENT);
-	}
+  try {
+    res.sendFile(buildPath + 'index.html');
+  } catch (e) {
+    res.status(StatusCodes.NO_CONTENT).send(ReasonPhrases.NO_CONTENT);
+  }
 });
 
 const countryRouter = require('./modules/countries/country.router');
 const authRouter = require('./modules/auth/auth.router');
+const ratingRouter = require('./modules/rating/rating.router');
 
 app.use('/countries', countryRouter);
 
 app.use('/auth', authRouter);
 
+app.use('/:id', ratingRouter);
+
 app.use((req, res) => {
-	res.status(StatusCodes.NOT_IMPLEMENTED).send(ReasonPhrases.NOT_IMPLEMENTED);
+  res.status(StatusCodes.NOT_IMPLEMENTED).send(ReasonPhrases.NOT_IMPLEMENTED);
 });
 
 app.use(errorMiddleware);
