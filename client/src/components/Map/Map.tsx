@@ -1,53 +1,61 @@
 import './map.scss';
+
 import React, {
   FC, useCallback, Ref,
 } from 'react';
+
 import {
-  Map as MapYandex,
-  YMaps,
-  Placemark,
-  FullscreenControl,
-  YMapsApi,
-  ObjectManagerFeature,
+  Map as MapYandex, YMaps,
+  Placemark, FullscreenControl,
+  YMapsApi, ObjectManagerFeature,
   ObjectManagerFeatureCollection,
   PolygonGeometry,
 } from 'react-yandex-maps';
 
 import { MapProps, PlacemarkProps } from './Map.model';
 
+import {
+  queryLang, minZoom, capitalTranslation,
+  fillMethod, fillOpacity, fillColor,
+  strokeColor, strokeOpacity, customPreset,
+  loadingModules, loadingGeometry, loadingQuality, loadingLanguage,
+} from '../../constants/map.constants';
+
 const isObjectManagerFeatureArray = (array: Array<ObjectManagerFeature | ObjectManagerFeatureCollection>):
   array is Array<ObjectManagerFeature> => array.every((el) => el.type === 'Feature');
 
-const balloonPlacemark = (el: PlacemarkProps) => <Placemark
-  geometry={ el.coords }
-  properties={{ balloonContent: el.name }}
-  options={{ preset: el.preset ? el.preset : 'islands#blueGovernmentIcon' }}
+const balloonPlacemark = ({ coords, name, preset }: PlacemarkProps) => <Placemark
+  geometry={ coords }
+  properties={{ balloonContent: name }}
+  options={ preset ? { preset } : { preset: 'islands#blueGovernmentIcon' }}
 />;
 
-const Map: FC<MapProps> = (props: MapProps) => {
-  console.log(props);
+const Map: FC<MapProps> = (props : MapProps) => {
+  const {
+    iso, capitalName, capitalCoords, lang, zoom, sights, imageHref,
+  } = props;
   const mapRef = React.useRef<any>(null);
   const setMapRef = useCallback((instance: Ref<any>) => { mapRef.current = instance; }, []);
 
   const getRegion = (ymaps: YMapsApi) => {
-    if (mapRef.current && mapRef) {
+    if (mapRef && mapRef.current) {
       ymaps.borders
-        .load('001', {
-          lang: 'en',
-          quality: 3,
+        .load(loadingGeometry, {
+          lang: loadingLanguage,
+          quality: loadingQuality,
         }).then((result: ObjectManagerFeatureCollection) => {
           const polygones = result.features;
           if (!isObjectManagerFeatureArray(polygones)) {
             return;
           }
-          const polygonData = polygones.find((el) => el.properties?.iso3166 === props.iso);
+          const polygonData = polygones.find((el) => el.properties?.iso3166 === iso);
           const polygon: PolygonGeometry = new ymaps.Polygon(polygonData?.geometry.coordinates, {}, {
-            fillOpacity: 0.6,
-            fillImageHref: props.imageHref,
-            fillMethod: 'stretch',
-            strokeColor: '#000',
-            strokeOpacity: 0.5,
-            fillColor: '#3D4C76',
+            fillOpacity,
+            fillImageHref: imageHref,
+            fillMethod,
+            strokeColor,
+            strokeOpacity,
+            fillColor,
           });
           mapRef.current.geoObjects.add(polygon);
         });
@@ -55,22 +63,22 @@ const Map: FC<MapProps> = (props: MapProps) => {
   };
   return (
     <div className='map'>
-      <YMaps query={{ lang: 'en_RU' }}>
+      <YMaps query={{ lang: queryLang }}>
         <MapYandex
-          state={{ center: props.capitalCoords, zoom: props.zoom }}
-          options={{ minZoom: 2 }}
+          state={{ center: capitalCoords, zoom }}
+          options={{ minZoom }}
           width="100%"
           height="58rem"
           onLoad={(ymaps) => getRegion(ymaps)}
           instanceRef={setMapRef}
-          modules={['borders', 'Polygon', 'geoObject.addon.balloon']}
+          modules={loadingModules}
         >
           <FullscreenControl />
-          <Placemark geometry={props.capitalCoords}
-            properties={{ balloonContent: `Столица ${props.capitalName}` }}
-            options={{ preset: 'islands#redGovernmentIcon' }}
+          <Placemark geometry={capitalCoords}
+            properties={{ balloonContent: `${capitalTranslation[lang]} ${capitalName}` }}
+            options={{ preset: customPreset }}
           />
-          { props.sights.map(balloonPlacemark) }
+          { sights.map(balloonPlacemark) }
         </MapYandex>
       </YMaps>
     </div>
