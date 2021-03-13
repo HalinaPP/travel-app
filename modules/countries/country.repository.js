@@ -52,9 +52,7 @@ const getOneByLang = async (id, lang) => {
   const country = data[0];
   if (country) {
     const ratingPromises = country.places.map(async (place) => {
-      return await Rating.aggregate().match({ placeId: Types.ObjectId(place.id) }).replaceRoot({
-        $mergeObjects: [{ id: '$placeId' }, '$$ROOT'],
-      });
+      return await Rating.aggregate().match({ placeId: Types.ObjectId(place.id) });
     });
     await Promise.allSettled(ratingPromises).then((values) => {
       country.ratings = values.map((e) => {
