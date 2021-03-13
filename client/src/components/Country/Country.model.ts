@@ -9,3 +9,18 @@ export interface CountryProps {
   capital: string;
   description: string;
 }
+/* я делал просы которые ниже, они чуть более распространенные. Кто делает родительский компонент - подредачьте */
+export interface MapProps {
+  iso: string;
+  capitalName: string;
+  capitalCoords: Array<number>;
+  lang: string;
+  zoom: number;
+  sights: Array<PlacemarkProps>;
+  imageHref: string;
+}
+export interface PlacemarkProps {
+  name: string;
+  coords: Array<number>;
+  preset?: string;
+}
