@@ -1,5 +1,7 @@
 import './search.scss';
-import React, { FC, FormEvent, useContext } from 'react';
+import React, {
+  FC, FormEvent, useContext, useState,
+} from 'react';
 import { SearchProps } from './Search.model';
 import { Context } from '../../utils/Context';
 
@@ -13,11 +15,17 @@ const Search: FC<SearchProps> = ({ inputText, onInputChange }) => {
     event.preventDefault();
   };
 
+  const [isInputOpen, setIsInputOpen] = useState(false);
+  function searchToggle() {
+    setIsInputOpen(prevState => !prevState);
+  }
+
   const placeHolder = currLang === 'ru' ? 'Поиск' : 'Search';
+
   return (
     <form className="search-block" onSubmit={onSubmit}>
       <input
-        className="search-input"
+        className={isInputOpen ? 'search-input searchIn' : 'search-input searchOut'}
         type="search"
         placeholder={placeHolder}
         value={inputText}
@@ -25,7 +33,11 @@ const Search: FC<SearchProps> = ({ inputText, onInputChange }) => {
         autoFocus
         autoComplete="false"
       />
-      <button className="search-button" type="submit" />
+      <button
+        className={isInputOpen ? 'search-button rotate' : 'search-button'}
+        type="submit"
+        onClick={() => searchToggle()}
+      />
     </form>
   );
 };
