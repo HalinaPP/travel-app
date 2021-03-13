@@ -1,5 +1,5 @@
 export interface CountryProps {
-  id:string;
+  id: string;
   imageUrl: string;
   videoUrl: string;
   currency: string;
@@ -8,4 +8,9 @@ export interface CountryProps {
   name: string;
   capital: string;
   description: string;
+}
+
+export interface CurrCountryProps {
+  currCountry: CountryProps;
+  getCountryByIdFromApi: (id: string) => Promise<CountryProps>;
 }

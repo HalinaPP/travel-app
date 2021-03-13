@@ -1,6 +1,6 @@
 import './country.scss';
-import React, { FC, useState } from 'react';
-
+import React, { FC, useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import Sight from '../Sight/Sight';
 import Weather from '../Weather/Weather';
 import Currency from '../Currency/Currency';
@@ -8,16 +8,22 @@ import Time from '../Time/Time';
 import Map from '../Map/Map';
 import Video from '../Video/Video';
 import Feedback from '../Feedback/Feedback';
+import { CurrCountryProps } from './Country.model';
+import { setInnerHtml } from '../../utils/helpers';
 
-const Country: FC = () => {
-  const countryName = 'Canada';
-  const capital = 'Ottawa';
-
+const Country: FC<CurrCountryProps> = ({ currCountry, getCountryByIdFromApi }) => {
+  const { id }: { id: string } = useParams();
+  console.log(id);
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    getCountryByIdFromApi(id);
+  }, [getCountryByIdFromApi, id]);
+  const styleConfig = { backgroundImage: `url(${currCountry.imageUrl})` };
 
   return (
     <main className="country">
-      <section className="info-block">
+      <section className="info-block" style={styleConfig}>
         <Weather />
         <Time />
         <Currency />
@@ -26,14 +32,13 @@ const Country: FC = () => {
       <section className="video-block">
         <div className="wrapper">
           <div className="title-block">
-            <h2 className="title">{countryName} </h2>
-            <h3 className="capital subtitle">{capital}</h3>
+            <h2 className="title">{currCountry.name} </h2>
+            <h3 className="capital subtitle">{currCountry.capital}</h3>
             <a href="#" className="btn btn--ghost">
               ♡
             </a>
           </div>
-          <Video countryName={countryName}
-            src='https://www.youtube.com/embed/wYFKlfr-ELU'/>
+          <Video countryName={currCountry.name} src={currCountry.videoUrl} />
         </div>
       </section>
 
@@ -50,12 +55,7 @@ const Country: FC = () => {
           <div className="text-block">
             <h2 className="title">Information</h2>
             <div className="about__text">
-              <h3 className="subtitle">Title</h3>
-              <p className="content">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus culpa amet tempora quibusdam,
-                aliquid vitae consectetur corporis deserunt doloribus nesciunt magni dolore similique officiis minus
-                sint doloremque fuga voluptate non!
-              </p>
+              <p className="content" dangerouslySetInnerHTML={setInnerHtml(currCountry.description)}></p>
             </div>
           </div>
 

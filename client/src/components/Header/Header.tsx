@@ -1,13 +1,13 @@
 import './header.scss';
 import React, { FC, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import Search from '../Search';
 import { HeaderProps } from './Header.model';
 import Language from '../Language/Language';
 
 const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
   const location = useLocation();
-    const [isMain, setIsMain] = useState(location.pathname === '/');
+  const [isMain, setIsMain] = useState(location.pathname === '/');
 
   useEffect(() => {
     setIsMain(location.pathname === '/');
@@ -18,7 +18,9 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
       <div className="wrapper">
         <nav className="header__nav nav">
           <ul className="header__nav__list nav__list">
-            <div className="logo">app logo</div>
+            <div className="logo">
+              <Link to="/">app logo</Link>
+            </div>
             <li className="nav__item">
               <a href="#" className="link">
                 About
@@ -27,11 +29,6 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
             <li className="nav__item">
               <a href="#" className="link">
                 Map
-              </a>
-            </li>
-            <li className="nav__item">
-              <a href="#" className="link">
-                Contacts
               </a>
             </li>
           </ul>
