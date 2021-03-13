@@ -16,13 +16,29 @@ const CountriesList: FC<CountriesListProps> = ({ inputText, getCountriesFromApi,
   }, [getCountriesFromApi]);
 
   const getCountriesList = () =>
-    countries?.filter(filterByNameAndCapital).map(
-      (country: CountryProps, index: number): JSX.Element => (
-        <div className="slide">
-          <CountriesListItem country={country} />
-        </div>
-      ),
-    );
+    countries
+      ?.filter(filterByNameAndCapital)
+      .reduce((prev, country: CountryProps, index: number, array): JSX.Element => {
+        if (index % 2 !== 0 || index === array.length - 1) {
+          return (
+            <React.Fragment>
+              {prev}{' '}
+              <div className="slide">
+                {' '}
+                <CountriesListItem country={array[index - 1]} />
+                <CountriesListItem country={country} />
+              </div>
+              {prev}{' '}
+              <div className="slide">
+                {' '}
+                <CountriesListItem country={array[index - 1]} />
+                <CountriesListItem country={country} />
+              </div>
+            </React.Fragment>
+          );
+        }
+        return prev;
+      }, <></>);
 
   return (
     <main>
@@ -48,10 +64,6 @@ const CountriesList: FC<CountriesListProps> = ({ inputText, getCountriesFromApi,
       </section>
       <section className="countries">
         <div className="wrapper">
-          <a href="#" className="btn btn--ghost">
-            <img src={heartIcon} alt="♡" className="icon" />
-            Choose your Favorite
-          </a>
           <div className="slider">
             <Carousel itemsToScroll={1} itemsToShow={3} isRTL={false} pagination={false}>
               {getCountriesList()}

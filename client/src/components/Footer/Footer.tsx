@@ -4,13 +4,16 @@ import { FOOTER_COPYRIGHT } from '../../constants/constants';
 import RSSLogo from '../../assets/images/rs_school_react.png';
 import githubLogo from '../../assets/images/github-logo.svg';
 import youtubeLogo from '../../assets/images/youtube.png';
+import logo from '../../assets/images/logo2.png';
 
 const Footer: FC = () => (
   <footer>
     <div className="wrapper">
       <nav className="footer__nav nav">
         <ul className="footer__nav__list nav__list">
-          <div className="logo">app logo</div>
+          <div className="logo">
+            <img src={logo} />
+          </div>
           <li className="nav__item">
             <a href="#" className="link">
               About
