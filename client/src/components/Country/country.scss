@@ -33,7 +33,7 @@ main.country {
   .info-block {
     background: url("../../assets/images/Canada.jpg");
     background-repeat: no-repeat;
-    background-position: bottom;
+    background-position: center;
     background-size: cover;
     width: 100%;
     height: 100rem;
@@ -103,6 +103,18 @@ main.country {
         margin: 0.8rem 0 3.3rem;
         max-width: 48rem;
       }
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  main.country {
+    height: 250rem;
+    .info-block {
+      height: 55rem;
+    }
+    .sight-slider {
+      margin: 6rem auto 4.5rem;
     }
   }
 }
