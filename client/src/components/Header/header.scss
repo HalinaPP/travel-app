@@ -44,5 +44,21 @@ header {
 }
 
 @media (max-width: 640px) {
-  
+  header {
+    height: 13rem;
+  }
+}
+
+@media (max-width: 380px) {
+  header {
+    .link {
+      margin: 0 0.5rem;
+      font-size: 1.4rem;
+    }
+    .users-block .avatar {
+      width: 4rem;
+      height: 4rem;
+      margin: 0 0.5rem;
+    }
+  }
 }

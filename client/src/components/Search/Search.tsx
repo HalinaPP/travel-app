@@ -23,7 +23,7 @@ const Search: FC<SearchProps> = ({ inputText, onInputChange }) => {
   const placeHolder = currLang === 'ru' ? 'Поиск' : 'Search';
 
   return (
-    <form className="search-block" onSubmit={onSubmit}>
+    <form className="search-block__form" onSubmit={onSubmit}>
       <input
         className={isInputOpen ? 'search-input searchIn' : 'search-input searchOut'}
         type="search"
