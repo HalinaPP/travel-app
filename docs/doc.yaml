@@ -76,6 +76,17 @@ paths:
                                     type: string
                                   description:
                                     type: string
+                      ratings:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            placeId:
+                              type: string
+                            userId:
+                              type: string
+                            rating:
+                              type: number
         '404':
           description: country not found
         '400':
@@ -274,7 +285,7 @@ components:
           - userId
           - rating
       properties:
-        placeId: 
+        placeId:
           type: string
           format: objectId
         userId:
@@ -282,5 +293,5 @@ components:
           format: objectId
         rating:
           type: integer
-          minimum: 0
+          minimum: 1
           maximum: 5
