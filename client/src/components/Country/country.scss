@@ -111,7 +111,6 @@ main.country {
 
 @media (max-width: 1280px) {
   main.country {
-
     .info-block {
       // height: 70vh;
     }
@@ -121,6 +120,19 @@ main.country {
   }
 }
 
-@media (max-width: 1280px) {
-
- }
+@media (max-width: 980px) {
+  main.country .about {
+    & > .wrapper {
+      align-items: center;
+      flex-direction: column;
+      & > * {
+        width: 95vw;
+        margin: 1rem;
+      }
+    }
+    .text-block .content {
+      width: inherit;
+      max-width: inherit;
+    }
+  }
+}
