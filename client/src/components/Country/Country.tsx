@@ -16,10 +16,50 @@ const Country: FC<CurrCountryProps> = ({ currCountry, getCountryByIdFromApi }) =
   console.log(id);
   console.log('currCountry', currCountry);
   const [isOpen, setIsOpen] = useState(false);
+  /* hardcode to make it works */
+  const mapProps = {
+    iso: currCountry.ISOCode,
+    capitalName: currCountry.capital,
+    capitalCoords: currCountry.capitalLocation,
+    lang: 'ru',
+    zoom: 2,
+    imageHref: 'https://flagof.ru/wp-content/uploads/2018/10/1200px-Flag_of_Canada_1964.svg_.png',
+    sights: [
+      {
+        name: 'Ниагарский водопад',
+        coords: [],
+      },
+      {
+        name: 'Висячий мост Капилано',
+        coords: [49.34298670224216, -123.1148600289935],
+      },
+      {
+        name: 'Королевский музей Онтарио',
+        coords: [43.66786489436412, -79.39468054267884],
+      },
+      {
+        name: 'Базилика Нотр-Дам де Монреаль',
+        coords: [45.50465320767228, -73.55615258865281],
+      },
+      {
+        name: 'Великие озёра',
+        coords: [45.82131959457854, -84.74107649346662],
+      },
+      {
+        name: 'Национальный парк Банф',
+        coords: [51.4969933244283, -115.92803474425936],
+      },
+      {
+        name: 'Ниагарский водопад',
+        coords: [43.082596771052536, -79.0738088506289],
+      },
+    ],
+  };
 
   useEffect(() => {
     getCountryByIdFromApi(id);
-  }, [getCountryByIdFromApi, id, currCountry]);
+  }, [getCountryByIdFromApi, id]);
+
   const styleConfig = { backgroundImage: `url(${currCountry.imageUrl})` };
 
   return (
@@ -46,7 +86,7 @@ const Country: FC<CurrCountryProps> = ({ currCountry, getCountryByIdFromApi }) =
       <section className="sight-slider" id="sight">
         <div className="wrapper">
           <h3 className="subtitle">Photo gallery</h3>
-          <Sight setIsOpen={setIsOpen} />
+          <Sight setIsOpen={setIsOpen} sights={currCountry.places} ratings={currCountry.ratings} />
         </div>
         <Feedback isOpen={isOpen} setIsOpen={setIsOpen} />
       </section>
@@ -60,7 +100,17 @@ const Country: FC<CurrCountryProps> = ({ currCountry, getCountryByIdFromApi }) =
             </div>
           </div>
 
-          <Map />
+          <Map
+            {...{
+              iso: currCountry.ISOCode,
+              capitalName: currCountry.capital,
+              capitalCoords: currCountry.capitalLocation,
+              lang: 'ru',
+              zoom: 2,
+              imageHref: 'https://flagof.ru/wp-content/uploads/2018/10/1200px-Flag_of_Canada_1964.svg_.png',
+              sights: [],
+            }}
+          />
         </div>
       </section>
     </main>

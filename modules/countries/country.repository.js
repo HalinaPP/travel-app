@@ -1,60 +1,86 @@
 const Country = require('./country.schema');
+const Rating = require('../rating/rating.schema');
 const { NotFoundError } = require('../../common/errors/errors-list');
 const { ENTITY_NAME } = require('./constants');
-const {
-  COLLECTION_NAME: PLACE_COLLECTION_NAME,
-} = require('../places/constants');
+const { COLLECTION_NAME: PLACE_COLLECTION_NAME } = require('../places/constants');
 const { Types } = require('mongoose');
 
 const countryExcludedFields = { _id: 0, __v: 0, lang: 0, localizations: 0 };
 const placeExcludedFields = { _id: 0, countryId: 0, lang: 0, localizations: 0 };
 
 const getAllByLang = async (lang) => {
-  return await Country.aggregate()
-    .match({ localizations: { $elemMatch: { lang } } })
-    .unwind('localizations')
-    .match({ 'localizations.lang': lang })
-    .replaceRoot({
-      $mergeObjects: [{ id: '$_id' }, '$localizations', '$$ROOT'],
-    })
-    .project(countryExcludedFields);
+	return await Country.aggregate()
+		.match({ localizations: { $elemMatch: { lang } } })
+		.unwind('localizations')
+		.match({ 'localizations.lang': lang })
+		.replaceRoot({
+			$mergeObjects: [{ id: '$_id' }, '$localizations', '$$ROOT']
+		})
+		.project(countryExcludedFields);
 };
 
 const getOneByLang = async (id, lang) => {
-  const data = await Country.aggregate()
-    .match({ _id: Types.ObjectId(id) })
-    .unwind('localizations')
-    .match({ 'localizations.lang': lang })
-    .replaceRoot({
-      $mergeObjects: [{ id: '$_id' }, '$localizations', '$$ROOT'],
-    })
-    .project(countryExcludedFields)
-    .lookup({
-      from: PLACE_COLLECTION_NAME,
-      pipeline: [
-        {
-          $match: { countryId: Types.ObjectId(id) },
-        },
-        { $unwind: '$localizations' },
-        {
-          $match: { 'localizations.lang': lang },
-        },
-        {
-          $replaceWith: { $mergeObjects: ['$localizations', '$$ROOT'] },
-        },
-        { $project: placeExcludedFields },
-      ],
-      as: 'places',
-    });
+	const data = await Country.aggregate()
+		.match({ _id: Types.ObjectId(id) })
+		.unwind('localizations')
+		.match({ 'localizations.lang': lang })
+		.replaceRoot({
+			$mergeObjects: [{ id: '$_id' }, '$localizations', '$$ROOT']
+		})
+		.project(countryExcludedFields)
+		.lookup({
+			from: PLACE_COLLECTION_NAME,
+			pipeline: [
+				{
+					$match: { countryId: Types.ObjectId(id) }
+				},
+				{ $unwind: '$localizations' },
+				{
+					$match: { 'localizations.lang': lang }
+				},
+				{
+					$replaceWith: { $mergeObjects: [{ id: '$_id' }, '$localizations', '$$ROOT'] }
+				},
+				{ $project: placeExcludedFields }
+			],
+			as: 'places'
+		});
 
-  const country = data[0];
-  if (country) {
-    return country;
-  }
-  throw new NotFoundError(ENTITY_NAME);
+	const country = data[0];
+
+	if (country) {
+		const ratingPromises = country.places.map((place) => {
+			console.log('id=', place.id);
+			return Rating.aggregate()
+				.match({ placeId: Types.ObjectId(place.id) })
+				.replaceRoot({
+					$mergeObjects: [{ id: '$_id' }, '$$ROOT']
+				})
+				.project(countryExcludedFields);
+		});
+		/*.filter((item) => {
+				console.log('item=', item);
+				return item.length > 0;
+			});*/
+
+		await Promise.allSettled(ratingPromises).then((values) => {
+			//console.log('value=', values);
+			country.ratings = values
+				.map((e) => {
+					//console.log('e=', e);
+					return e.value;
+				})
+				.filter((e) => e)
+				.flat();
+		});
+		console.log(country);
+		return country;
+	}
+
+	throw new NotFoundError(ENTITY_NAME);
 };
 
 module.exports = {
-  getAllByLang,
-  getOneByLang,
+	getAllByLang,
+	getOneByLang
 };

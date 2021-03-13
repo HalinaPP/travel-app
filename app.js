@@ -46,10 +46,13 @@ app.get('/', async (req, res) => {
 
 const countryRouter = require('./modules/countries/country.router');
 const authRouter = require('./modules/auth/auth.router');
+const ratingRouter = require('./modules/rating/rating.router');
 
 app.use('/countries', countryRouter);
 
 app.use('/auth', authRouter);
+
+app.use('/:id', ratingRouter);
 
 app.use((req, res) => {
 	res.status(StatusCodes.NOT_IMPLEMENTED).send(ReasonPhrases.NOT_IMPLEMENTED);

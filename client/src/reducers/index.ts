@@ -3,7 +3,7 @@ import { ACTIONS } from '../actions/constants';
 import { LANGS } from '../constants/constants';
 import { travelApi } from '../utils/apiConnect';
 import { setCountries, setCountry } from '../actions/index';
-import { CountryProps } from '../components/Country/Country.model';
+import { CountryProps, CountryWithPlacesProps } from '../components/Country/Country.model';
 
 export interface StateModel {
   user?: {
@@ -11,7 +11,7 @@ export interface StateModel {
     nickName: string;
   };
   countries?: CountryProps[];
-  currCountry?: CountryProps;
+  currCountry?: CountryWithPlacesProps;
 }
 
 export const initialState: StateModel = {
@@ -25,6 +25,8 @@ export const initialState: StateModel = {
     name: '',
     capital: '',
     description: '',
+    places: [],
+    ratings: [],
   },
 };
 
