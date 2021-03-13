@@ -8,11 +8,11 @@ const router = express.Router();
 
 router.post(
   '/:id',
-  wrap(async (req, res) => {
+  wrap(async ({ body: { placeId, userId, rating: r } }, res) => {
     const rating = new Rating({
-      placeId: req.body.placeId,
-      userId: req.body.userId,
-      rating: req.body.rating,
+      placeId,
+      userId,
+      rating: r,
     });
     try {
       await rating.save();
