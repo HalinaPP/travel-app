@@ -28,11 +28,9 @@ router.get(
 router.get(
 	'/:id',
 	wrap(async (req, res) => {
-		console.log('here');
 		const lang = req.query.lang || DEFAULT_LANG;
 		const { id } = req.params;
 		const data = await countryService.getOne(id, lang);
-		console.log('data=', data);
 		res.json(data);
 	})
 );

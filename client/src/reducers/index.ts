@@ -21,7 +21,7 @@ export const initialState: StateModel = {
     videoUrl: '',
     currency: '',
     ISOCode: '',
-    capitalLocation: [0, 0],
+    capitalLocation: { coordinates: [0, 0], type: 'Point' },
     name: '',
     capital: '',
     description: '',

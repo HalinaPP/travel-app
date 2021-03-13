@@ -50,7 +50,6 @@ const getOneByLang = async (id, lang) => {
 
 	if (country) {
 		const ratingPromises = country.places.map((place) => {
-			console.log('id=', place.id);
 			return Rating.aggregate()
 				.match({ placeId: Types.ObjectId(place.id) })
 				.replaceRoot({
@@ -58,22 +57,15 @@ const getOneByLang = async (id, lang) => {
 				})
 				.project(countryExcludedFields);
 		});
-		/*.filter((item) => {
-				console.log('item=', item);
-				return item.length > 0;
-			});*/
 
 		await Promise.allSettled(ratingPromises).then((values) => {
-			//console.log('value=', values);
 			country.ratings = values
 				.map((e) => {
-					//console.log('e=', e);
 					return e.value;
 				})
 				.filter((e) => e)
 				.flat();
 		});
-		console.log(country);
 		return country;
 	}
 

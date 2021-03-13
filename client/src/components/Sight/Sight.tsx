@@ -1,15 +1,14 @@
 import './sight.scss';
-import React, { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 import Carousel from 'react-elastic-carousel';
 import { SightProps } from './Sight.model';
 import { countRate } from '../../utils/helpers';
 
 const Sight: FC<SightProps> = ({ setIsOpen, sights, ratings }) => {
-  const countryName = 'belarus';
-
-  function openPopup() {
+  const openPopup = useCallback(() => {
     setIsOpen(true);
-  }
+  }, [setIsOpen]);
+
   return (
     <Carousel itemsToScroll={1} itemsToShow={3} isRTL={false} pagination={false} className="slider">
       {sights?.length > 0 &&
@@ -17,11 +16,10 @@ const Sight: FC<SightProps> = ({ setIsOpen, sights, ratings }) => {
           const rate = countRate(item.id, ratings);
 
           return (
-            <a href="#sight">
+            <a href="#sight" key={item.name}>
               <div
                 className="slide"
                 style={{ backgroundImage: `url(${item.imageUrl})` }}
-                key={item.name}
                 onClick={() => {
                   openPopup();
                 }}
