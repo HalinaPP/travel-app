@@ -26,6 +26,8 @@ export const initialState: StateModel = {
     description: '',
     places: [],
     ratings: [],
+    timezone: '',
+    flagUrl: '',
   },
 };
 

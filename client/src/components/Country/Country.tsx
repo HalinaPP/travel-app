@@ -22,7 +22,7 @@ const Country: FC<CurrCountryProps> = ({ currCountry, getCountryByIdFromApi }) =
     capitalName: currCountry.capital,
     capitalCoords: currCountry.capitalLocation.coordinates,
     lang: currLang,
-    imageHref: 'https://flagof.ru/wp-content/uploads/2018/10/1200px-Flag_of_Canada_1964.svg_.png',
+    imageHref: currCountry.flagUrl,
   });
 
   useEffect(() => {
