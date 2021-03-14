@@ -59,16 +59,6 @@ const Country: FC = () => {
         <Weather />
         <Time />
         <Currency currency={'BYN'}/>
-        <Currency currency={'CAD'}/>
-        <Currency currency={'CHF'}/>
-        <Currency currency={'EUR'}/>
-        <Currency currency={'GEL'}/>
-        <br></br>
-        <Currency currency={'ISK'}/>
-        <Currency currency={'KZT'}/>
-        <Currency currency={'MXN'}/>
-        <Currency currency={'NOK'}/>
-        <Currency currency={'RON'}/>
       </section>
 
       <section className="video-block">
