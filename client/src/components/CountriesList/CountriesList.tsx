@@ -5,6 +5,7 @@ import heartIcon from '../../assets/icons/heart.png';
 import { CountriesListProps } from './CountriesList.model';
 import { CountryProps } from '../Country/Country.model';
 import CountriesListItem from '../CountriesListItem/CountriesListItem';
+import { setInnerHtml } from '../../utils/helpers';
 
 const CountriesList: FC<CountriesListProps> = ({ inputText, getCountriesFromApi, countries }) => {
   const filterByNameAndCapital = (country: CountryProps) =>
@@ -25,13 +26,7 @@ const CountriesList: FC<CountriesListProps> = ({ inputText, getCountriesFromApi,
               {prev}{' '}
               <div className="slide">
                 {' '}
-                <CountriesListItem country={array[index - 1]} />
-                <CountriesListItem country={country} />
-              </div>
-              {prev}{' '}
-              <div className="slide">
-                {' '}
-                <CountriesListItem country={array[index - 1]} />
+                {array[index - 1] && <CountriesListItem country={array[index - 1]} />}
                 <CountriesListItem country={country} />
               </div>
             </React.Fragment>
@@ -40,24 +35,41 @@ const CountriesList: FC<CountriesListProps> = ({ inputText, getCountriesFromApi,
         return prev;
       }, <></>);
 
+  const getRandomCountry = () => {
+    if (countries && countries.length > 0) {
+      const randIndex = Math.trunc(Math.random() * countries?.length);
+      const randCountry = countries[randIndex];
+      return {
+        randCountryName: randCountry.name,
+        randCountryDescription: randCountry.description.slice(0, 300),
+        randCountryLink: `/country/${randCountry.id}`,
+        randCountryImage: { backgroundImage: `url(${randCountry.imageUrl})` },
+      };
+    }
+    return {
+      randCountryName: '',
+      randCountryDescription: '',
+      randCountryLink: '',
+      randCountryImage: {},
+    };
+  };
+
+  const { randCountryName, randCountryDescription, randCountryLink, randCountryImage } = getRandomCountry();
+
   return (
     <main>
       <section className="promo">
         <div className="wrapper">
           <div className="content-block">
             <h1 className="title">Choose your next trip</h1>
-            <h2 className="subtitle">travel app</h2>
-            <p className="content">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-              ea
-            </p>
-            <a href="#" className="btn btn--light">
+            <h2 className="subtitle">{randCountryName}</h2>
+            <p className="content" dangerouslySetInnerHTML={setInnerHtml(randCountryDescription)}></p>
+            <a href={randCountryLink} className="btn btn--light">
               Watch now
             </a>
           </div>
           <div className="image-block">
-            <div className="image"></div>
+            <div className="image" style={randCountryImage}></div>
             <div className="image-outline"></div>
           </div>
         </div>
