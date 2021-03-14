@@ -1,3 +1,3 @@
 export interface TimeProps {
-  smr?: any
+  timeZone: string
 }
