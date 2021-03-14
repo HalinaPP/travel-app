@@ -10,6 +10,8 @@ export interface CountryProps {
   name: string;
   capital: string;
   description: string;
+  timezone: string;
+  flagUrl: string;
 }
 
 export interface CountryWithPlacesProps extends CountryProps {

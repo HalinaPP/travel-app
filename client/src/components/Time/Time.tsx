@@ -5,28 +5,42 @@ import React, {
 import { Context } from '../../utils/Context';
 import { decimalize } from '../../utils/helpers';
 import { TimeProps } from './Time.model';
+import { MONTHS, DAYS } from './constants';
 
 const Time: FC<TimeProps> = ({ timeZone }) => {
   const { lang: currLang } = useContext(Context);
-  const [currentDateAndTime, setCurrentDateAndTime] = useState(new Date(
-    new Date().toLocaleString('en-US', { timeZone }),
-  ));
-  const hour = currentDateAndTime.getHours();
-  const min = currentDateAndTime.getMinutes();
-  const sec = currentDateAndTime.getSeconds();
-  const time = `${hour}:${decimalize(min)}:${decimalize(sec)}`;
+  const [currentDate, setCurrentDate] = useState('--');
+  const [currentTime, setCurrentTime] = useState('--');
+  const [timerValue, setTimerValue] = useState(0);
 
-  const date = currentDateAndTime.getDate();
-  const month = currentDateAndTime.getMonth();
-  const year = currentDateAndTime.getFullYear();
-  const day = currentDateAndTime.getDay();
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimerValue((prevTimer) => (prevTimer + 1) % 2);
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
 
-  const fullDate = `${date} ${month} ${year}, ${day}`;
+  useEffect(() => {
+    const currentDateAndTime = new Date(new Date()
+      .toLocaleString('en-US', { timeZone }));
+
+    const date = currentDateAndTime.getDate();
+    const month = currentDateAndTime.getMonth();
+    const year = currentDateAndTime.getFullYear();
+    const day = currentDateAndTime.getDay();
+
+    const hour = currentDateAndTime.getHours();
+    const min = currentDateAndTime.getMinutes();
+    const sec = currentDateAndTime.getSeconds();
+
+    setCurrentDate(`${date} ${MONTHS[currLang][month].toUpperCase()} ${year}, ${DAYS[currLang][day].toUpperCase()}`);
+    setCurrentTime(`${hour}:${decimalize(min)}:${decimalize(sec)}`);
+  }, [timerValue]);
 
   return (
     <div className="time-container">
-      <div>{fullDate}</div>
-      <div>{time}</div>
+      <div className="date">{currentDate}</div>
+      <h2 className="time">{currentTime}</h2>
     </div>
   );
 };
