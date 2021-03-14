@@ -1,3 +1,4 @@
+
 #root {
   display: flex;
   flex-direction: column;
@@ -12,4 +13,11 @@ main {
 footer {
   height: 20rem;
   background: #196469;
+}
+
+@media (max-width: 640px) {
+  footer {
+    height: auto;
+  }
+
 }

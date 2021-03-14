@@ -1,4 +1,4 @@
-import './styles.scss';
+import './countryListItem.scss';
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { CountryProps } from '../Country/Country.model';

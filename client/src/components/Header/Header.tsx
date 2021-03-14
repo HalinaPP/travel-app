@@ -1,5 +1,5 @@
 import './header.scss';
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Search from '../Search';
 import { HeaderProps } from './Header.model';
@@ -7,7 +7,18 @@ import Language from '../Language/Language';
 
 const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
   const location = useLocation();
-    const [isMain, setIsMain] = useState(location.pathname === '/');
+  const [isMain, setIsMain] = useState(location.pathname === '/');
+  const [isSettingOpen, setIsSettingOpen] = useState(false);
+
+  const styles = {
+    setting: {
+      backgroundImage: "url('/icons/settings.png')",
+    },
+  };
+
+  function langToggle() {
+    setIsSettingOpen(prevState => !prevState);
+  }
 
   useEffect(() => {
     setIsMain(location.pathname === '/');
@@ -21,17 +32,7 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
             <div className="logo">app logo</div>
             <li className="nav__item">
               <a href="#" className="link">
-                About
-              </a>
-            </li>
-            <li className="nav__item">
-              <a href="#" className="link">
                 Map
-              </a>
-            </li>
-            <li className="nav__item">
-              <a href="#" className="link">
-                Contacts
               </a>
             </li>
           </ul>
@@ -41,12 +42,12 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
           <div className="avatar">
             <a href="#"></a>
           </div>
-          <div className="settings">
+          <div className="settings" onClick={() => langToggle()} style={styles.setting}>
             <a href="#"></a>
           </div>
         </div>
+        {isSettingOpen && <Language />}
       </div>
-      <Language />
     </header>
   );
 };

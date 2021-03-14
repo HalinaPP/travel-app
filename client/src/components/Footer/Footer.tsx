@@ -11,21 +11,6 @@ const Footer: FC = () => (
       <nav className='footer__nav nav'>
         <ul className='footer__nav__list nav__list'>
           <div className='logo'>app logo</div>
-          <li className='nav__item'>
-            <a href='#' className='link'>
-              About
-            </a>
-          </li>
-          <li className='nav__item'>
-            <a href='#' className='link'>
-              Map
-            </a>
-          </li>
-          <li className='nav__item'>
-            <a href='#' className='link'>
-              Contacts
-            </a>
-          </li>
         </ul>
       </nav>
 
