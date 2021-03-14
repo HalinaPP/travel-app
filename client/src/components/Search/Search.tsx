@@ -1,12 +1,13 @@
 import './search.scss';
-import React, {
-  FC, FormEvent, useContext, useState,
-} from 'react';
+import React, { FC, FormEvent, useContext, useState } from 'react';
 import { SearchProps } from './Search.model';
-import { Context } from '../../utils/Context';
+import translation from '../../constants/translation';
+import { LanguageContext } from '../../utils/LanguageContext';
 
 const Search: FC<SearchProps> = ({ inputText, onInputChange }) => {
-  const { lang: currLang } = useContext(Context);
+  const { lang: currang } = useContext(LanguageContext);
+  const langsInfo = translation[currang];
+
   const onInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     onInputChange(event.target.value);
   };
@@ -20,14 +21,12 @@ const Search: FC<SearchProps> = ({ inputText, onInputChange }) => {
     setIsInputOpen(prevState => !prevState);
   }
 
-  const placeHolder = currLang === 'ru' ? 'Поиск' : 'Search';
-
   return (
     <form className="search-block__form" onSubmit={onSubmit}>
       <input
         className={isInputOpen ? 'search-input searchIn' : 'search-input searchOut'}
         type="search"
-        placeholder={placeHolder}
+        placeholder={langsInfo.search}
         value={inputText}
         onChange={onInput}
         autoFocus

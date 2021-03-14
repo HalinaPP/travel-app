@@ -1,12 +1,17 @@
 import './styles.scss';
-import React, { FC, useCallback, useEffect, useState } from 'react';
+import React, { FC, useCallback, useEffect, useState, useContext } from 'react';
 import Carousel from 'react-elastic-carousel';
 import { Ratings, SightProps, Sights } from './SightsList.model';
 import { countRate, getSightRatings } from '../../utils/helpers';
 import Feedback from '../Feedback/Feedback';
 import useWindowSize from '../../utils/useWindowSize';
+import translation from '../../constants/translation';
+import { LanguageContext } from '../../utils/LanguageContext';
 
 const SightsList: FC<SightProps> = ({ sights, ratings }) => {
+  const { lang: currang } = useContext(LanguageContext);
+  const langsInfo = translation[currang];
+
   const initialData = {
     sight: { id: '', name: '', description: '', imageUrl: '' },
     ratings: [{ id: '', placeId: '', userId: '', rating: 0 }],
@@ -56,7 +61,7 @@ const SightsList: FC<SightProps> = ({ sights, ratings }) => {
   return (
     <section className="sight-slider" id="sight">
       <div className="wrapper">
-        <h3 className="subtitle">Photo gallery</h3>
+        <h3 className="subtitle">{langsInfo.sights}</h3>
         <Carousel
           itemsToScroll={1}
           itemsToShow={useWindowSize().width >= '640' ? 3 : 2}

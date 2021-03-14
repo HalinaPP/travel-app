@@ -19,5 +19,5 @@ export interface CountryWithPlacesProps extends CountryProps {
 
 export interface CurrCountryProps {
   currCountry: CountryWithPlacesProps;
-  getCountryByIdFromApi: (id: string) => Promise<CountryProps>;
+  getCountryByIdFromApi: (id: string, lang: string) => Promise<CountryProps>;
 }

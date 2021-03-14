@@ -1,20 +1,21 @@
 import './countriesList.scss';
-import React, { FC, useCallback, useEffect } from 'react';
+import React, { FC, useCallback, useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import Carousel from 'react-elastic-carousel';
-import heartIcon from '../../assets/icons/heart.png';
 import { CountriesListProps } from './CountriesList.model';
 import { CountryProps } from '../Country/Country.model';
 import CountriesListItem from '../CountriesListItem/CountriesListItem';
 import { setInnerHtml } from '../../utils/helpers';
+import translation from '../../constants/translation';
+import { LanguageContext } from '../../utils/LanguageContext';
 
 const CountriesList: FC<CountriesListProps> = ({ inputText, getCountriesFromApi, countries }) => {
+  const { lang: currLang } = useContext(LanguageContext);
+  const langsInfo = translation[currLang];
+
   const filterByNameAndCapital = (country: CountryProps) =>
     country.name.toLowerCase().includes(inputText.toLowerCase()) ||
     country.capital.toLowerCase().includes(inputText.toLowerCase());
-
-  useEffect(() => {
-    getCountriesFromApi();
-  }, [getCountriesFromApi]);
 
   const getCountriesList = () =>
     countries
@@ -35,14 +36,17 @@ const CountriesList: FC<CountriesListProps> = ({ inputText, getCountriesFromApi,
         return prev;
       }, <></>);
 
-  const getRandomCountry = () => {
+  const getRandomCountry = useCallback(() => {
     if (countries && countries.length > 0) {
-      const randIndex = Math.trunc(Math.random() * countries?.length);
+      const randIndex = countries?.length - 1;
+      /* пока не определилась можно ли побороть перерендеринг с рандомом
+      Math.trunc(Math.random() * countries?.length);
+      */
       const randCountry = countries[randIndex];
       return {
         randCountryName: randCountry.name,
         randCountryDescription: randCountry.description.slice(0, 300),
-        randCountryLink: `/country/${randCountry.id}`,
+        randCountryLink: `${currLang}/country/${randCountry.id}`,
         randCountryImage: { backgroundImage: `url(${randCountry.imageUrl})` },
       };
     }
@@ -52,28 +56,36 @@ const CountriesList: FC<CountriesListProps> = ({ inputText, getCountriesFromApi,
       randCountryLink: '',
       randCountryImage: {},
     };
+  }, [countries]);
+
+  const getPromoCountry = () => {
+    const { randCountryName, randCountryDescription, randCountryLink, randCountryImage } = getRandomCountry();
+
+    return (
+      <div className="wrapper">
+        <div className="content-block">
+          <h1 className="title">{langsInfo.choose}</h1>
+          <h2 className="subtitle">{randCountryName}</h2>
+          <p className="content" dangerouslySetInnerHTML={setInnerHtml(randCountryDescription)}></p>
+          <Link className="btn btn--light" to={randCountryLink}>
+            {langsInfo.watch}
+          </Link>
+        </div>
+        <div className="image-block">
+          <div className="image" style={randCountryImage}></div>
+          <div className="image-outline"></div>
+        </div>
+      </div>
+    );
   };
 
-  const { randCountryName, randCountryDescription, randCountryLink, randCountryImage } = getRandomCountry();
+  useEffect(() => {
+    getCountriesFromApi(currLang);
+  }, [getCountriesFromApi, currLang]);
 
   return (
     <main>
-      <section className="promo">
-        <div className="wrapper">
-          <div className="content-block">
-            <h1 className="title">Choose your next trip</h1>
-            <h2 className="subtitle">{randCountryName}</h2>
-            <p className="content" dangerouslySetInnerHTML={setInnerHtml(randCountryDescription)}></p>
-            <a href={randCountryLink} className="btn btn--light">
-              Watch now
-            </a>
-          </div>
-          <div className="image-block">
-            <div className="image" style={randCountryImage}></div>
-            <div className="image-outline"></div>
-          </div>
-        </div>
-      </section>
+      <section className="promo">{getPromoCountry()}</section>
       <section className="countries">
         <div className="wrapper">
           <div className="slider">

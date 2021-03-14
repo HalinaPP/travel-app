@@ -15,9 +15,8 @@ const getRequestInit = (method = 'GET'): RequestInit => {
   };
 };
 
-const getCountries = async (): Promise<CountryProps[]> => {
+const getCountries = async (lang: string): Promise<CountryProps[]> => {
   const requestInit = getRequestInit();
-  const lang = 'ru';
   const apiObject = await fetch(`${API_COUNTRIES_URLS}?lang=${lang}`, requestInit)
     .then((response: Response): Promise<CountryProps[]> => response.json())
     .then((countries: CountryProps[]) => countries)
@@ -27,9 +26,8 @@ const getCountries = async (): Promise<CountryProps[]> => {
   return apiObject;
 };
 
-const getCountryById = async (id: string): Promise<CountryProps> => {
+const getCountryById = async (id: string, lang: string): Promise<CountryProps> => {
   const requestInit = getRequestInit();
-  const lang = 'ru';
   const apiObject = await fetch(`${API_COUNTRIES_URLS}/${id}?lang=${lang}`, requestInit)
     .then((response: Response): Promise<CountryProps> => response.json())
     .then((country: CountryProps) => country)
