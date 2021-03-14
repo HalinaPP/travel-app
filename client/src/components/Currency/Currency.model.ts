@@ -6,7 +6,7 @@ export type TCurrencyTitle = {
   [key: string]: string[],
 };
 
-export type TCurrencyCash = {
+export type TCurrencyCache = {
   [key: string]: number[],
 };
 

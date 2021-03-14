@@ -6,19 +6,19 @@ import React, {
   useContext,
 } from 'react';
 import { Context } from '../../utils/Context';
-import { CurrencyProps, TCurrencyCash, TCurrencyData } from './Currency.model';
+import { CurrencyProps, TCurrencyCache, TCurrencyData } from './Currency.model';
 import { CURRENCY_URLS, CURRENCY_SYMBOLS, CURRENCY_TITLES } from './constants';
 
 const getAllFormattedCurrencies = (responseJSONArray: TCurrencyData[]) => responseJSONArray
-  .reduce((currencyCash: TCurrencyCash, currencyData: TCurrencyData) => {
-    currencyCash[currencyData.base] = Object.values(currencyData.rates)
+  .reduce((currencyCache: TCurrencyCache, currencyData: TCurrencyData) => {
+    currencyCache[currencyData.base] = Object.values(currencyData.rates)
       .map((rate, idx) => {
         const divider = idx ? 1 : 100;
         return divider / rate >= 100
           ? Math.round(divider / rate)
           : Number.parseFloat((divider / rate).toFixed(2));
       });
-    return currencyCash;
+    return currencyCache;
   }, {});
 
 const Currency: FC<CurrencyProps> = (props: CurrencyProps) => {
@@ -35,9 +35,9 @@ const Currency: FC<CurrencyProps> = (props: CurrencyProps) => {
       Promise.all(CURRENCY_URLS.map((url) => fetch(url)
         .then(response => response.json())))
         .then(getAllFormattedCurrencies)
-        .then((currencyCash) => {
-          sessionStorage.setItem('travelApp131-currency', JSON.stringify(currencyCash));
-          setValues(currencyCash[props.currency]);
+        .then((currencyCache) => {
+          sessionStorage.setItem('travelApp131-currency', JSON.stringify(currencyCache));
+          setValues(currencyCache[props.currency]);
         })
         .catch(() => setValues([]))
         .finally(() => setLoading(false));
