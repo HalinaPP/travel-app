@@ -1,7 +1,7 @@
 .country-card {
-  width: 46rem;
+  width: 40rem;
   height: 34.4rem;
-  margin: 1rem;
+  margin: 1rem auto;
 
   background: #ffffff;
 
@@ -51,5 +51,56 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;
+  }
+}
+
+@media (max-width: 1380px) {
+  .country-card {
+    // width: 34rem;
+    width: 28vw;
+  }
+}
+
+@media (max-width: 1150px) {
+  .country-card {
+    // width: 34rem;
+    width: 27vw;
+  }
+}
+
+@media (max-width: 980px) {
+  .country-card {
+    width: 26vw;
+    height: unset;
+    aspect-ratio: 1.5 / 1;
+
+    .image-block {
+      height: unset;
+      width: 22vw;
+      aspect-ratio: 1 / 1;
+      padding: 1rem 0 0;
+      margin: 0 auto 2rem;
+
+      .image {
+        height: unset;
+        margin-top: 1rem;
+        width: 22vw;
+        aspect-ratio: 1 / 1;
+        display: block;
+        margin: auto;
+      }
+      .image-outline {
+        top: 1rem;
+        height: unset;
+        width: 22vw;
+        aspect-ratio: 1 / 1;
+      }
+    }
+    .title {
+      font-size: 2rem;
+    }
+    .subtitle {
+      font-size: 1.4rem;
+    }
   }
 }

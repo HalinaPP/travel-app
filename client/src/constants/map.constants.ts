@@ -1,5 +1,6 @@
 export const queryLang = 'en_RU';
 export const minZoom = 2;
+export const zoom = 2;
 export const capitalTranslation: Record<string, unknown> = {
   ru: 'Столица',
   en: 'Capital',

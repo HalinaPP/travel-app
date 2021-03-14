@@ -6,5 +6,6 @@
   "semi": true,
   "arrowParens": "avoid",
   "useTabs": false,
-  "trailingComma": "all"
+  "trailingComma": "all",
+  "singleQuote": true
 }
