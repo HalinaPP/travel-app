@@ -21,7 +21,7 @@ const Country: FC<CurrCountryProps> = ({ currCountry, getCountryByIdFromApi }) =
     iso: currCountry.ISOCode,
     capitalName: currCountry.capital,
     capitalCoords: currCountry.capitalLocation.coordinates,
-    lang: 'ru',
+    lang: currLang,
     imageHref: 'https://flagof.ru/wp-content/uploads/2018/10/1200px-Flag_of_Canada_1964.svg_.png',
   });
 
@@ -48,7 +48,7 @@ const Country: FC<CurrCountryProps> = ({ currCountry, getCountryByIdFromApi }) =
       <section className="info-block" style={styleConfig}>
         <Weather />
         <Time />
-        <Currency currency={'BYN'}/>
+        <Currency currency={currCountry.currency} />
       </section>
 
       <section className="video-block">
