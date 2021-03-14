@@ -23,10 +23,10 @@
     .popup_image {
       position: relative;
       height: 34.8rem;
-      width: 48.6rem;
+      width: 100%;
       border-radius: 1.75rem;
       background-repeat: no-repeat;
-      background-size: contain;
+      background-size: cover;
       background-position: center;
     }
     .rating {
@@ -255,5 +255,31 @@
   100% {
     z-index: -1;
     background-color: transparent;
+  }
+}
+
+@media (max-width: 1280px) {
+  .feedback__overlay {
+    .feedback__popup {
+      .popup_image {
+        height: 35vh;
+      }
+      .popup_title {
+        margin: 2rem auto 3rem;
+        font-size: 4rem;
+      }
+    }
+
+    .feedback_container {
+      height: calc(100vh - 47rem);
+      margin-top: 11rem;
+
+      .user__block {
+        margin-bottom: 0.5rem;
+        .bubble {
+          height: 14rem;
+        }
+      }
+    }
   }
 }

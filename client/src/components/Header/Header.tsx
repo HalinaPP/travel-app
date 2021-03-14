@@ -9,6 +9,17 @@ import logo from '../../assets/images/logo2.png';
 const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
   const location = useLocation();
   const [isMain, setIsMain] = useState(location.pathname === '/');
+  const [isSettingOpen, setIsSettingOpen] = useState(false);
+
+  const styles = {
+    setting: {
+      backgroundImage: "url('/icons/settings.png')",
+    },
+  };
+
+  function langToggle() {
+    setIsSettingOpen(prevState => !prevState);
+  }
 
   useEffect(() => {
     setIsMain(location.pathname === '/');
@@ -26,11 +37,6 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
             </div>
             <li className="nav__item">
               <a href="#" className="link">
-                About
-              </a>
-            </li>
-            <li className="nav__item">
-              <a href="#" className="link">
                 Map
               </a>
             </li>
@@ -41,12 +47,12 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
           <div className="avatar">
             <a href="#"></a>
           </div>
-          <div className="settings">
+          <div className="settings" onClick={() => langToggle()} style={styles.setting}>
             <a href="#"></a>
           </div>
         </div>
+        {isSettingOpen && <Language />}
       </div>
-      <Language />
     </header>
   );
 };

@@ -33,10 +33,11 @@ main.country {
   .info-block {
     // background: url('../../assets/images/Canada.jpg');
     background-repeat: no-repeat;
-    background-position: bottom;
+    background-position: center;
     background-size: cover;
     width: 100%;
     height: 100rem;
+    height: 75vh;
   }
 
   .video-block {
@@ -85,7 +86,8 @@ main.country {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      margin-bottom: 52rem;
+      padding-bottom: 22%;
+      margin-bottom: 0;
     }
     .text-block {
       padding-left: 8.5rem;
@@ -107,6 +109,34 @@ main.country {
           margin: 1rem 0;
         }
       }
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  main.country {
+    .info-block {
+      // height: 70vh;
+    }
+    .sight-slider {
+      margin: 6rem auto 4.5rem;
+    }
+  }
+}
+
+@media (max-width: 980px) {
+  main.country .about {
+    & > .wrapper {
+      align-items: center;
+      flex-direction: column;
+      & > * {
+        width: 95vw;
+        margin: 1rem;
+      }
+    }
+    .text-block .content {
+      width: inherit;
+      max-width: inherit;
     }
   }
 }

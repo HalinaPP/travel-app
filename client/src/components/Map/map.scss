@@ -4,10 +4,15 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  border-radius: 1.75rem;
 
   margin-right: 8.5rem;
+
 }
 .ymaps-2-1-78-map-copyrights-promo,
 .ymaps-2-1-78-copyright__link {
   display: none;
+}
+.ymaps-2-1-78-inner-panes {
+  border-radius: 1.75rem;
 }

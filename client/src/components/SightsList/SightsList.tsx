@@ -4,6 +4,7 @@ import Carousel from 'react-elastic-carousel';
 import { Ratings, SightProps, Sights } from './SightsList.model';
 import { countRate, getSightRatings } from '../../utils/helpers';
 import Feedback from '../Feedback/Feedback';
+import useWindowSize from '../../utils/useWindowSize';
 
 const SightsList: FC<SightProps> = ({ sights, ratings }) => {
   const initialData = {
@@ -56,7 +57,13 @@ const SightsList: FC<SightProps> = ({ sights, ratings }) => {
     <section className="sight-slider" id="sight">
       <div className="wrapper">
         <h3 className="subtitle">Photo gallery</h3>
-        <Carousel itemsToScroll={1} itemsToShow={3} isRTL={false} pagination={false} className="slider">
+        <Carousel
+          itemsToScroll={1}
+          itemsToShow={useWindowSize().width >= '640' ? 3 : 2}
+          isRTL={false}
+          pagination={false}
+          className="slider"
+        >
           {getSightsList()}
         </Carousel>
       </div>
