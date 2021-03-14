@@ -1,5 +1,5 @@
 import { CountryProps } from '../components/Country/Country.model';
-import { HEADER_JSON, API_COUNTRIES_URLS } from '../constants/constants';
+import { HEADER_JSON, API_COUNTRIES_URLS, API_AUTH_URLS } from '../constants/constants';
 
 const getRequestInit = (method = 'GET'): RequestInit => {
   /* const { accessToken } = store.getState().user; */
@@ -13,6 +13,40 @@ const getRequestInit = (method = 'GET'): RequestInit => {
     mode: 'cors',
     cache: 'default',
   };
+};
+
+const loginUser = async (): Promise<any> => {
+  const requestInit = getRequestInit('POST');
+  const apiObject = await fetch(`${API_AUTH_URLS}/login`, requestInit)
+    .then(
+      (response) => response.json(),
+    )
+    .then(
+      (data) => data,
+    )
+    .catch(
+      (error) => {
+        throw new Error(error);
+      },
+    );
+  return apiObject;
+};
+
+const registerUser = async (): Promise<any> => {
+  const requestInit = getRequestInit('POST');
+  const apiObject = await fetch(`${API_AUTH_URLS}/register`, requestInit)
+    .then(
+      (response) => response.json(),
+    )
+    .then(
+      (data) => data,
+    )
+    .catch(
+      (error) => {
+        throw new Error(error);
+      },
+    );
+  return apiObject;
 };
 
 const getCountries = async (): Promise<CountryProps[]> => {
@@ -30,3 +64,4 @@ const getCountries = async (): Promise<CountryProps[]> => {
 };
 
 export const travelApi = { getCountries };
+export const authApi = { loginUser, registerUser };

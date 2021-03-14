@@ -4,11 +4,13 @@ import { useLocation } from 'react-router-dom';
 import Search from '../Search';
 import { HeaderProps } from './Header.model';
 import Language from '../Language/Language';
+import Auth from '../Auth';
 
 const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
   const location = useLocation();
   const [isMain, setIsMain] = useState(location.pathname === '/');
   const [isSettingOpen, setIsSettingOpen] = useState(false);
+  const [isAuthModalOpen, setAuthModalOpen] = useState(false);
 
   const styles = {
     setting: {
@@ -39,9 +41,11 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
         </nav>
         <div className="users-block">
           <div className="search-block">{isMain && <Search inputText={inputText} onInputChange={onInputChange} />}</div>
-          <div className="avatar">
+          <div onClick={() => setAuthModalOpen(true)}
+            className="avatar">
             <a href="#"></a>
           </div>
+          { isAuthModalOpen ? <Auth/> : null }
           <div className="settings" onClick={() => langToggle()} style={styles.setting}>
             <a href="#"></a>
           </div>
