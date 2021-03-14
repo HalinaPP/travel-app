@@ -2,6 +2,7 @@ const express = require('express');
 const wrap = require('../../common/errors/async-error-wrapper');
 const User = require('./auth.user.schema');
 const router = express.Router();
+const cloudinary = require('cloudinary');
 const { StatusCodes, ReasonPhrases } = require('http-status-codes');
 const {
   NotFoundError,
@@ -15,9 +16,20 @@ const {
   comparePasswords,
   encryptPassword } = require('./auth.service');
 
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_APIKEY,
+  api_secret: process.env.CLOUD_APISECRET,
+})
+
 router.post(
   '/register',
+  // upload.single('avatar'),
   wrap(async (req, res) => {
+    console.log(req.body);
+    console.log(req.files[0]);
+    const publish = await cloudinary.uploader.upload(req.files.avatar.path);
+    console.log(publish);
     const { nickname, password } = req.body;
     const validData = validateData(nickname, password);
     if (!validData) {
@@ -29,10 +41,17 @@ router.post(
       throw new AlreadyExistsError(nickname)
     } else {
       const encryptedPassword = await encryptPassword(password);
-      const user = new User({ nickname, password: encryptedPassword });
+      const user = new User({ nickname, password: encryptedPassword, avatar: publish.url });
       try {
         await user.save();
-        res.status(StatusCodes.CREATED).send(ReasonPhrases.CREATED);
+        res.status(StatusCodes.CREATED).json({
+          error: null,
+          statusText: ReasonPhrases.CREATED,
+          data:
+            {
+              message: 'User created!'
+            }
+        });
       } catch(error) {
         throw new InternalServerError();
       }
@@ -44,7 +63,9 @@ router.post(
 );
 router.post(
   '/login',
+  // upload.none(),
   wrap(async (req, res) => {
+    console.log(req.body);
     const { nickname, password } = req.body;
     const validData = validateData(nickname, password);
     if (!validData) {
@@ -76,5 +97,6 @@ router.post(
     }
   })
 );
+
 
 module.exports = router;
