@@ -48,7 +48,7 @@ const Country: FC<CurrCountryProps> = ({ currCountry, getCountryByIdFromApi }) =
       <section className="info-block" style={styleConfig}>
         <Weather />
         <Time />
-        <Currency />
+        <Currency currency={'BYN'}/>
       </section>
 
       <section className="video-block">
