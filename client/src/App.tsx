@@ -2,7 +2,7 @@ import { Provider } from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { store } from './store';
-import Country from './components/Country';
+import { CountryContainer } from './containers/Country.container';
 import { CountriesListContainer } from './containers/CountriesList.container';
 import Footer from './components/Footer';
 import './App.scss';
@@ -26,8 +26,8 @@ const App = () => {
           <ScrollToTop />
           <Header inputText={inputText} onInputChange={setInputText} />
           <Switch>
-            <Route path="/country">
-              <Country />
+            <Route path="/country/:id">
+              <CountryContainer />
             </Route>
             <Route exact path="/">
               <CountriesListContainer inputText={inputText} />

@@ -1,10 +1,11 @@
 import './header.scss';
-import { FC, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { FC, useEffect, useState } from 'react';
+import { useLocation, Link } from 'react-router-dom';
 import Search from '../Search';
 import { HeaderProps } from './Header.model';
 import Language from '../Language/Language';
 import Auth from '../Auth';
+import logo from '../../assets/images/logo2.png';
 
 const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
   const location = useLocation();
@@ -31,7 +32,11 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
       <div className="wrapper">
         <nav className="header__nav nav">
           <ul className="header__nav__list nav__list">
-            <div className="logo">app logo</div>
+            <div className="logo">
+              <Link to="/">
+                <img src={logo} />
+              </Link>
+            </div>
             <li className="nav__item">
               <a href="#" className="link">
                 Map
