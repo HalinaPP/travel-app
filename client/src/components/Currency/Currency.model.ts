@@ -6,6 +6,11 @@ export type TCurrencyTitle = {
   [key: string]: string[],
 };
 
-export type TCurrencyValue = {
+export type TCurrencyCash = {
   [key: string]: number[],
+};
+
+export type TCurrencyData = {
+  rates: number[],
+  base: string,
 };
