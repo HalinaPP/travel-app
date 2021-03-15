@@ -113,9 +113,9 @@ paths:
                 placeId:
                   type: string
                   description: The place's id
-                userId:
+                nickName:
                   type: string
-                  description: The user's id
+                  description: The user's nickname
                 rating:
                   type: integer
                   description: The place's rating
@@ -282,15 +282,15 @@ components:
       type: object
       required:
           - placeId
-          - userId
+          - nickName
           - rating
       properties:
         placeId:
           type: string
           format: objectId
-        userId:
+        nickName:
           type: string
-          format: objectId
+          example: bramov
         rating:
           type: integer
           minimum: 1

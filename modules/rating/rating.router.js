@@ -9,14 +9,14 @@ const router = express.Router();
 
 router.post(
   '/:id',
-  wrap(async ({ body: { placeId, userId, rating: r } }, res) => {
-    if (!validateData(placeId, userId, r)) {
+  wrap(async ({ body: { placeId, nickName, rating: rtg } }, res) => {
+    if (!validateData(placeId, nickName, rtg)) {
       throw new InvalidRequestBodyError();
     }
     const rating = new Rating({
       placeId,
-      userId,
-      rating: r,
+      userNickName: nickName,
+      rating: rtg,
     });
 
     await rating.save();

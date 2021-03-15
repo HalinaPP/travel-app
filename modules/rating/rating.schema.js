@@ -5,8 +5,8 @@ const ratingSchema = new Schema({
     type: Schema.Types.ObjectId,
     require: true,
   },
-  userId: {
-    type: Schema.Types.ObjectId,
+  userNickName: {
+    type: String,
     require: true,
   },
   rating: {
