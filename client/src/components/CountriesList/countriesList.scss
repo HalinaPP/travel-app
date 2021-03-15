@@ -1,6 +1,6 @@
 .promo {
   height: 87rem;
-  background: url('../../assets/ui/promo-bg.png');
+  background: url("../../assets/ui/promo-bg.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom;
@@ -17,8 +17,8 @@
   .content-block {
     width: 50%;
 
-    font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
-      'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+      "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     color: #f3f7f8;
     .title {
       margin: 10.3rem 0 3rem;
@@ -33,14 +33,21 @@
       line-height: 5.7rem;
     }
     .content {
-      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
-        'Droid Sans', 'Helvetica Neue', sans-serif;
+      font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+        "Droid Sans", "Helvetica Neue", sans-serif;
       font-weight: 400;
       font-size: 1.4rem;
       line-height: 2rem;
+      text-align: justify;
 
-      margin: 2rem 0 4.7rem;
+      margin: 2rem 2rem 3.7rem 0;
+      height: 10rem;
+      // max-width: 24rem;
+      // overflow-y: scroll;
       //max-width: 48rem;
+      p {
+        text-overflow: ellipsis;
+      }
     }
   }
 
@@ -58,7 +65,7 @@
       height: 66.6rem;
       margin: auto;
 
-      background: url('../../assets/ui/overlay-20.png'), url('../../assets/images/Georgia.jpeg');
+      background: url("../../assets/ui/overlay-20.png"), url("../../assets/images/Georgia.jpeg");
       background-size: cover;
       background-repeat: repeat, no-repeat;
     }
@@ -81,7 +88,7 @@
   }
 
   height: 130rem;
-  background: url('../../assets/ui/countries-bg.png');
+  background: url("../../assets/ui/countries-bg.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: bottom;
@@ -100,6 +107,7 @@
   }
 
   .slider {
+
     .slide {
       height: 72.8rem;
       &:focus {
@@ -114,6 +122,10 @@
       &:hover:enabled {
         background-color: #19707d;
       }
+    }
+
+    a {
+      text-decoration: none;
     }
   }
 }
@@ -172,7 +184,7 @@
 
 @media (max-width: 1024px) {
   .promo {
-    height: 71.5rem;
+    height: 73.5rem;
     .content-block .title,
     .content-block .subtitle {
       font-size: 4.5rem;
@@ -199,7 +211,7 @@
         width: 54vw;
       }
       .content {
-        max-width: 32rem;
+        // max-width: 32rem;
       }
     }
     .image-block {
@@ -223,9 +235,8 @@
       margin-top: 5rem;
     }
     .content {
-      max-width: 27rem;
+      // max-width: 27rem;
       margin-bottom: 4rem;
     }
   }
-
 }

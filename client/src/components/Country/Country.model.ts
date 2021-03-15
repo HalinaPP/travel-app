@@ -10,6 +10,7 @@ export interface CountryProps {
   name: string;
   capital: string;
   description: string;
+  promoDescription: string;
 }
 
 export interface CountryWithPlacesProps extends CountryProps {

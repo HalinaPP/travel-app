@@ -1,7 +1,7 @@
 import './countriesList.scss';
 import React, { FC, useCallback, useEffect } from 'react';
 import Carousel from 'react-elastic-carousel';
-import heartIcon from '../../assets/icons/heart.png';
+// import heartIcon from '../../assets/icons/heart.png';
 import { CountriesListProps } from './CountriesList.model';
 import { CountryProps } from '../Country/Country.model';
 import CountriesListItem from '../CountriesListItem/CountriesListItem';
