@@ -9,7 +9,7 @@ import useWindowSize from '../../utils/useWindowSize';
 const SightsList: FC<SightProps> = ({ sights, ratings }) => {
   const initialData = {
     sight: { id: '', name: '', description: '', imageUrl: '' },
-    ratings: [{ id: '', placeId: '', userId: '', rating: 0 }],
+    ratings: [{ id: '', placeId: '', userNickName: '', rating: 0 }],
   };
   const [isOpen, setIsOpen] = useState(false);
   const [popupData, setPopupData] = useState(initialData);

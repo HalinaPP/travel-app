@@ -8,7 +8,7 @@ export interface Sights {
 export interface Ratings {
   id: string;
   placeId: string;
-  userId: string;
+  userNickName: string;
   rating: number;
 }
 
