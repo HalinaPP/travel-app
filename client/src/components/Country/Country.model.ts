@@ -10,7 +10,8 @@ export interface CountryProps {
   name: string;
   capital: string;
   description: string;
-  promoDescription: string;
+  timezone: string;
+  flagUrl: string;
 }
 
 export interface CountryWithPlacesProps extends CountryProps {
@@ -20,5 +21,5 @@ export interface CountryWithPlacesProps extends CountryProps {
 
 export interface CurrCountryProps {
   currCountry: CountryWithPlacesProps;
-  getCountryByIdFromApi: (id: string) => Promise<CountryProps>;
+  getCountryByIdFromApi: (id: string, lang: string) => Promise<CountryProps>;
 }

@@ -1,7 +1,7 @@
 import './language.scss';
 import React, { ChangeEvent, FC } from 'react';
 import { LANGS } from '../../constants/constants';
-import { Context } from '../../utils/Context';
+import { LanguageContext } from '../../utils/LanguageContext';
 
 const Language: FC = () => {
   const getLangsItems = () =>
@@ -16,7 +16,7 @@ const Language: FC = () => {
   };
 
   return (
-    <Context.Consumer>
+    <LanguageContext.Consumer>
       {({ lang, setLang }) => (
         <div className="custom-select">
           <select
@@ -28,7 +28,7 @@ const Language: FC = () => {
           </select>
         </div>
       )}
-    </Context.Consumer>
+    </LanguageContext.Consumer>
   );
 };
 export default Language;

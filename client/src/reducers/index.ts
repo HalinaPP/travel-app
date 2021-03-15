@@ -1,6 +1,5 @@
 import { Dispatch } from 'redux';
 import { ACTIONS } from '../actions/constants';
-import { LANGS } from '../constants/constants';
 import { travelApi } from '../utils/apiConnect';
 import { setCountries, setCountry } from '../actions/index';
 import { CountryProps, CountryWithPlacesProps } from '../components/Country/Country.model';
@@ -27,7 +26,8 @@ export const initialState: StateModel = {
     description: '',
     places: [],
     ratings: [],
-    promoDescription: '',
+    timezone: '',
+    flagUrl: '',
   },
 };
 
@@ -48,14 +48,14 @@ export const reducer = (state = initialState, action: any): StateModel => {
   }
 };
 
-export const getCountriesFromApi = () => async (dispatch: Dispatch) => {
-  const countries = await travelApi.getCountries();
+export const getCountriesFromApi = (lang: string) => async (dispatch: Dispatch) => {
+  const countries = await travelApi.getCountries(lang);
   dispatch(setCountries(countries));
   return countries;
 };
 
-export const getCountryByIdFromApi = (id: string) => async (dispatch: Dispatch) => {
-  const country = await travelApi.getCountryById(id);
+export const getCountryByIdFromApi = (id: string, lang: string) => async (dispatch: Dispatch) => {
+  const country = await travelApi.getCountryById(id, lang);
   dispatch(setCountry(country));
   return country;
 };
