@@ -5,9 +5,11 @@
   justify-content: space-around;
   text-align: center;
   justify-items: center;
+  background: linear-gradient(91.97deg, #2a8086 14.73%, #0d444c 97.52%);
   width: 120px;
   margin: 20px;
-  height: 20px;
+  height: 3.5rem;
+  border-radius: 4rem;
   z-index: 1;
 
   & input[type="radio"] {
@@ -16,6 +18,9 @@
   label {
     display: block;
     flex: 1;
+    font-size: 1.8rem;
+    align-self: center;
+    margin-bottom: 1px;
     cursor: pointer;
   }
   // https://codepen.io/jamesbarnett/pen/vlpkh
@@ -26,6 +31,6 @@
   & > input:checked ~ label:hover,
   & > label:hover ~ input:checked ~ label,
   & > input:checked ~ label:hover ~ label {
-    color: #ffd700;
+    color: #ffb342;
   }
 }
