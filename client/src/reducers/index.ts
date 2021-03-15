@@ -17,6 +17,7 @@ export const initialState: StateModel = {
   currCountry: {
     id: '',
     imageUrl: '',
+    imagePreviewUrl: '',
     videoUrl: '',
     currency: '',
     ISOCode: '',
