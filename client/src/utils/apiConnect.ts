@@ -15,15 +15,14 @@ const getRequestInit = (method = 'GET'): RequestInit => {
   };
 };
 
-const loginUser = async (): Promise<any> => {
-  const requestInit = getRequestInit('POST');
-  const apiObject = await fetch(`${API_AUTH_URLS}/login`, requestInit)
-    .then(
-      (response) => response.json(),
-    )
-    .then(
-      (data) => data,
-    )
+const loginUser = async (body: any): Promise<any> => {
+  /* я использую свои headers, потому что объявленные выше мне не подходят */
+  const apiObject = await fetch(`${API_AUTH_URLS}/login`, {
+    body,
+    method: 'POST',
+  })
+    .then((response) => response.json())
+    .then((data) => data)
     .catch(
       (error) => {
         throw new Error(error);
@@ -32,15 +31,13 @@ const loginUser = async (): Promise<any> => {
   return apiObject;
 };
 
-const registerUser = async (): Promise<any> => {
-  const requestInit = getRequestInit('POST');
-  const apiObject = await fetch(`${API_AUTH_URLS}/register`, requestInit)
-    .then(
-      (response) => response.json(),
-    )
-    .then(
-      (data) => data,
-    )
+const registerUser = async (body: any): Promise<any> => {
+  /* я использую свои headers, потому что объявленные выше мне не подходят */
+  const apiObject = await fetch(`${API_AUTH_URLS}/register`, {
+    body,
+    method: 'POST',
+  }).then((response) => response.json())
+    .then(data => data)
     .catch(
       (error) => {
         throw new Error(error);
@@ -61,8 +58,6 @@ const getCountries = async (): Promise<CountryProps[]> => {
   return apiObject;
 };
 
-export const authApi = { loginUser, registerUser };
-
 const getCountryById = async (id: string): Promise<CountryProps> => {
   const requestInit = getRequestInit();
   const lang = 'ru';
@@ -76,3 +71,4 @@ const getCountryById = async (id: string): Promise<CountryProps> => {
 };
 
 export const travelApi = { getCountries, getCountryById };
+export const authApi = { loginUser, registerUser };

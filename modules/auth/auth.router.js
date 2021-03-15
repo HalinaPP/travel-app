@@ -26,10 +26,8 @@ router.post(
   '/register',
   // upload.single('avatar'),
   wrap(async (req, res) => {
-    console.log(req.body);
-    console.log(req.files[0]);
+    console.log(req.files);
     const publish = await cloudinary.uploader.upload(req.files.avatar.path);
-    console.log(publish);
     const { nickname, password } = req.body;
     const validData = validateData(nickname, password);
     if (!validData) {

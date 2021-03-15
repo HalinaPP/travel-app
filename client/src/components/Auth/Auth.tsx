@@ -3,38 +3,66 @@ import React, { FC, useState } from 'react';
 import { AuthData } from './auth.model';
 import { authApi } from '../../utils/apiConnect';
 
-const sendRequest = (data: AuthData, method: string) => {
-
-};
 const Auth: FC = () => {
-  const [isSignIn, setIsSignIn] = useState(false);
+  const [tab, setTab] = useState('signin');
   const [nicknameInput, setNicknameInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
-  const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [image, setImage] = useState('');
+
+  const fileInputChange = (e: any) => {
+    const input = e.currentTarget;
+    if (!input.files?.length) {
+      return;
+    }
+    const file = input.files[0];
+    console.log(file);
+    setImage(file);
+  };
+
+  const showErrors = (data: any) => <div className="error">{data.detail}</div>;
+  const showSuccess = (data: any) => <div className="success">{data.message}</div>;
+
+  const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data = { nickname: nicknameInput, password: passwordInput };
-    console.log(JSON.stringify(data));
-    fetch('http://localhost:3005/auth/register', {
-      method: 'POST',
-      body: JSON.stringify((data)),
-    }).then((res) => alert(res.status)).then(res => console.log(res)).catch(err => console.error(err));
+    const formData = new FormData();
+    formData.append('nickname', nicknameInput);
+    formData.append('password', passwordInput);
+    console.log(image);
+    if (image !== '' && tab !== 'signin') {
+      formData.append('avatar', image);
+    }
+    let responseData;
+    if (tab === 'signin') {
+      responseData = await authApi.loginUser(formData);
+    } else if (tab === 'signup') {
+      responseData = await authApi.registerUser(formData);
+    }
+    if (responseData.errors) {
+      setError(responseData.errors);
+      setSuccess(false);
+    } else {
+      setSuccess(responseData.data);
+      setError(false);
+    }
   };
 
   return (
     <div className="auth__modal">
       <div className="tabs">
         <button
-          className="sign--up title tab active"
+          className={`sign--up title tab ${tab === 'signup' ? 'active' : null}`}
           onClick={() => {
-            setIsSignIn(false);
+            setTab('signup');
           }}
         >
           Sign up
         </button>
         <button
-          className="sign--in tab title"
+          className={`sign--in title tab ${tab === 'signin' ? 'active' : null}`}
           onClick={() => {
-            setIsSignIn(true);
+            setTab('signin');
           }}
         >
           Sign in
@@ -42,9 +70,22 @@ const Auth: FC = () => {
       </div>
 
       <div className="auth__block">
-        <form onSubmit={ onFormSubmit }
+        <form encType="multipart/form-data"
+          onSubmit={ onFormSubmit }
           className="modal-content animate">
-          {!isSignIn ? <a href="#" className="set-avatar"></a> : <div className="user-avatar"></div>}
+          {
+            tab === 'signup' ?
+              <label htmlFor="avatar" className="set-avatar">
+                <input type="file"
+                  required
+                  name="avatar"
+                  id="avatar"
+                  className="set-avatar"
+                  onChange={ fileInputChange }
+                />
+              </label>
+              : <div className="user-avatar"/>
+          }
 
           <div className="container">
             <label htmlFor="nickname">
@@ -58,6 +99,9 @@ const Auth: FC = () => {
             </label>
             <input onChange={(e) => setPasswordInput(e.target.value)}
               type="password" name="password" required />
+
+            { error ? showErrors(error) : null }
+            { success ? showSuccess(success) : null }
 
             <button type="submit" className="btn">
               sign up
