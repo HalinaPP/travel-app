@@ -26,7 +26,8 @@ const Country: FC<CurrCountryProps> = ({ currCountry, getCountryByIdFromApi }) =
   });
 
   useEffect(() => {
-    /*
+    console.log('maa');
+
     setMapProps({
       iso: currCountry.ISOCode,
       capitalName: currCountry.capital,
@@ -34,8 +35,7 @@ const Country: FC<CurrCountryProps> = ({ currCountry, getCountryByIdFromApi }) =
       lang: 'ru',
       imageHref: 'https://flagof.ru/wp-content/uploads/2018/10/1200px-Flag_of_Canada_1964.svg_.png',
     });
-    */
-  });
+  }, [currCountry]);
 
   useEffect(() => {
     getCountryByIdFromApi(id, currLang);
