@@ -19,6 +19,7 @@ const Currency: FC<CurrencyProps> = (props: CurrencyProps) => {
   const [values, setValues] = useState<number[]>([]);
 
   useEffect(() => {
+    if (!values) return;
     const storedCurrencies = sessionStorage.getItem('travelApp131-currency');
     if (storedCurrencies) {
       setValues(JSON.parse(storedCurrencies)[props.currency]);
@@ -33,18 +34,19 @@ const Currency: FC<CurrencyProps> = (props: CurrencyProps) => {
         .catch(() => setValues([]))
         .finally(() => setLoading(false));
     }
-  }, []);
+  }, [props.currency]);
 
-  const currencies = values.length ? (
-    CURRENCY_SYMBOLS.map((currencySymbol, index) => (
-      <li className="currency-item" title={CURRENCY_TITLES[currLang][index]} key={CURRENCY_TITLES[currLang][index]}>
+  const currencies = Array.isArray(values)
+    ? CURRENCY_SYMBOLS.map((currencySymbol, index) => (
+      <li className="currency-item"
+        title={CURRENCY_TITLES[currLang][index]}
+        key={CURRENCY_TITLES[currLang][index]} >
         <strong>{currencySymbol}</strong>
         {` ${loading ? '--' : values[index]}`}
       </li>
-    ))
-  ) : (
-    <li className="currency-item">no data</li>
-  );
+    )) : (
+      <li className="currency-item">no data</li>
+    );
 
   return (
     <div className="currency-container">
