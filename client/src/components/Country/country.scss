@@ -38,6 +38,18 @@ main.country {
     width: 100%;
     height: 100rem;
     height: 75vh;
+
+    display: flex;
+    justify-content: flex-end;
+    @media screen and (max-width: 425px) {
+      justify-content: center;
+    }
+
+    .widget-block {
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+    }
   }
 
   .video-block {

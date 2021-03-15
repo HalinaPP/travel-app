@@ -26,8 +26,6 @@ const Country: FC<CurrCountryProps> = ({ currCountry, getCountryByIdFromApi }) =
   });
 
   useEffect(() => {
-    console.log('maa');
-
     setMapProps({
       iso: currCountry.ISOCode,
       capitalName: currCountry.capital,
@@ -46,9 +44,11 @@ const Country: FC<CurrCountryProps> = ({ currCountry, getCountryByIdFromApi }) =
   return (
     <main className="country">
       <section className="info-block" style={styleConfig}>
-        <Weather />
-        <Time timeZone={currCountry.timezone}/>
-        <Currency currency={currCountry.currency}/>
+        <div className="widget-block">
+          <Weather capital={currCountry.capital}/>
+          <Time timeZone={currCountry.timezone}/>
+          <Currency currency={currCountry.currency}/>
+        </div>
       </section>
 
       <section className="video-block">
