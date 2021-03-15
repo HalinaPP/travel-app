@@ -14,16 +14,6 @@ const Footer: FC = () => (
           <div className="logo">
             <img src={logo} />
           </div>
-          <li className="nav__item">
-            <a href="#" className="link">
-              About
-            </a>
-          </li>
-          <li className="nav__item">
-            <a href="#" className="link">
-              Map
-            </a>
-          </li>
         </ul>
       </nav>
 
