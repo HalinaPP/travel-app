@@ -5,8 +5,8 @@ import translation from '../../constants/translation';
 import { LanguageContext } from '../../utils/LanguageContext';
 
 const Search: FC<SearchProps> = ({ inputText, onInputChange }) => {
-  const { lang: currang } = useContext(LanguageContext);
-  const langsInfo = translation[currang];
+  const { lang: currLang } = useContext(LanguageContext);
+  const langsInfo = translation[currLang];
 
   const onInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     onInputChange(event.target.value);
