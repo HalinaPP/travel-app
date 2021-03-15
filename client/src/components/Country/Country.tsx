@@ -32,8 +32,8 @@ const Country: FC<CurrCountryProps> = ({ currCountry, getCountryByIdFromApi }) =
       iso: currCountry.ISOCode,
       capitalName: currCountry.capital,
       capitalCoords: currCountry.capitalLocation.coordinates,
-      lang: 'ru',
-      imageHref: 'https://flagof.ru/wp-content/uploads/2018/10/1200px-Flag_of_Canada_1964.svg_.png',
+      lang: currLang,
+      imageHref: currCountry.flagUrl,
     });
   }, [currCountry]);
 

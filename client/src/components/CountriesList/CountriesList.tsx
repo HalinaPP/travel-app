@@ -18,23 +18,17 @@ const CountriesList: FC<CountriesListProps> = ({ inputText, getCountriesFromApi,
     country.capital.toLowerCase().includes(inputText.toLowerCase());
 
   const getCountriesList = () =>
-    countries
-      ?.filter(filterByNameAndCapital)
-      .reduce((prev, country: CountryProps, index: number, array): JSX.Element => {
-        if (index % 2 !== 0 || index === array.length - 1) {
-          return (
-            <React.Fragment>
-              {prev}{' '}
-              <div className="slide">
-                {' '}
-                {array[index - 1] && <CountriesListItem country={array[index - 1]} />}
-                <CountriesListItem country={country} />
-              </div>
-            </React.Fragment>
-          );
-        }
-        return prev;
-      }, <></>);
+    countries?.filter(filterByNameAndCapital).map((country: CountryProps, index: number, array): JSX.Element | null => {
+      if (index % 2 !== 0 || index === array.length - 1) {
+        return (
+          <div className="slide">
+            {array[index - 1] && <CountriesListItem country={array[index - 1]} />}
+            <CountriesListItem country={country} />
+          </div>
+        );
+      }
+      return null;
+    });
 
   const getRandomCountry = useCallback(() => {
     if (countries && countries.length > 0) {
