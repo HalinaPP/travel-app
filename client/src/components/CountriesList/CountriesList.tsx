@@ -21,7 +21,7 @@ const CountriesList: FC<CountriesListProps> = ({ inputText, getCountriesFromApi,
     countries?.filter(filterByNameAndCapital).map((country: CountryProps, index: number, array): JSX.Element | null => {
       if (index % 2 !== 0 || index === array.length - 1) {
         return (
-          <div className="slide">
+          <div className="slide" key={index}>
             {array[index - 1] && <CountriesListItem country={array[index - 1]} />}
             <CountriesListItem country={country} />
           </div>
