@@ -53,7 +53,7 @@
 
       background-image: url("../../assets/icons/set-foto.png");
       background-repeat: no-repeat;
-      background-size: contain;
+      background-size: cover;
       background-position: center;
       transition: all 200ms linear;
       cursor: pointer;
@@ -68,7 +68,6 @@
 
     .user-avatar {
       // if we want to give the opportunity to change the avatar => next line del
-      cursor: none;
       background-image: url("../../assets/avatar-mock.png");
       border-radius: 50%;
     }

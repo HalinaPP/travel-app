@@ -2,6 +2,7 @@ import './auth.scss';
 import React, { FC, useState } from 'react';
 import { AuthData } from './auth.model';
 import { authApi } from '../../utils/apiConnect';
+import AvatarUpload from '../AvatarUpload';
 
 const Auth: FC = () => {
   const [tab, setTab] = useState('signin');
@@ -9,28 +10,20 @@ const Auth: FC = () => {
   const [passwordInput, setPasswordInput] = useState('');
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [image, setImage] = useState('');
-
-  const fileInputChange = (e: any) => {
-    const input = e.currentTarget;
-    if (!input.files?.length) {
-      return;
-    }
-    const file = input.files[0];
-    console.log(file);
-    setImage(file);
-  };
+  const [image, setImage] = useState<File | string>('');
 
   const showErrors = (data: any) => <div className="error">{data.detail}</div>;
   const showSuccess = (data: any) => <div className="success">{data.message}</div>;
 
+  const onImageReady = (target: File) => {
+    setImage(target);
+  };
   const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('nickname', nicknameInput);
     formData.append('password', passwordInput);
-    console.log(image);
-    if (image !== '' && tab !== 'signin') {
+    if (tab !== 'signin') {
       formData.append('avatar', image);
     }
     let responseData;
@@ -75,15 +68,7 @@ const Auth: FC = () => {
           className="modal-content animate">
           {
             tab === 'signup' ?
-              <label htmlFor="avatar" className="set-avatar">
-                <input type="file"
-                  required
-                  name="avatar"
-                  id="avatar"
-                  className="set-avatar"
-                  onChange={ fileInputChange }
-                />
-              </label>
+              <AvatarUpload onImageReady={ (target) => onImageReady(target) } />
               : <div className="user-avatar"/>
           }
 
