@@ -1,26 +1,23 @@
+import { Ratings, Sights } from '../SightsList/SightsList.model';
+
 export interface CountryProps {
-  id:string;
+  id: string;
   imageUrl: string;
   videoUrl: string;
   currency: string;
   ISOCode: string;
-  capitalLocation: number[];
+  capitalLocation: { coordinates: number[]; type: string };
   name: string;
   capital: string;
   description: string;
 }
-/* я делал просы которые ниже, они чуть более распространенные. Кто делает родительский компонент - подредачьте */
-export interface MapProps {
-  iso: string;
-  capitalName: string;
-  capitalCoords: Array<number>;
-  lang: string;
-  zoom: number;
-  sights: Array<PlacemarkProps>;
-  imageHref: string;
+
+export interface CountryWithPlacesProps extends CountryProps {
+  places: Sights[];
+  ratings: Ratings[];
 }
-export interface PlacemarkProps {
-  name: string;
-  coords: Array<number>;
-  preset?: string;
+
+export interface CurrCountryProps {
+  currCountry: CountryWithPlacesProps;
+  getCountryByIdFromApi: (id: string) => Promise<CountryProps>;
 }
