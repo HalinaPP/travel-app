@@ -6,3 +6,10 @@ export interface AuthData {
   password: string,
   id?: number,
 }
+
+export interface User {
+  id?: number;
+  nickname: string;
+  avatar: string,
+  token: string,
+}

@@ -1,22 +1,32 @@
 import './auth.scss';
 import React, { FC, useState } from 'react';
-import { AuthData } from './auth.model';
+import { useDispatch, useSelector } from 'react-redux';
+import { AuthData, User } from './auth.model';
 import { authApi } from '../../utils/apiConnect';
 import AvatarUpload from '../AvatarUpload';
+import { StateModel } from '../../reducers';
+import { setUser } from '../../actions';
 
-const Auth: FC = () => {
+const Auth: FC = ({ ...getUserData }) => {
   const [tab, setTab] = useState('signin');
   const [nicknameInput, setNicknameInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const [image, setImage] = useState<File | string>('');
+  useSelector((state: StateModel) => state.user);
+  const dispatch = useDispatch();
 
   const showErrors = (data: any) => <div className="error">{data.detail}</div>;
   const showSuccess = (data: any) => <div className="success">{data.message}</div>;
 
   const onImageReady = (target: File) => {
     setImage(target);
+  };
+  const onSuccessLogin = (data: User) => {
+    dispatch(setUser(data));
+    setNicknameInput('');
+    setPasswordInput('');
   };
   const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -37,12 +47,13 @@ const Auth: FC = () => {
       setSuccess(false);
     } else {
       setSuccess(responseData.data);
+      onSuccessLogin(responseData.data.data);
       setError(false);
     }
   };
 
   return (
-    <div className="auth__modal">
+    <div className="auth__modal close">
       <div className="tabs">
         <button
           className={`sign--up title tab ${tab === 'signup' ? 'active' : null}`}
@@ -89,7 +100,7 @@ const Auth: FC = () => {
             { success ? showSuccess(success) : null }
 
             <button type="submit" className="btn">
-              sign up
+              ${tab === 'signin' ? 'signin' : 'signup'}
             </button>
           </div>
         </form>

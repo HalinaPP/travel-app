@@ -79,6 +79,7 @@ router.post(
     }
     try {
       const accessToken = createAccessToken(user);
+      const { nickname, avatar } = user;
       res.status(StatusCodes.ACCEPTED).json({
         error: null,
         statusText: ReasonPhrases.ACCEPTED,
@@ -86,7 +87,9 @@ router.post(
           message: 'Login successful',
           data:
             {
-              token: accessToken
+              token: accessToken,
+              nickname,
+              avatar,
             },
         }
       })
