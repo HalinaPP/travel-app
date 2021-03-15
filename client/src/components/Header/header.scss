@@ -6,6 +6,12 @@ header {
     align-items: center;
     justify-content: space-between;
     color: red;
+
+    .logo {
+      img {
+        margin: 1rem auto;
+      }
+    }
   }
 
   height: 11rem;
