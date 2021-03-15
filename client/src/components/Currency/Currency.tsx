@@ -44,10 +44,9 @@ const Currency: FC<CurrencyProps> = (props: CurrencyProps) => {
         <strong>{currencySymbol}</strong>
         {` ${loading ? '--' : values[index]}`}
       </li>
-    ))
-  ) : (
-    <li className="currency-item">no data</li>
-  );
+    )) : (
+      <li className="currency-item">no data</li>
+    );
 
   return (
     <div className="currency-container">

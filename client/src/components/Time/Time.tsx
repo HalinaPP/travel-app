@@ -2,13 +2,13 @@ import './styles.scss';
 import React, {
   FC, useState, useEffect, useContext,
 } from 'react';
-import { Context } from '../../utils/Context';
+import { LanguageContext } from '../../utils/LanguageContext';
 import { decimalize } from '../../utils/helpers';
 import { TimeProps } from './Time.model';
 import { MONTHS, DAYS } from './constants';
 
 const Time: FC<TimeProps> = ({ timeZone }) => {
-  const { lang: currLang } = useContext(Context);
+  const { lang: currLang } = useContext(LanguageContext);
   const [currentDate, setCurrentDate] = useState('--');
   const [currentTime, setCurrentTime] = useState('--');
   const [timerValue, setTimerValue] = useState(0);
