@@ -56,11 +56,12 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
           <div className="avatar">
             <a href="#"></a>
           </div>
-          <div className="settings" onClick={() => langToggle()} style={styles.setting}>
+          {/* <div className="settings" onClick={() => langToggle()} style={styles.setting}>
             <a href="#"></a>
-          </div>
+          </div> */}
+          <Language />
         </div>
-        {isSettingOpen && <Language />}
+        {/* {isSettingOpen && <Language />} */}
       </div>
     </header>
   );

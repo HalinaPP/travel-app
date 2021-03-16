@@ -1,10 +1,12 @@
 .custom-select {
-  display: block;
-  position: absolute;
-  bottom: -1.5rem;
-  right: 2rem;
-  width: 4.5rem;
-  height: 3.4rem;
+  // display: block;
+  // position: absolute;
+  // bottom: -1.5rem;
+  // right: 2rem;
+  // width: 4.5rem;
+  // height: 3.4rem;
+
+  display: inline-block;
   border: 1px solid transparent;
   background: #e6e9ef;
   box-shadow: 0px 2px 15px rgb(185 213 217 / 60%);
@@ -13,8 +15,9 @@
   border: none;
 
   .select {
+    cursor: pointer;
     height: 3.4rem;
-    width: 4.5rem;
+    width: 6.5rem;
     padding: 0 0.7rem;
 
     -webkit-appearance: none;
@@ -24,6 +27,21 @@
     background-size: auto;
     background-repeat: no-repeat;
     border: 1px solid transparent;
+
+    option[value="ru"] {
+      background: #e6e9ef;
+      color: #2a8086;
+    }
+
+    option[value="en"] {
+      background: rgba(42, 128, 134, 0.5);
+      color: #ffffff;
+    }
+
+    option[value="bg"] {
+      background: rgba(42, 128, 134, 0.5);
+      color: #ffffff;
+    }
   }
 
   option,

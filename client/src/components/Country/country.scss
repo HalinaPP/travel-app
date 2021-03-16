@@ -105,8 +105,6 @@ main.country {
         line-height: 2rem;
 
         margin: 0.8rem 0 3.3rem;
-        // max-width: 48rem;
-
         p {
           margin: 1rem 0;
         }
@@ -117,9 +115,6 @@ main.country {
 
 @media (max-width: 1280px) {
   main.country {
-    .info-block {
-      // height: 70vh;
-    }
     .sight-slider {
       margin: 6rem auto 4.5rem;
     }
@@ -143,6 +138,14 @@ main.country {
         width: inherit;
         max-width: inherit;
       }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  main.country {
+    .info-block {
+      height: 50vh;
     }
   }
 }
