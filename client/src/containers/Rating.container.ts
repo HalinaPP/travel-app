@@ -7,4 +7,4 @@ const mapStateToProps = (state: StateModel) => ({
   currCountry: state.currCountry!,
 });
 
-export const RatingContainer = connect(mapStateToProps)(Rating);
+export const RatingContainer = connect(mapStateToProps, { getCountryByIdFromApi })(Rating);

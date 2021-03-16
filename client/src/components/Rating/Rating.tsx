@@ -1,9 +1,11 @@
-import React, { FC, Fragment } from 'react';
+import React, { FC, Fragment, useContext } from 'react';
 import './Rating.scss';
 import { RatingProps } from './Rating.model';
 import { findNickName } from '../../utils/helpers';
+import { LanguageContext } from '../../utils/LanguageContext';
 
-const Rating: FC<RatingProps> = ({ placeId, currCountry: { id, ratings } }) => {
+const Rating: FC<RatingProps> = ({ placeId, currCountry: { id, ratings }, getCountryByIdFromApi }) => {
+  const { lang: currLang } = useContext(LanguageContext);
   const nick = `Vasya${Math.round(Math.random() * 100)}`;
   const avatar = 'https://picsum.photos/200/300';
   const alreadyRated = findNickName(ratings, nick);
@@ -21,6 +23,7 @@ const Rating: FC<RatingProps> = ({ placeId, currCountry: { id, ratings } }) => {
       },
       body: JSON.stringify(rating),
     });
+    getCountryByIdFromApi(id, currLang);
   };
   const ratingClassName = alreadyRated !== undefined ? 'Rating disabled' : 'Rating';
   const renderRadioGroup = [5, 4, 3, 2, 1].map(e => (
