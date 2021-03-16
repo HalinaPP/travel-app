@@ -68,7 +68,7 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
         </div>
         {/* {isSettingOpen && <Language />} */}
       </div>
-      {useWindowSize().width <= 425 && (
+      {/* {useWindowSize().width <= 425 && (
         <div className="dropdown">
           <div className="country_block">
             <img src={currentCountryImage} alt={currentCountryName} className="current_country_image" />
@@ -76,7 +76,7 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
           </div>
           <img src="/icons/arrow_toggle.png" alt="open/close" className="arrow_toggle" />
         </div>
-      )}
+      )} */}
     </header>
   );
 };
