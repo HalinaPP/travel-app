@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useContext } from 'react';
+import { FC, Fragment, useContext } from 'react';
 import './Rating.scss';
 import { RatingProps } from './Rating.model';
 import { findNickName } from '../../utils/helpers';

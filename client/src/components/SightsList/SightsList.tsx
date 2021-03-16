@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import './sightsList.scss';
 import { FC, useCallback, useEffect, useState, useContext } from 'react';
 import Carousel from 'react-elastic-carousel';

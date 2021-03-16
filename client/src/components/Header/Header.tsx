@@ -58,7 +58,7 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
               </Link>
             </div>
             <li className="nav__item">
-              <a href="#" className="link">
+              <a href="/map" className="link">
                 Map
               </a>
             </li>

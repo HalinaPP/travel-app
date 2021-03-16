@@ -1,6 +1,6 @@
 import { Provider } from 'react-redux';
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Redirect, Route, Switch, useLocation } from 'react-router-dom';
+import { useState } from 'react';
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import { store } from './store';
 import { CountryContainer } from './containers/Country.container';
 import { CountriesListContainer } from './containers/CountriesList.container';
@@ -9,6 +9,7 @@ import './App.scss';
 import Header from './components/Header';
 import { LanguageContext } from './utils/LanguageContext';
 import ScrollToTop from './components/ScrollToTop';
+import SightsMap from './components/SightsMap';
 
 const App = () => {
   const initialLang = localStorage.getItem('currLangTravelApp') || 'ru';
@@ -31,7 +32,11 @@ const App = () => {
             <Route exact path={`/${currLang}`}>
               <CountriesListContainer inputText={inputText} />
             </Route>
+            <Route path='/map'>
+              <SightsMap />
+            </Route>
           </Switch>
+          <SightsMap />
           <Footer />
         </Router>
       </LanguageContext.Provider>
