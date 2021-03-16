@@ -1,4 +1,5 @@
 import React, { FC, Fragment, useContext } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import './Rating.scss';
 import { RatingProps } from './Rating.model';
 import { findNickName } from '../../utils/helpers';
@@ -29,6 +30,7 @@ const Rating: FC<RatingProps> = ({ placeId, currCountry: { id, ratings }, getCou
   const renderRadioGroup = [5, 4, 3, 2, 1].map(e => (
     <Fragment>
       <input
+        key={uuidv4()}
         onClick={evt => postRating(evt)}
         value={e}
         type="radio"
@@ -37,7 +39,7 @@ const Rating: FC<RatingProps> = ({ placeId, currCountry: { id, ratings }, getCou
         defaultChecked={alreadyRated?.rating === e}
         disabled={alreadyRated !== undefined}
       />
-      <label className="material-icons" htmlFor={`rat${e}`}>
+      <label key={uuidv4()} className="material-icons" htmlFor={`rat${e}`}>
         star_rate
       </label>
     </Fragment>
