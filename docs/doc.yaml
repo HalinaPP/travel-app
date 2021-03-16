@@ -119,10 +119,14 @@ paths:
                 rating:
                   type: integer
                   description: The place's rating
+                avatar:
+                  type: string
+                  description: link to the user's avatar
               required:
                 - placeId
                 - userId
                 - rating
+                - avatar
       responses:
         '200':
           description: The rating has been added
@@ -284,6 +288,7 @@ components:
           - placeId
           - nickName
           - rating
+          - avatar
       properties:
         placeId:
           type: string
@@ -295,3 +300,6 @@ components:
           type: integer
           minimum: 1
           maximum: 5
+        avatar:
+          type: string
+          example: www.example.com/example.jpg

@@ -14,6 +14,10 @@ const ratingSchema = new Schema({
     min: 0,
     max: 5,
   },
+  avatar: {
+    type: String,
+    require: true,
+  },
 });
 
 const Rating = model('Rating', ratingSchema);

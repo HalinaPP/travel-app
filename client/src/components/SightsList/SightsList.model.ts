@@ -10,6 +10,7 @@ export interface Ratings {
   placeId: string;
   nickName: string;
   rating: number;
+  avatar: string;
 }
 
 export interface SightProps {

@@ -4,13 +4,15 @@ import { RatingProps } from './Rating.model';
 import { findNickName } from '../../utils/helpers';
 
 const Rating: FC<RatingProps> = ({ placeId, currCountry: { id, ratings } }) => {
-  const nick = 'Vasya1';
+  const nick = `Vasya${Math.round(Math.random() * 100)}`;
+  const avatar = 'https://picsum.photos/200/300';
   const alreadyRated = findNickName(ratings, nick);
   const postRating = async (e: any) => {
     const rating = {
       placeId,
       nickName: nick,
       rating: e.target.value,
+      avatar,
     };
     await fetch(`http://localhost:3005/countries/${id}`, {
       method: 'POST',

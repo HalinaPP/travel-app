@@ -27,7 +27,7 @@ const Feedback: FC<FeedbackProps> = ({ setIsOpen, isOpen, sight, ratings }) => {
                 <div className="icon--star icon" />
               </div>
               <div className="user_data">
-                <img src={avatar} alt="" className="avatar" />
+                <img src={oneRating.avatar} alt="" className="avatar" />
                 <div className="user_name">{oneRating.nickName}</div>
               </div>
             </div>

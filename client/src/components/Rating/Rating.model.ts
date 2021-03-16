@@ -1,6 +1,11 @@
+import { Ratings } from '../SightsList/SightsList.model';
+
 export interface RatingProps {
   nickName?: string;
   placeId?: string;
   countryId?: string;
-  currCountry?: any;
+  currCountry: {
+    ratings: Ratings[];
+    id: string;
+  };
 }
