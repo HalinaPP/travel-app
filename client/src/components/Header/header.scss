@@ -6,6 +6,12 @@ header {
     align-items: center;
     justify-content: space-between;
     color: red;
+
+    .logo {
+      img {
+        margin: 1rem auto;
+      }
+    }
   }
 
   height: 11rem;
@@ -36,7 +42,6 @@ header {
       display: inline-block;
       width: 3rem;
       height: 3rem;
-      // background-image: url("../../assets/icons/settings.png");
       background-size: contain;
       background-position: center;
     }
@@ -45,7 +50,7 @@ header {
 
 @media (max-width: 640px) {
   header {
-    height: 13rem;
+    height: 16rem;
   }
 }
 
