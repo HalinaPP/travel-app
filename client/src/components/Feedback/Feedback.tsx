@@ -9,7 +9,7 @@ const Feedback: FC<FeedbackProps> = ({ setIsOpen, isOpen, sight, ratings }) => {
   const rate = countRate(ratings);
 
   const closeModal = (e: any) => {
-    setIsOpen(false);
+    setIsOpen(true);
     if (e.target.classList.contains('feedback__overlay')) {
       setIsOpen(false);
     }
