@@ -87,7 +87,7 @@
     margin-top: 6.5rem;
   }
 
-  height: 130rem;
+  height: 115rem;
   background: url("../../assets/ui/countries-bg.png");
   background-repeat: no-repeat;
   background-size: contain;
@@ -177,7 +177,8 @@
   }
 
   .countries {
-    height: 114rem;
+    height: auto;
+    padding-bottom: 25rem;
   }
 }
 
@@ -191,7 +192,7 @@
   }
 
   .countries {
-    height: 106rem;
+    padding-bottom: 19rem;
   }
 }
 
@@ -224,7 +225,9 @@
   }
 
   .countries {
-    height: 106rem;
+    .slider .slide {
+      height: auto;
+    }
   }
 }
 
@@ -235,10 +238,12 @@
     }
     .content {
       height: 15rem;
-      // max-width: 27rem;
       margin-bottom: 1rem;
-      // overflow: hidden;
     }
+  }
+  .countries {
+    height: auto;
+    padding-bottom: 17rem;
   }
 }
 
@@ -275,6 +280,11 @@
       width: 17.5rem;
     }
   }
+  .countries {
+    padding-bottom: 13rem;
+  }
+
+
 }
 
 @media (max-width: 500px) {
@@ -298,8 +308,11 @@
       margin-top: 1.6rem;
       .content {
         margin: 1.4rem 1.1rem 1.8rem;
-        height: 10rem
-      };
+        height: 10rem;
+      }
     }
+  }
+  .countries {
+    padding-bottom: 10rem;
   }
 }

@@ -69,17 +69,12 @@ const SightsList: FC<SightProps> = ({ sights, ratings }) => {
     }
     return 1;
   }
+
   return (
     <section className="sight-slider" id="sight">
       <div className="wrapper">
         <h3 className="subtitle">{langsInfo.sights}</h3>
-        <Carousel
-          itemsToScroll={1}
-          itemsToShow={getSliderCount()}
-          isRTL={false}
-          pagination={false}
-          className="slider"
-        >
+        <Carousel itemsToScroll={1} itemsToShow={getSliderCount()} isRTL={false} pagination={false} className="slider">
           {getSightsList()}
         </Carousel>
       </div>

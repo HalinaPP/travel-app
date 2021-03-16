@@ -104,3 +104,28 @@
     }
   }
 }
+
+@media (max-width: 640px) {
+  .country-card {
+    width: 38vw;
+    margin: 0.5rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .country-card {
+    width: 35vw;
+  }
+}
+
+@media (max-width: 420px) {
+  .country-card {
+    width: 80vw;
+    .image-block {
+      width: 60vw;
+      .image-outline, .image {
+        width: 60vw;
+      }
+    }
+  }
+}

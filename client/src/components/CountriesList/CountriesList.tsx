@@ -6,6 +6,7 @@ import { CountriesListProps } from './CountriesList.model';
 import { CountryProps } from '../Country/Country.model';
 import CountriesListItem from '../CountriesListItem/CountriesListItem';
 import { setInnerHtml } from '../../utils/helpers';
+import useWindowSize from '../../utils/useWindowSize';
 import translation from '../../constants/translation';
 import { LanguageContext } from '../../utils/LanguageContext';
 
@@ -77,13 +78,24 @@ const CountriesList: FC<CountriesListProps> = ({ inputText, getCountriesFromApi,
     getCountriesFromApi(currLang);
   }, [getCountriesFromApi, currLang]);
 
+  function getSliderCount() {
+    const windowWidth = useWindowSize().width;
+    if (windowWidth >= '640') {
+      return 3;
+    }
+    if (windowWidth >= '420' && windowWidth < '640') {
+      return 2;
+    }
+    return 1;
+  }
+
   return (
     <main>
       <section className="promo">{getPromoCountry()}</section>
       <section className="countries">
         <div className="wrapper">
           <div className="slider">
-            <Carousel itemsToScroll={1} itemsToShow={3} isRTL={false} pagination={false}>
+            <Carousel itemsToScroll={1} itemsToShow={getSliderCount()} isRTL={false} pagination={false}>
               {getCountriesList()}
             </Carousel>
           </div>
