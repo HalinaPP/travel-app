@@ -1,14 +1,15 @@
 import { Dispatch } from 'redux';
 import { ACTIONS } from '../actions/constants';
-import { travelApi } from '../utils/apiConnect';
-import { setCountries, setCountry } from '../actions/index';
+
+import { LANGS } from '../constants/constants';
+import { authApi, travelApi } from '../utils/apiConnect';
+import { setCountries, setCountry, setUser } from '../actions/index';
+
 import { CountryProps, CountryWithPlacesProps } from '../components/Country/Country.model';
+import { AuthData, User } from '../components/Auth/auth.model';
 
 export interface StateModel {
-  user?: {
-    id: number;
-    nickName: string;
-  };
+  user?: User;
   countries?: CountryProps[];
   currCountry?: CountryWithPlacesProps;
 }
@@ -30,6 +31,7 @@ export const initialState: StateModel = {
     timezone: '',
     flagUrl: '',
   },
+  user: undefined,
 };
 
 export const reducer = (state = initialState, action: any): StateModel => {
@@ -44,9 +46,20 @@ export const reducer = (state = initialState, action: any): StateModel => {
         ...state,
         currCountry: action.payload,
       };
+    case ACTIONS.SET_USERLOGIN:
+      return {
+        ...state,
+        user: action.payload,
+      };
     default:
       return state;
   }
+};
+
+export const getUserData = (data: AuthData) => async (dispatch: Dispatch) => {
+  const user = await authApi.loginUser(data);
+  dispatch(setUser(user));
+  return user;
 };
 
 export const getCountriesFromApi = (lang: string) => async (dispatch: Dispatch) => {

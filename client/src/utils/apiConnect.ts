@@ -1,18 +1,58 @@
+import { useSelector } from 'react-redux';
 import { CountryProps } from '../components/Country/Country.model';
-import { HEADER_JSON, API_COUNTRIES_URLS, API_COUNTRY_URLS } from '../constants/constants';
+import { HEADER_JSON, API_COUNTRIES_URLS, API_COUNTRY_URLS, API_AUTH_URLS } from '../constants/constants';
+
+export interface HeaderValues {
+  [key: string]: string;
+}
 
 const getRequestInit = (method = 'GET'): RequestInit => {
-  /* const { accessToken } = store.getState().user; */
-  const headers = {
-    // Authorization: `Bearer ${accessToken}`,
+  const headers: HeaderValues = {
     ...HEADER_JSON,
   };
+  /* Для авторизированного пользователя
+   const accessToken = useSelector((state: any) => state.user?.token) ?? null;
+
+  if (accessToken) {
+    headers.Authorization = `Bearer ${accessToken}`;
+  }
+
+   */
   return {
     method,
     headers,
     mode: 'cors',
     cache: 'default',
   };
+};
+
+const loginUser = async (body: any): Promise<any> => {
+  const apiObject = await fetch(`${API_AUTH_URLS}/login`, {
+    body,
+    method: 'POST',
+  })
+    .then((response) => response.json())
+    .then((data) => data)
+    .catch(
+      (error) => {
+        throw new Error(error);
+      },
+    );
+  return apiObject;
+};
+
+const registerUser = async (body: any): Promise<any> => {
+  const apiObject = await fetch(`${API_AUTH_URLS}/register`, {
+    body,
+    method: 'POST',
+  }).then((response) => response.json())
+    .then(data => data)
+    .catch(
+      (error) => {
+        throw new Error(error);
+      },
+    );
+  return apiObject;
 };
 
 const getCountries = async (lang: string): Promise<CountryProps[]> => {
@@ -38,3 +78,4 @@ const getCountryById = async (id: string, lang: string): Promise<CountryProps> =
 };
 
 export const travelApi = { getCountries, getCountryById };
+export const authApi = { loginUser, registerUser };

@@ -7,6 +7,8 @@ const currState = localStorageState ? JSON.parse(localStorageState) : initialSta
 
 export const store = createStore(reducer, currState, compose(applyMiddleware(thunk)));
 
-store.subscribe(() => { localStorage.setItem('travelApp131-state', JSON.stringify(store.getState())); });
+store.subscribe(() => {
+  localStorage.setItem('travelApp131-state', JSON.stringify(store.getState()));
+});
 
 export default store;

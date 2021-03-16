@@ -1,13 +1,12 @@
 const { HTTP_HEADERS } = require('./common/constants.ts');
 require('dotenv').config();
-
 const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
-
+const formData = require('express-form-data');
 const { StatusCodes, ReasonPhrases } = require('http-status-codes');
 
 const errorMiddleware = require('./middleware/error-middleware');
@@ -30,6 +29,7 @@ app.use((req, res, next) => {
 	next();
 });
 app.use(cors({ credentials: true, origin: '*' }));
+app.use(formData.parse());
 app.options('*', cors());
 
 app.use(express.static(buildPath));
