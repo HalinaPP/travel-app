@@ -6,6 +6,7 @@
   "scripts": {
     "start:dev": "nodemon ./bin/www",
     "start": "node ./bin/www",
+    "start:prod": "node ./bin/www",
     "test": "jest",
     "postinstall": "npm install --prefix --legacy-peer-deps ./client && npm run build --prefix ./client"
   },
