@@ -32,6 +32,25 @@ main.country {
   }
 }
 
+.wrapper:fullscreen {
+  .slider {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow: wrap;
+    justify-content: space-evenly;
+    align-content: space-evenly;
+
+    .slide {
+      pointer-events: none;
+
+      &:hover {
+        cursor: none;
+      }
+    }
+  }
+}
+
 .slider {
   .slide {
     position: relative;
