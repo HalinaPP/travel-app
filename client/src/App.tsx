@@ -1,13 +1,13 @@
 import { Provider } from 'react-redux';
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Route, Switch, useLocation } from 'react-router-dom';
 import { store } from './store';
 import { CountryContainer } from './containers/Country.container';
 import { CountriesListContainer } from './containers/CountriesList.container';
 import Footer from './components/Footer';
 import './App.scss';
 import Header from './components/Header';
-import { Context } from './utils/Context';
+import { LanguageContext } from './utils/LanguageContext';
 import ScrollToTop from './components/ScrollToTop';
 
 const App = () => {
@@ -15,27 +15,26 @@ const App = () => {
   const [inputText, setInputText] = useState<string>('');
   const [currLang, setCurrLang] = useState<string>(initialLang);
 
-  useEffect(() => {
-    localStorage.setItem('currLangTravelApp', currLang);
-  }, [currLang]);
-
   return (
     <Provider store={store}>
-      <Context.Provider value={{ lang: currLang, setLang: (lang: string) => setCurrLang(lang) }}>
-        <Router basename={currLang}>
+      <LanguageContext.Provider value={{ lang: currLang, setLang: (lang: string) => setCurrLang(lang) }}>
+        <Router>
           <ScrollToTop />
           <Header inputText={inputText} onInputChange={setInputText} />
           <Switch>
-            <Route path="/country/:id">
+            <Route exact path="/">
+              <Redirect to={`/${currLang}`} />
+            </Route>
+            <Route path={`/${currLang}/country/:id`}>
               <CountryContainer />
             </Route>
-            <Route exact path="/">
+            <Route exact path={`/${currLang}`}>
               <CountriesListContainer inputText={inputText} />
             </Route>
           </Switch>
           <Footer />
         </Router>
-      </Context.Provider>
+      </LanguageContext.Provider>
     </Provider>
   );
 };

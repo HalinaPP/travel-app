@@ -10,3 +10,5 @@ export const countRate = (ratings: Ratings[]): number =>
 
 export const findNickName = (arr: Ratings[], name: string): Ratings | undefined =>
   arr.find((n: Ratings) => n.nickName === name);
+
+export const decimalize = (n: number): string => (n < 10 ? `0${n}` : `${n}`);
