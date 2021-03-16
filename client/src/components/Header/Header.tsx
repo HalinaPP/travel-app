@@ -6,7 +6,6 @@ import { HeaderProps } from './Header.model';
 import Language from '../Language/Language';
 import logo from '../../assets/images/logo2.png';
 import { LanguageContext } from '../../utils/LanguageContext';
-import useWindowSize from '../../utils/useWindowSize';
 
 const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
   const { lang: currLang } = useContext(LanguageContext);

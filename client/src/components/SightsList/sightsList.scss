@@ -1,3 +1,37 @@
+main.country {
+  .sight-slider {
+    position: relative;
+    margin: 13rem auto 4.5rem;
+    & > .wrapper {
+      position: relative;
+    }
+    .subtitle {
+      margin-bottom: 2.2rem;
+      padding-left: 7rem;
+      color: #0d444d;
+      font-weight: 500;
+    }
+
+    .fullScr {
+      position: absolute;
+      top: 0;
+      right: 1rem;
+      padding-left: 7rem;
+      img {
+        width: 3rem;
+        height: 3rem;
+        &:hover {
+          cursor: pointer;
+          transform: scale(1.2);
+        }
+      }
+      &.hide {
+        display: none;
+      }
+    }
+  }
+}
+
 .slider {
   .slide {
     position: relative;
@@ -108,6 +142,7 @@
     }
   }
 }
+
 @media (max-width: 1420px) {
   .slider {
     .slide {
@@ -132,7 +167,6 @@
 @media (max-width: 980px) {
   .slider {
     .slide {
-
       .rating {
         right: 1rem;
         bottom: 1rem;

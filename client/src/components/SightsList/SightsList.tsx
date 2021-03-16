@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import './sightsList.scss';
 import { FC, useCallback, useEffect, useState, useContext } from 'react';
 import Carousel from 'react-elastic-carousel';
@@ -70,10 +69,21 @@ const SightsList: FC<SightProps> = ({ sights, ratings }) => {
     return 1;
   }
 
+  // function fullScreenToggle(move: string) {
+  //   if (move === 'in') {
+  //   }
+  // }
   return (
     <section className="sight-slider" id="sight">
       <div className="wrapper">
         <h3 className="subtitle">{langsInfo.sights}</h3>
+        <div className="fullScr fullScr--enter">
+          <img src="/icons/fs.png" alt="full screen" />
+        </div>
+
+        <div className="fullScr fullScr--exit hide">
+          <img src="/icons/fs--exit.png" alt="full screen" />
+        </div>
         <Carousel itemsToScroll={1} itemsToShow={getSliderCount()} isRTL={false} pagination={false} className="slider">
           {getSightsList()}
         </Carousel>
