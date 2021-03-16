@@ -83,7 +83,7 @@ paths:
                           properties:
                             placeId:
                               type: string
-                            userId:
+                            nickName:
                               type: string
                             rating:
                               type: number
@@ -113,16 +113,20 @@ paths:
                 placeId:
                   type: string
                   description: The place's id
-                userId:
+                nickName:
                   type: string
-                  description: The user's id
+                  description: The user's nickname
                 rating:
                   type: integer
                   description: The place's rating
+                avatar:
+                  type: string
+                  description: link to the user's avatar
               required:
                 - placeId
                 - userId
                 - rating
+                - avatar
       responses:
         '200':
           description: The rating has been added
@@ -282,16 +286,20 @@ components:
       type: object
       required:
           - placeId
-          - userId
+          - nickName
           - rating
+          - avatar
       properties:
         placeId:
           type: string
           format: objectId
-        userId:
+        nickName:
           type: string
-          format: objectId
+          example: bramov
         rating:
           type: integer
           minimum: 1
           maximum: 5
+        avatar:
+          type: string
+          example: www.example.com/example.jpg

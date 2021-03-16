@@ -15,7 +15,7 @@ const SightsList: FC<SightProps> = ({ sights, ratings }) => {
 
   const initialData = {
     sight: { id: '', name: '', description: '', imageUrl: '' },
-    ratings: [{ id: '', placeId: '', userId: '', rating: 0 }],
+    ratings: [{ id: '', placeId: '', nickName: '', rating: 0, avatar: 'https://picsum.photos/200/300' }],
   };
   const [isOpen, setIsOpen] = useState(false);
   const [popupData, setPopupData] = useState(initialData);
