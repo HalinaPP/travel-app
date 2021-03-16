@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import './sightsList.scss';
 import { FC, useCallback, useEffect, useState, useContext } from 'react';
 import Carousel from 'react-elastic-carousel';
@@ -58,13 +59,23 @@ const SightsList: FC<SightProps> = ({ sights, ratings }) => {
 
   useEffect(() => {}, [popupData]);
 
+  function getSliderCount() {
+    const windowWidth = useWindowSize().width;
+    if (windowWidth >= '785') {
+      return 3;
+    }
+    if (windowWidth >= '435' && windowWidth < '785') {
+      return 2;
+    }
+    return 1;
+  }
   return (
     <section className="sight-slider" id="sight">
       <div className="wrapper">
         <h3 className="subtitle">{langsInfo.sights}</h3>
         <Carousel
           itemsToScroll={1}
-          itemsToShow={useWindowSize().width >= '785' ? 3 : useWindowSize().width >= '435' ? 2 : 1}
+          itemsToShow={getSliderCount()}
           isRTL={false}
           pagination={false}
           className="slider"
