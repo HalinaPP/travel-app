@@ -240,3 +240,15 @@
     }
   }
 }
+
+@media (max-width: 810 px) {
+  .promo .content-block {
+    .title {
+      margin-top: 5rem;
+    }
+    .content {
+      // max-width: 27rem;
+      margin-bottom: 4rem;
+    }
+  }
+}

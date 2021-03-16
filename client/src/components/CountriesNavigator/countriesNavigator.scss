@@ -1,3 +1,48 @@
 .countries-navigator {
   list-style: none;
+  display: flex;
+  flex-direction: column;
+
+  max-height: 60vh;
+  margin-right: 1rem;
+
+  overflow-y: scroll;
+
+  background: rgba(42, 128, 134, 0.05);
+  border-radius: 2rem;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    border-radius: 2rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #2a80863f;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #2a8086;
+    border-radius: 2rem;
+  }
+
+  .countries-navigator__item {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    & > * {
+      display: block;
+      text-align: center;
+    }
+    .link:hover {
+      border-bottom-color: rgba(13, 68, 77, 0.7);
+    }
+    .countries-navigator__img {
+      width: 7rem;
+      height: 7rem;
+      border-radius: 50%;
+    }
+    .country_name {
+      color: #0d444d;
+    }
+  }
 }
