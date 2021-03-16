@@ -1,7 +1,7 @@
 import './auth.scss';
 import React, { FC, useState, useEffect, useContext, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { InputValidation, ResponseErrorData, ResponseSuccessData, User } from './auth.model';
+import { ResponseErrorData, ResponseSuccessData, User } from './auth.model';
 import { ValidateDataParams, validateData } from '../../utils/inputsValidation';
 import { AuthConstants } from '../../constants/auth.constants';
 import { authApi } from '../../utils/apiConnect';
@@ -119,15 +119,36 @@ const Auth: FC = () => {
   const onAuthApiCall = (responseData: ResponseSuccessData | ResponseErrorData) => {
     setLoading(false);
     if (isResponseSuccess(responseData)) {
-      setSuccess(responseData.data.message);
+      if (responseData.statusText === 'Accepted') {
+        setSuccess(AuthConstants.userLogged[currLang]);
+      } else if (responseData.statusText === 'Created') {
+        setSuccess(AuthConstants.userCreated[currLang]);
+      }
       const user = responseData.data.data;
       if (user?.nickname) {
         onSuccessLogin(user);
       }
       setError(null);
     } else {
-      console.log(responseData.errors.detail);
-      setError(responseData.errors.detail);
+      switch (responseData.errors.status) {
+        case 400:
+          setError(AuthConstants.invalidUserData[currLang]);
+          break;
+        case 409:
+          setError(AuthConstants.userAlreadyExists[currLang]);
+          break;
+        case 404:
+          setError(AuthConstants.notFound[currLang]);
+          break;
+        case 401:
+          setError(AuthConstants.unAuthorized[currLang]);
+          break;
+        case 500:
+          setError(AuthConstants.internalServerError[currLang]);
+          break;
+        default:
+          setError(AuthConstants.unCatchedError[currLang]);
+      }
       setSuccess(null);
     }
   };
