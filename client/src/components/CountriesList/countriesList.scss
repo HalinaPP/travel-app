@@ -1,6 +1,6 @@
 .promo {
   height: 87rem;
-  background: url('../../assets/ui/promo-bg.png');
+  background: url("../../assets/ui/promo-bg.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom;
@@ -17,8 +17,8 @@
   .content-block {
     width: 50%;
 
-    font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
-      'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+      "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     color: #f3f7f8;
     .title {
       margin: 10.3rem 0 3rem;
@@ -33,14 +33,17 @@
       line-height: 5.7rem;
     }
     .content {
-      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
-        'Droid Sans', 'Helvetica Neue', sans-serif;
+      font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+        "Droid Sans", "Helvetica Neue", sans-serif;
       font-weight: 400;
       font-size: 1.4rem;
       line-height: 2rem;
 
-      margin: 2rem 0 4.7rem;
-      //max-width: 48rem;
+      margin: 2rem 2rem 3.7rem 0;
+      height: 10rem;
+      p {
+        text-overflow: ellipsis;
+      }
     }
   }
 
@@ -58,7 +61,7 @@
       height: 66.6rem;
       margin: auto;
 
-      background: url('../../assets/ui/overlay-20.png'), url('../../assets/images/Georgia.jpeg');
+      background: url("../../assets/ui/overlay-20.png"), url("../../assets/images/Georgia.jpeg");
       background-size: cover;
       background-repeat: repeat, no-repeat;
     }
@@ -80,8 +83,8 @@
     margin-top: 6.5rem;
   }
 
-  height: 130rem;
-  background: url('../../assets/ui/countries-bg.png');
+  height: 115rem;
+  background: url("../../assets/ui/countries-bg.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: bottom;
@@ -114,6 +117,10 @@
       &:hover:enabled {
         background-color: #19707d;
       }
+    }
+
+    a {
+      text-decoration: none;
     }
   }
 }
@@ -156,7 +163,6 @@
     }
     .image-block {
       width: 50vw;
-      // aspect-ratio: 1 / 1.05;
       height: unset;
       .image,
       .image-outline {
@@ -166,13 +172,14 @@
   }
 
   .countries {
-    height: 114rem;
+    height: auto;
+    padding-bottom: 25rem;
   }
 }
 
 @media (max-width: 1024px) {
   .promo {
-    height: 71.5rem;
+    height: 73.5rem;
     .content-block .title,
     .content-block .subtitle {
       font-size: 4.5rem;
@@ -180,26 +187,26 @@
   }
 
   .countries {
-    height: 106rem;
+    padding-bottom: 19rem;
   }
 }
 
 @media (max-width: 980px) {
   .promo {
-    height: 71.5rem;
+    height: 68.5rem;
     .content-block .title,
     .content-block .subtitle {
       font-size: 3.8rem;
-      // width: inherit;
     }
     .content-block {
       width: 43vw;
       .title {
-        margin-top: 7rem;
+        margin-top: 5rem;
         width: 54vw;
       }
       .content {
-        max-width: 32rem;
+        height: 13rem;
+        margin-bottom: 4rem;
       }
     }
     .image-block {
@@ -213,19 +220,94 @@
   }
 
   .countries {
-    height: 106rem;
+    .slider .slide {
+      height: auto;
+    }
   }
 }
 
-@media (max-width: 980px) {
+@media (max-width: 810px) {
   .promo .content-block {
     .title {
       margin-top: 5rem;
     }
     .content {
-      max-width: 27rem;
-      margin-bottom: 4rem;
+      height: 15rem;
+      margin-bottom: 1rem;
     }
   }
+  .countries {
+    height: auto;
+    padding-bottom: 17rem;
+  }
+}
 
+@media (max-width: 640px) {
+  .promo {
+    background-image: url("../../assets/ui/promo-bg-640.png");
+    background-size: 65rem;
+    background-position: top;
+    .image-block {
+      width: 50vw;
+      .image-outline,
+      .image {
+        width: 50vw;
+      }
+    }
+    .content-block {
+      width: 44vw;
+      .title {
+        margin-top: 2.9rem;
+        margin-bottom: 0rem;
+        width: 36rem;
+        font-size: 3.6rem;
+      }
+      .subtitle {
+        line-height: 3.8rem;
+      }
+      .content {
+        height: 23rem;
+        font-size: 1.4rem;
+      }
+    }
+
+    .btn--light {
+      width: 17.5rem;
+    }
+  }
+  .countries {
+    padding-bottom: 13rem;
+  }
+
+
+}
+
+@media (max-width: 500px) {
+  .promo {
+    height: 76rem;
+    background-size: 90rem;
+    & > .wrapper {
+      flex-direction: column-reverse;
+      align-items: center;
+    }
+    .image-block {
+      width: 70vw;
+      margin-top: 2.5rem;
+      .image-outline,
+      .image {
+        width: 70vw;
+      }
+    }
+    .content-block {
+      width: 100%;
+      margin-top: 1.6rem;
+      .content {
+        margin: 1.4rem 1.1rem 1.8rem;
+        height: 10rem;
+      }
+    }
+  }
+  .countries {
+    padding-bottom: 10rem;
+  }
 }

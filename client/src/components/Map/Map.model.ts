@@ -3,7 +3,6 @@ export interface MapProps {
   capitalName: string;
   capitalCoords: Array<number>;
   lang: string;
-  //zoom: number;
   sights?: Array<PlacemarkProps>;
   imageHref: string;
 }

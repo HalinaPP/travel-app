@@ -31,6 +31,20 @@ body {
     'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  &::-webkit-scrollbar {
+    width: 12px;
+    border-radius: 2rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #2a80863f;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #2a8086;
+    border-radius: 2rem;
+  }
 }
 
 code {
@@ -79,7 +93,6 @@ code {
   color: #0d444d;
   img {
     width: 9rem;
-    margin: 1rem 0;
   }
 }
 

@@ -1,5 +1,5 @@
 import './country.scss';
-import React, { FC, useState, useEffect, useContext } from 'react';
+import { FC, useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import SightsList from '../SightsList/SightsList';
 import Weather from '../Weather/Weather';
