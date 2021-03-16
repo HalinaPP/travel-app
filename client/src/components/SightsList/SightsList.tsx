@@ -1,5 +1,5 @@
-import './styles.scss';
-import React, { FC, useCallback, useEffect, useState, useContext } from 'react';
+import './sightsList.scss';
+import { FC, useCallback, useEffect, useState, useContext } from 'react';
 import Carousel from 'react-elastic-carousel';
 import { Ratings, SightProps, Sights } from './SightsList.model';
 import { countRate, getSightRatings } from '../../utils/helpers';
@@ -64,7 +64,7 @@ const SightsList: FC<SightProps> = ({ sights, ratings }) => {
         <h3 className="subtitle">{langsInfo.sights}</h3>
         <Carousel
           itemsToScroll={1}
-          itemsToShow={useWindowSize().width >= '640' ? 3 : 2}
+          itemsToShow={useWindowSize().width >= '785' ? 3 : useWindowSize().width >= '435' ? 2 : 1}
           isRTL={false}
           pagination={false}
           className="slider"
