@@ -1,5 +1,6 @@
-import './styles.scss';
-import React, { FC, useCallback, useEffect, useState, useContext } from 'react';
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import './sightsList.scss';
+import { FC, useCallback, useEffect, useState, useContext } from 'react';
 import Carousel from 'react-elastic-carousel';
 import { Ratings, SightProps, Sights } from './SightsList.model';
 import { countRate, getSightRatings } from '../../utils/helpers';
@@ -14,7 +15,7 @@ const SightsList: FC<SightProps> = ({ sights, ratings }) => {
 
   const initialData = {
     sight: { id: '', name: '', description: '', imageUrl: '' },
-    ratings: [{ id: '', placeId: '', userId: '', rating: 0 }],
+    ratings: [{ id: '', placeId: '', nickName: '', rating: 0, avatar: 'https://picsum.photos/200/300' }],
   };
   const [isOpen, setIsOpen] = useState(false);
   const [popupData, setPopupData] = useState(initialData);
@@ -58,17 +59,22 @@ const SightsList: FC<SightProps> = ({ sights, ratings }) => {
 
   useEffect(() => {}, [popupData]);
 
+  function getSliderCount() {
+    const windowWidth = useWindowSize().width;
+    if (windowWidth >= '785') {
+      return 3;
+    }
+    if (windowWidth >= '435' && windowWidth < '785') {
+      return 2;
+    }
+    return 1;
+  }
+
   return (
     <section className="sight-slider" id="sight">
       <div className="wrapper">
         <h3 className="subtitle">{langsInfo.sights}</h3>
-        <Carousel
-          itemsToScroll={1}
-          itemsToShow={useWindowSize().width >= '640' ? 3 : 2}
-          isRTL={false}
-          pagination={false}
-          className="slider"
-        >
+        <Carousel itemsToScroll={1} itemsToShow={getSliderCount()} isRTL={false} pagination={false} className="slider">
           {getSightsList()}
         </Carousel>
       </div>

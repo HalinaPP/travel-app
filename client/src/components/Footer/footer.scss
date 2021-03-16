@@ -123,7 +123,6 @@ footer {
             height: unset;
             text-align: left;
             .icon {
-              // display: none;
               height: 1.5rem;
               display: inline-block;
             }
@@ -145,7 +144,10 @@ footer {
     }
     .logo {
       margin: 0 auto 3rem;
-      width: 7rem;
+      width: 9rem;
+      img {
+        margin: 0;
+      }
     }
     .copyright {
       .developers {

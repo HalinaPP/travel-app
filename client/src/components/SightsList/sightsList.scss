@@ -36,18 +36,19 @@
 
     .slide__title {
       position: absolute;
-      top: 35%;
+      top: 30%;
       left: 50%;
       transform: translate(-50%);
 
       width: 100%;
+      padding: 1rem;
 
       font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
         "Droid Sans", "Helvetica Neue", sans-serif;
       font-style: normal;
       font-weight: 500;
       color: transparent;
-      font-size: 4rem;
+      font-size: 3rem;
       text-align: center;
       text-transform: uppercase;
       transition: all 300ms linear;
@@ -120,6 +121,10 @@
   .slider {
     .slide {
       width: 28vw;
+      .slide__title {
+        top: 20%;
+        font-size: 2.5rem;
+      }
     }
   }
 }
@@ -127,7 +132,6 @@
 @media (max-width: 980px) {
   .slider {
     .slide {
-      width: 27vw;
 
       .rating {
         right: 1rem;
@@ -143,22 +147,11 @@
           width: 1.5rem;
         }
       }
-    }
-  }
-}
 
-@media (max-width: 780px) {
-  .slider {
-    .slide {
-      width: 25.5vw;
-    }
-  }
-}
-
-@media (max-width: 640px) {
-  .slider {
-    .slide {
-      width: 35.5vw;
+      .slide__title {
+        top: 15%;
+        font-size: 2rem;
+      }
     }
     .rec-arrow {
       width: 3rem;
@@ -169,10 +162,57 @@
   }
 }
 
+@media (max-width: 780px) {
+  .slider {
+    .slide {
+      width: 40vw;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .slider {
+    .slide {
+      width: 37vw;
+      .slide__title {
+        top: 0%;
+        font-size: 1.4rem;
+        font-weight: 500;
+        padding: 0.3rem;
+      }
+    }
+    .rec-arrow {
+      width: 3rem;
+      min-width: 3rem;
+      height: 3rem;
+      line-height: 3rem;
+    }
+  }
+}
+
+@media (max-width: 435px) {
+  .slider {
+    .slide {
+      width: 80vw;
+      .slide__title {
+        top: 30%;
+        font-size: 2rem;
+        font-weight: 700;
+        padding: 1rem;
+      }
+    }
+    .rec-arrow {
+      width: 1.5rem;
+      min-width: 1.5rem;
+      height: 1.5rem;
+      line-height: 1.5rem;
+    }
+  }
+}
+
 @media (max-width: 375px) {
   .slider {
     .slide {
-      width: 30.5vw;
       .rating {
         right: 0.3rem;
         bottom: 0.3rem;

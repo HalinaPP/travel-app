@@ -1,5 +1,5 @@
 import './header.scss';
-import React, { FC, useEffect, useState, useContext } from 'react';
+import { FC, useEffect, useState, useContext } from 'react';
 import { useLocation, Link, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Search from '../Search';
@@ -9,8 +9,8 @@ import Auth from '../Auth';
 import logo from '../../assets/images/logo2.png';
 import { StateModel } from '../../reducers';
 import defaultImage from '../../assets/auth-icon.png';
-
 import { LanguageContext } from '../../utils/LanguageContext';
+import useWindowSize from '../../utils/useWindowSize';
 
 const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
   const { lang: currLang } = useContext(LanguageContext);
@@ -54,7 +54,7 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
           <ul className="header__nav__list nav__list">
             <div className="logo">
               <Link to={linkMain}>
-                <img src={logo} />
+                <img alt="logo" src={logo} />
               </Link>
             </div>
             <li className="nav__item">
@@ -75,14 +75,15 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
               onClick={() => setAuthModalOpen(true)}
               className="avatar">
             </div>
-
           }
           { isAuthModalOpen && <Auth/> }
           <div className="settings" onClick={() => langToggle()} style={styles.setting}>
             <a href="#"></a>
           </div>
+
+          <Language />
+
         </div>
-        {isSettingOpen && <Language />}
       </div>
     </header>
   );

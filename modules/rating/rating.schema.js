@@ -5,14 +5,18 @@ const ratingSchema = new Schema({
     type: Schema.Types.ObjectId,
     require: true,
   },
-  userId: {
-    type: Schema.Types.ObjectId,
+  nickName: {
+    type: String,
     require: true,
   },
   rating: {
     type: Number,
     min: 0,
     max: 5,
+  },
+  avatar: {
+    type: String,
+    require: true,
   },
 });
 
