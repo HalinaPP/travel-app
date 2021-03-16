@@ -33,8 +33,10 @@ const Weather: FC<WeatherProps> = ({ capital }) => {
         </span>
       </div>
       <div className="icon-container">
-        <i className={`weather-icon owf owf-${weatherData.weather[0].id}`}
-          title={weatherData.weather[0].description} />
+        <i className={`weather-icon owf owf-${weatherData.weather[0].id}`} />
+        <span className="icon-description">
+          {weatherData.weather[0].description.toUpperCase()}
+        </span>
       </div>
     </div>
   );
