@@ -14,17 +14,6 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
   const location = useLocation();
   const history = useHistory();
   const [isMain, setIsMain] = useState(location.pathname === linkMain);
-  // const [isSettingOpen, setIsSettingOpen] = useState(false);
-
-  // const styles = {
-  //   setting: {
-  //     backgroundImage: "url('/icons/settings.png')",
-  //   },
-  // };
-
-  // function langToggle() {
-  //   setIsSettingOpen(prevState => !prevState);
-  // }
 
   useEffect(() => {
     setIsMain(location.pathname === linkMain);
