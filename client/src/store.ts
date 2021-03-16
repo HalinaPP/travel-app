@@ -9,7 +9,6 @@ export const store = createStore(reducer, currState, compose(applyMiddleware(thu
 
 store.subscribe(() => {
   localStorage.setItem('travelApp131-state', JSON.stringify(store.getState()));
-  console.log(store.getState());
 });
 
 export default store;

@@ -6,7 +6,6 @@ interface ValidateDataParams {
   currLang: string,
 }
 export const validateData = ({ currentInput = 'default', value, currLang }: ValidateDataParams): string | null => {
-  // if (value === null) return null;
   switch (currentInput) {
     case 'nickname':
       if (!value) return InputErrors.noNickname[currLang];
