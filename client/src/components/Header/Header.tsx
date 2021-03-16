@@ -61,22 +61,9 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
           <div className="avatar">
             <a href="#"></a>
           </div>
-          {/* <div className="settings" onClick={() => langToggle()} style={styles.setting}>
-            <a href="#"></a>
-          </div> */}
           <Language />
         </div>
-        {/* {isSettingOpen && <Language />} */}
       </div>
-      {/* {useWindowSize().width <= 425 && (
-        <div className="dropdown">
-          <div className="country_block">
-            <img src={currentCountryImage} alt={currentCountryName} className="current_country_image" />
-            <p className="current_country_name">{currentCountryName}</p>
-          </div>
-          <img src="/icons/arrow_toggle.png" alt="open/close" className="arrow_toggle" />
-        </div>
-      )} */}
     </header>
   );
 };

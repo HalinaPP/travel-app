@@ -48,45 +48,6 @@ header {
   }
 }
 
-.dropdown {
-  display: flex;
-  height: 6.1rem;
-  width: 100%;
-  padding: 1rem 3.5rem;
-  justify-content: space-between;
-  align-items: center;
-
-  background: #488d92;
-  .country_block {
-    display: flex;
-    align-items: center;
-    & > * {
-      display: block;
-    }
-  }
-
-  .current_country_image {
-    width: 4.2rem;
-    height: 4.2rem;
-    border-radius: 50%;
-  }
-  .current_country_name {
-    font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-      "Droid Sans", "Helvetica Neue", sans-serif;
-    font-weight: 400;
-    font-size: 1.4rem;
-    line-height: 1.6rem;
-    color: #f3f7f8;
-    margin-left: 1.9rem;
-  }
-  .arrow_toggle {
-    height: 1rem;
-    &:hover {
-      cursor: pointer;
-    }
-  }
-}
-
 @media (max-width: 640px) {
   header {
     height: 16rem;
