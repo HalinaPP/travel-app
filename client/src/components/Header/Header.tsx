@@ -8,21 +8,18 @@ import Language from '../Language/Language';
 import Auth from '../Auth';
 import logo from '../../assets/images/logo2.png';
 import { StateModel } from '../../reducers';
-import { User } from '../Auth/auth.model';
+import defaultImage from '../../assets/auth-icon.png';
 
 const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
   const location = useLocation();
   const [isMain, setIsMain] = useState(location.pathname === '/');
   const [isSettingOpen, setIsSettingOpen] = useState(false);
   const [isAuthModalOpen, setAuthModalOpen] = useState(false);
-  // const state = useSelector((state: StateModel) => state.user);
   const isUserLogged = useSelector((state: StateModel) => state.user) ?? false;
-  // const isUserLogged = state.user;
-  console.log(isUserLogged);
 
   const loggedStyles = {
     profileImage: {
-      backgroundImage: `url(${isUserLogged ? isUserLogged.avatar : '../../assets/avatar-mock.png'})`,
+      backgroundImage: `url(${isUserLogged ? isUserLogged.avatar : defaultImage})`,
     },
   };
 
@@ -70,7 +67,7 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
             </div>
 
           }
-          { isAuthModalOpen ? <Auth/> : null }
+          { isAuthModalOpen && <Auth/> }
           <div className="settings" onClick={() => langToggle()} style={styles.setting}>
             <a href="#"></a>
           </div>

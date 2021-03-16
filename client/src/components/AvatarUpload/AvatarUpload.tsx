@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react';
 import './avatarUpload.scss';
 import { AvatarUploadProps } from './avatarUpload.model';
+import Spinner from './spinner';
 
 const AvatarUpload: FC<AvatarUploadProps> = ({ onImageReady }) => {
   const [avatarUploadState, setAvatarUploadState] = useState('initial');
@@ -11,11 +12,11 @@ const AvatarUpload: FC<AvatarUploadProps> = ({ onImageReady }) => {
     setPreview(src);
     setAvatarUploadState('uploaded');
   };
-  const fileInputChange = (e: any) => {
+  const fileInputChange = (e: React.FormEvent<HTMLInputElement>) => {
     setAvatarUploadState('loading');
-    if (e.target.files[0]) {
-      showPreview(e.target.files[0]);
-      onImageReady(e.target.files[0]);
+    if (e.currentTarget?.files) {
+      showPreview(e.currentTarget.files[0]);
+      onImageReady(e.currentTarget.files[0]);
     }
   };
 
@@ -30,30 +31,13 @@ const AvatarUpload: FC<AvatarUploadProps> = ({ onImageReady }) => {
         onChange={ fileInputChange }
       />
     </label>);
-  } if (avatarUploadState === 'loading') {
-    return (<div className="loading">
-      <div className="spinner">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    </div>);
   } if (avatarUploadState === 'uploaded') {
     return (
       <div style={ { backgroundImage: `url(${preview})` } } className="user-avatar"/>
     );
   }
   return (
-    <div>DEFAULT</div>
+    <Spinner/>
   );
 };
 

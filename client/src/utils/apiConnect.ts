@@ -1,12 +1,23 @@
+import { useSelector } from 'react-redux';
 import { CountryProps } from '../components/Country/Country.model';
 import { HEADER_JSON, API_COUNTRIES_URLS, API_COUNTRY_URLS, API_AUTH_URLS } from '../constants/constants';
 
+export interface HeaderValues {
+  [key: string]: string;
+}
+
 const getRequestInit = (method = 'GET'): RequestInit => {
-  /* const { accessToken } = store.getState().user; */
-  const headers = {
-    // Authorization: `Bearer ${accessToken}`,
+  const headers: HeaderValues = {
     ...HEADER_JSON,
   };
+  /* Для авторизированного пользователя
+   const accessToken = useSelector((state: any) => state.user?.token) ?? null;
+
+  if (accessToken) {
+    headers.Authorization = `Bearer ${accessToken}`;
+  }
+
+   */
   return {
     method,
     headers,
@@ -16,7 +27,6 @@ const getRequestInit = (method = 'GET'): RequestInit => {
 };
 
 const loginUser = async (body: any): Promise<any> => {
-  /* я использую свои headers, потому что объявленные выше мне не подходят */
   const apiObject = await fetch(`${API_AUTH_URLS}/login`, {
     body,
     method: 'POST',
@@ -32,7 +42,6 @@ const loginUser = async (body: any): Promise<any> => {
 };
 
 const registerUser = async (body: any): Promise<any> => {
-  /* я использую свои headers, потому что объявленные выше мне не подходят */
   const apiObject = await fetch(`${API_AUTH_URLS}/register`, {
     body,
     method: 'POST',
