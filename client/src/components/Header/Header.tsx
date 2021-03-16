@@ -1,6 +1,6 @@
 import './header.scss';
-import React, { FC, useEffect, useState } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import React, { FC, useEffect, useState, useContext } from 'react';
+import { useLocation, Link, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Search from '../Search';
 import { HeaderProps } from './Header.model';
@@ -10,9 +10,14 @@ import logo from '../../assets/images/logo2.png';
 import { StateModel } from '../../reducers';
 import defaultImage from '../../assets/auth-icon.png';
 
+import { LanguageContext } from '../../utils/LanguageContext';
+
 const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
+  const { lang: currLang } = useContext(LanguageContext);
+  const linkMain = `/${currLang}`;
   const location = useLocation();
-  const [isMain, setIsMain] = useState(location.pathname === '/');
+  const history = useHistory();
+  const [isMain, setIsMain] = useState(location.pathname === linkMain);
   const [isSettingOpen, setIsSettingOpen] = useState(false);
   const [isAuthModalOpen, setAuthModalOpen] = useState(false);
   const isUserLogged = useSelector((state: StateModel) => state.user) ?? false;
@@ -34,8 +39,13 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
   }
 
   useEffect(() => {
-    setIsMain(location.pathname === '/');
+    setIsMain(location.pathname === linkMain);
   }, [location]);
+
+  useEffect(() => {
+    localStorage.setItem('currLangTravelApp', currLang);
+    history.push(`/${currLang}${location.pathname.slice(3)}`);
+  }, [currLang]);
 
   return (
     <header>
@@ -43,7 +53,7 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
         <nav className="header__nav nav">
           <ul className="header__nav__list nav__list">
             <div className="logo">
-              <Link to="/">
+              <Link to={linkMain}>
                 <img src={logo} />
               </Link>
             </div>

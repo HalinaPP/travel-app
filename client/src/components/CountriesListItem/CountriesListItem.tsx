@@ -1,16 +1,18 @@
 import './countryListItem.scss';
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CountryProps } from '../Country/Country.model';
+import { LanguageContext } from '../../utils/LanguageContext';
 
 const CountriesListItem: FC<{ country: CountryProps }> = ({ country }) => {
-  const countryLink = `/country/${country.id}`;
+  const { lang: currLang } = useContext(LanguageContext);
+  const countryLink = `/${currLang}/country/${country.id}`;
 
   return (
     <Link to={countryLink}>
       <div className="country-card">
         <div className="image-block">
-          <div className="image"></div>
+          <div className="image" style={{ backgroundImage: `url(${country.imagePreviewUrl})` }}></div>
           <div className="image-outline"></div>
         </div>
         <div className="title">{country.name}</div>

@@ -1,8 +1,10 @@
 import { Dispatch } from 'redux';
 import { ACTIONS } from '../actions/constants';
+
 import { LANGS } from '../constants/constants';
 import { authApi, travelApi } from '../utils/apiConnect';
 import { setCountries, setCountry, setUser } from '../actions/index';
+
 import { CountryProps, CountryWithPlacesProps } from '../components/Country/Country.model';
 import { AuthData, User } from '../components/Auth/auth.model';
 
@@ -16,6 +18,7 @@ export const initialState: StateModel = {
   currCountry: {
     id: '',
     imageUrl: '',
+    imagePreviewUrl: '',
     videoUrl: '',
     currency: '',
     ISOCode: '',
@@ -25,6 +28,8 @@ export const initialState: StateModel = {
     description: '',
     places: [],
     ratings: [],
+    timezone: '',
+    flagUrl: '',
   },
   user: undefined,
 };
@@ -57,14 +62,14 @@ export const getUserData = (data: AuthData) => async (dispatch: Dispatch) => {
   return user;
 };
 
-export const getCountriesFromApi = () => async (dispatch: Dispatch) => {
-  const countries = await travelApi.getCountries();
+export const getCountriesFromApi = (lang: string) => async (dispatch: Dispatch) => {
+  const countries = await travelApi.getCountries(lang);
   dispatch(setCountries(countries));
   return countries;
 };
 
-export const getCountryByIdFromApi = (id: string) => async (dispatch: Dispatch) => {
-  const country = await travelApi.getCountryById(id);
+export const getCountryByIdFromApi = (id: string, lang: string) => async (dispatch: Dispatch) => {
+  const country = await travelApi.getCountryById(id, lang);
   dispatch(setCountry(country));
   return country;
 };
