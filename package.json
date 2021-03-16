@@ -6,7 +6,8 @@
   "scripts": {
     "start:dev": "nodemon ./bin/www",
     "start": "node ./bin/www",
-    "test": "jest"
+    "test": "jest",
+    "postinstall": "npm install --prefix ./client && npm run build --prefix ./client"
   },
   "devDependencies": {
     "eslint": "^7.19.0",
