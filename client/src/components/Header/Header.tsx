@@ -1,11 +1,12 @@
 import './header.scss';
-import React, { FC, useEffect, useState, useContext } from 'react';
+import { FC, useEffect, useState, useContext } from 'react';
 import { useLocation, Link, useHistory } from 'react-router-dom';
 import Search from '../Search';
 import { HeaderProps } from './Header.model';
 import Language from '../Language/Language';
 import logo from '../../assets/images/logo2.png';
 import { LanguageContext } from '../../utils/LanguageContext';
+import useWindowSize from '../../utils/useWindowSize';
 
 const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
   const { lang: currLang } = useContext(LanguageContext);
@@ -13,17 +14,17 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
   const location = useLocation();
   const history = useHistory();
   const [isMain, setIsMain] = useState(location.pathname === linkMain);
-  const [isSettingOpen, setIsSettingOpen] = useState(false);
+  // const [isSettingOpen, setIsSettingOpen] = useState(false);
 
-  const styles = {
-    setting: {
-      backgroundImage: "url('/icons/settings.png')",
-    },
-  };
+  // const styles = {
+  //   setting: {
+  //     backgroundImage: "url('/icons/settings.png')",
+  //   },
+  // };
 
-  function langToggle() {
-    setIsSettingOpen(prevState => !prevState);
-  }
+  // function langToggle() {
+  //   setIsSettingOpen(prevState => !prevState);
+  // }
 
   useEffect(() => {
     setIsMain(location.pathname === linkMain);
@@ -33,6 +34,10 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
     localStorage.setItem('currLangTravelApp', currLang);
     history.push(`/${currLang}${location.pathname.slice(3)}`);
   }, [currLang]);
+
+  // dummy data
+  const currentCountryImage = '/images/main_small.png';
+  const currentCountryName = 'Canada';
 
   return (
     <header>
@@ -63,6 +68,15 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
         </div>
         {/* {isSettingOpen && <Language />} */}
       </div>
+      {useWindowSize().width <= 425 && (
+        <div className="dropdown">
+          <div className="country_block">
+            <img src={currentCountryImage} alt={currentCountryName} className="current_country_image" />
+            <p className="current_country_name">{currentCountryName}</p>
+          </div>
+          <img src="/icons/arrow_toggle.png" alt="open/close" className="arrow_toggle" />
+        </div>
+      )}
     </header>
   );
 };
