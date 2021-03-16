@@ -44,11 +44,9 @@ const Country: FC<CurrCountryProps> = ({ currCountry, getCountryByIdFromApi }) =
   }, [getCountryByIdFromApi, id, currLang]);
 
   const styleConfig = { backgroundImage: `url(${currCountry.imageUrl})` };
-  const arrow = isDropdownFolded
-    ? <img src={arrowOpen} alt="open/close" className="arrow_toggle"
-      onClick={() => setIsDropdownFolded((fold: boolean) => !fold)} />
-    : <img src={arrowClose} alt="open/close" className="arrow_toggle"
-      onClick={() => setIsDropdownFolded((fold: boolean) => !fold)} />;
+  const arrow = <img src={isDropdownFolded ? arrowOpen : arrowClose}
+    alt="open/close" className="arrow_toggle"
+    onClick={() => setIsDropdownFolded((fold: boolean) => !fold)} />;
 
   return (
     <main className="country">
