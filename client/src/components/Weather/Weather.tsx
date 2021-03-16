@@ -5,7 +5,6 @@ import { API_KEY, URL } from './constants';
 import { LanguageContext } from '../../utils/LanguageContext';
 
 const Weather: FC<WeatherProps> = ({ capital }) => {
-  console.log(capital);
   const { lang: currLang } = useContext(LanguageContext);
   const [loading, setLoading] = useState(true);
   const [weatherData, setWeatherData] = useState<any>(null);
