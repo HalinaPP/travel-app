@@ -5,19 +5,24 @@ import { API_KEY, URL } from './constants';
 import { LanguageContext } from '../../utils/LanguageContext';
 
 const Weather: FC<WeatherProps> = ({ capital }) => {
+  console.log(capital);
   const { lang: currLang } = useContext(LanguageContext);
   const [loading, setLoading] = useState(true);
   const [weatherData, setWeatherData] = useState<any>(null);
 
-  const urlQueryOptions = `?q=${capital}&lang=${currLang}&${API_KEY}&units=metric`;
+  const urlQueryOptions = capital
+    ? `?q=${capital}&lang=${currLang}&${API_KEY}&units=metric`
+    : '';
 
   useEffect(() => {
-    fetch(URL + urlQueryOptions)
-      .then(res => res.json())
-      .then(data => {
-        setWeatherData(data);
-        setLoading(false);
-      });
+    if (capital) {
+      fetch(URL + urlQueryOptions)
+        .then(res => res.json())
+        .then(data => {
+          setWeatherData(data);
+          setLoading(false);
+        });
+    }
   }, [capital]);
 
   if (loading) {
