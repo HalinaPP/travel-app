@@ -10,8 +10,16 @@ iframe {
   }
 }
 
-// @media (max-width: 1280px) {
-//   iframe {
-//     height: 70vh;
-//   }
-// }
+@media (max-width: 1280px) {
+  iframe {
+    height: 50vmin;
+  }
+}
+
+@media (max-width: 640px) {
+  .video-block {
+    .container {
+      flex-direction: column-reverse;
+    }
+  }
+}

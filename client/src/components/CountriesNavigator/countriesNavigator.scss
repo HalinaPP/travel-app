@@ -6,7 +6,7 @@
   max-height: 60vh;
   margin-right: 1rem;
 
-  overflow-y: scroll;
+  overflow-y: auto;
 
   background: rgba(42, 128, 134, 0.05);
   border-radius: 2rem;
@@ -44,5 +44,21 @@
     .country_name {
       color: #0d444d;
     }
+  }
+}
+
+@media (max-width: 1280px) {
+  .countries-navigator {
+    height: 50vmin;
+  }
+}
+
+@media (max-width: 640px) {
+  .countries-navigator {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1rem;
   }
 }
