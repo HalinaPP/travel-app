@@ -1,31 +1,36 @@
-import { FC } from 'react';
+import { FC, useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { CountriesNavigatorProps } from './CountriesNavigator.model';
 import './countriesNavigator.scss';
+import { LanguageContext } from '../../utils/LanguageContext';
 
-const CountriesNavigator: FC<CountriesNavigatorProps> = () => {
-  // мне надо получать массив стран и ссылку на их main bg
-  // так же надо получать current country
-  const coountries = [
-    ['georgia', '/images/main_small.png'],
-    ['russia', '/images/main_small.png'],
-    ['norway', '/images/main_small.png'],
-    ['china', '/images/main_small.png'],
-    ['usa', '/images/main_small.png'],
-    ['italy', '/images/main_small.png'],
-    ['germany', '/images/main_small.png'],
-    ['uar', '/images/main_small.png'],
-  ];
+const CountriesNavigator: FC<CountriesNavigatorProps> = ({ currCountryName, getCountriesFromApi, countries }) => {
+  const { lang: currLang } = useContext(LanguageContext);
+
+  useEffect(() => {
+    getCountriesFromApi(currLang);
+  }, [getCountriesFromApi, currLang]);
+
   return (
     <aside>
       <ul className="countries-navigator">
-        {coountries.map(country => (
-          <li className="countries-navigator__item" key={country[0]}>
-            <a href="#" className="link">
-              <img src={country[1]} className="icon countries-navigator__img" alt={country[0]} />
-              <p className='country_name'>{country[0]}</p>
-            </a>
-          </li>
-        ))}
+        {countries &&
+          countries.map(country => {
+            const countryLink = `/${currLang}/country/${country.id}`;
+
+            let countrySel = 'link';
+            if (country.name === currCountryName) {
+              countrySel = 'link selected';
+            }
+            return (
+              <li className="countries-navigator__item" key={country.name}>
+                <Link to={countryLink} className={countrySel}>
+                  <img src={country.imagePreviewUrl} className="icon countries-navigator__img" alt={country.name} />
+                  <p className="country_name">{country.name}</p>
+                </Link>
+              </li>
+            );
+          })}
       </ul>
     </aside>
   );
