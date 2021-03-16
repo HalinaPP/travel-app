@@ -11,12 +11,13 @@ describe('тест функции findNickName', () => {
     expect(
       findNickName(
         [
-          { nickName: 'Vasya' },
-          { nickName: 'Vasya1' },
-          { nickName: 'Vasya2' },
-          { nickName: 'Vasya3' },
+          { nickName: 'Vasya', placeId: 'awesomeplace' },
+          { nickName: 'Vasya2', placeId: 'TEST' },
+          { nickName: 'Vasya2', placeId: 'awesomeplace' },
+          { nickName: 'Vasya3', placeId: 'awesomeplace' },
         ],
         'Vasya2',
+        'awesomeplace',
       ).nickName,
     ).toBe('Vasya2');
   });
@@ -24,12 +25,13 @@ describe('тест функции findNickName', () => {
     expect(
       findNickName(
         [
-          { nickName: 'Vasya' },
-          { nickName: 'Vasya1' },
-          { nickName: 'Vasya2' },
-          { nickName: 'Vasya3' },
+          { nickName: 'Vasya', placeId: 'TEST' },
+          { nickName: 'Vasya1', placeId: 'TEST' },
+          { nickName: 'Vasya2', placeId: 'TEST' },
+          { nickName: 'Vasya3', placeId: 'TEST' },
         ],
         'Vasya5',
+        'awesomeplace',
       ),
     ).toBeFalsy();
   });
