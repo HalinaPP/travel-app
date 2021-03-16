@@ -40,15 +40,30 @@ main.country {
     height: 75vh;
 
     display: flex;
+    flex-direction: row;
     justify-content: flex-end;
-    @media screen and (max-width: 425px) {
-      justify-content: center;
-    }
 
     .widget-block {
       display: flex;
       flex-direction: column;
+      background-color: transparent;
       padding: 1rem;
+    }
+
+    @media screen and (max-width: 425px) {
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+
+      .widget-block {
+        align-items: center;
+        background-color: #488D92;
+        width: 100%;
+      }
+
+      .hidden {
+        display: none;
+      }
     }
   }
 
@@ -149,6 +164,45 @@ main.country {
     .text-block .content {
       width: inherit;
       max-width: inherit;
+    }
+  }
+}
+
+.dropdown {
+  display: flex;
+  height: 6.1rem;
+  width: 100%;
+  padding: 1rem 3.5rem;
+  justify-content: space-between;
+  align-items: center;
+
+  background: #488d92;
+  .country_block {
+    display: flex;
+    align-items: center;
+    & > * {
+      display: block;
+    }
+  }
+
+  .current_country_image {
+    width: 4.2rem;
+    height: 4.2rem;
+    border-radius: 50%;
+  }
+  .current_country_name {
+    font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+      "Droid Sans", "Helvetica Neue", sans-serif;
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    color: #f3f7f8;
+    margin-left: 1.9rem;
+  }
+  .arrow_toggle {
+    height: 1rem;
+    &:hover {
+      cursor: pointer;
     }
   }
 }
