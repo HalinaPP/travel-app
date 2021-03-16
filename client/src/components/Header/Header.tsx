@@ -24,10 +24,6 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
     history.push(`/${currLang}${location.pathname.slice(3)}`);
   }, [currLang]);
 
-  // dummy data
-  const currentCountryImage = '/images/main_small.png';
-  const currentCountryName = 'Canada';
-
   return (
     <header>
       <div className="wrapper">
