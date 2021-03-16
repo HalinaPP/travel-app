@@ -38,13 +38,9 @@
       font-weight: 400;
       font-size: 1.4rem;
       line-height: 2rem;
-      // text-align: justify;
 
       margin: 2rem 2rem 3.7rem 0;
       height: 10rem;
-      // max-width: 24rem;
-      // overflow-y: scroll;
-      //max-width: 48rem;
       p {
         text-overflow: ellipsis;
       }
@@ -167,7 +163,6 @@
     }
     .image-block {
       width: 50vw;
-      // aspect-ratio: 1 / 1.05;
       height: unset;
       .image,
       .image-outline {
