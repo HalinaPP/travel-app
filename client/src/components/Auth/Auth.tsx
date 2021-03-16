@@ -11,6 +11,7 @@ import { setUser } from '../../actions';
 import { LanguageContext } from '../../utils/LanguageContext';
 
 import Spinner from '../AvatarUpload/spinner';
+import { returnSuccessAuthMessage, returnErrorAuthMessage } from '../../utils/returnAuthMessage';
 
 const Auth: FC = () => {
   useSelector((state: StateModel) => state.user);
@@ -119,36 +120,14 @@ const Auth: FC = () => {
   const onAuthApiCall = (responseData: ResponseSuccessData | ResponseErrorData) => {
     setLoading(false);
     if (isResponseSuccess(responseData)) {
-      if (responseData.statusText === 'Accepted') {
-        setSuccess(AuthConstants.userLogged[currLang]);
-      } else if (responseData.statusText === 'Created') {
-        setSuccess(AuthConstants.userCreated[currLang]);
-      }
+      returnSuccessAuthMessage(responseData, setSuccess, currLang);
       const user = responseData.data.data;
       if (user?.nickname) {
         onSuccessLogin(user);
       }
       setError(null);
     } else {
-      switch (responseData.errors.status) {
-        case 400:
-          setError(AuthConstants.invalidUserData[currLang]);
-          break;
-        case 409:
-          setError(AuthConstants.userAlreadyExists[currLang]);
-          break;
-        case 404:
-          setError(AuthConstants.notFound[currLang]);
-          break;
-        case 401:
-          setError(AuthConstants.unAuthorized[currLang]);
-          break;
-        case 500:
-          setError(AuthConstants.internalServerError[currLang]);
-          break;
-        default:
-          setError(AuthConstants.unCatchedError[currLang]);
-      }
+      returnErrorAuthMessage(responseData, setError, currLang);
       setSuccess(null);
     }
   };

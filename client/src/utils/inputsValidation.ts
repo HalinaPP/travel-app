@@ -1,4 +1,5 @@
 import { InputErrors } from '../constants/inputErrors.constants';
+import { MinInputLength } from '../constants/auth.constants';
 
 export interface ValidateDataParams {
   currentInput: string,
@@ -10,12 +11,12 @@ export const validateData = ({ currentInput = 'default', value, currLang }: Vali
     case 'nickname':
       if (!value) return InputErrors.noNickname[currLang];
       if (!/[a-zA-Z0-9]+$/.test(String(value))) return InputErrors.nonLatinCharacters[currLang];
-      if (String(value).length < 6) return InputErrors.minNickname[currLang];
+      if (String(value).length < MinInputLength) return InputErrors.minNickname[currLang];
       break;
     case 'password':
       if (!value) return InputErrors.noPassword[currLang];
       if (!/[a-zA-Z0-9]+$/.test(String(value))) return InputErrors.nonLatinCharacters[currLang];
-      if (String(value).length < 6) return InputErrors.minPassword[currLang];
+      if (String(value).length < MinInputLength) return InputErrors.minPassword[currLang];
       break;
     case 'avatar':
       if (!value) return InputErrors.noImage[currLang];

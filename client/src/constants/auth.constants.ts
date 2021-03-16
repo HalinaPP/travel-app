@@ -3,7 +3,7 @@ interface AuthConstantsType {
     [key: string]: string;
   };
 }
-
+export const MinInputLength = 6;
 export const AuthConstants: AuthConstantsType = {
   signIn: {
     ru: 'Войти',

@@ -60,7 +60,6 @@ router.post(
 router.post(
   '/login',
   wrap(async (req, res) => {
-    console.log(req.body);
     const { nickname, password } = req.body;
     const validData = validateData(nickname, password);
     if (!validData) {
