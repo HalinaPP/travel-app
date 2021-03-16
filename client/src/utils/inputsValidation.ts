@@ -1,11 +1,11 @@
 import { InputErrors } from '../constants/inputErrors.constants';
 
-interface ValidateDataParams {
+export interface ValidateDataParams {
   currentInput: string,
-  value: string | null | File,
+  value: string | null | Blob,
   currLang: string,
 }
-export const validateData = ({ currentInput = 'default', value, currLang }: ValidateDataParams): string | null => {
+export const validateData = ({ currentInput = 'default', value, currLang }: ValidateDataParams): string => {
   switch (currentInput) {
     case 'nickname':
       if (!value) return InputErrors.noNickname[currLang];
@@ -18,7 +18,7 @@ export const validateData = ({ currentInput = 'default', value, currLang }: Vali
       if (String(value).length < 6) return InputErrors.minPassword[currLang];
       break;
     case 'avatar':
-      if (value === null) return InputErrors.noImage[currLang];
+      if (!value) return InputErrors.noImage[currLang];
       break;
     default:
       return '';

@@ -23,7 +23,6 @@ export interface ResponseSuccessData {
   error: null,
   statusText: string
 }
-
 export interface User {
   nickname: string;
   avatar: string,
