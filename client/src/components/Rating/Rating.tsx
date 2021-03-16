@@ -1,16 +1,18 @@
 import React, { FC, Fragment } from 'react';
 import './Rating.scss';
 import { RatingProps } from './Rating.model';
+import { findNickName } from '../../utils/helpers';
 
-const Rating: FC<RatingProps> = () => {
+const Rating: FC<RatingProps> = ({ placeId, currCountry: { id, ratings } }) => {
+  const nick = 'Vasya1';
+  const alreadyRated = findNickName(ratings, nick);
   const postRating = async (e: any) => {
     const rating = {
-      placeId: '604bd42131ad45b7d20d1e55',
-      nickName: 'Vasya',
+      placeId,
+      nickName: nick,
       rating: e.target.value,
     };
-    console.log(rating);
-    await fetch('http://localhost:3005/countries/604bd3b731ad45b7d20d1e54', {
+    await fetch(`http://localhost:3005/countries/${id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -18,40 +20,24 @@ const Rating: FC<RatingProps> = () => {
       body: JSON.stringify(rating),
     });
   };
-  return (
-    <div className="rating">
-      <input onClick={(e) => postRating(e)} value="5" type="radio" name="rating" id="rat5" />
-      <label className="material-icons" htmlFor="rat5">
+  const ratingClassName = alreadyRated !== undefined ? 'Rating disabled' : 'Rating';
+  const renderRadioGroup = [5, 4, 3, 2, 1].map(e => (
+    <Fragment>
+      <input
+        onClick={evt => postRating(evt)}
+        value={e}
+        type="radio"
+        name="rating"
+        id={`rat${e}`}
+        defaultChecked={alreadyRated?.rating === e}
+        disabled={alreadyRated !== undefined}
+      />
+      <label className="material-icons" htmlFor={`rat${e}`}>
         star_rate
       </label>
-      <input onClick={(e) => postRating(e)} value="4" type="radio" name="rating" id="rat4" />
-      <label className="material-icons" htmlFor="rat4">
-        star_rate
-      </label>
-      <input onClick={(e) => postRating(e)} value="3" type="radio" name="rating" id="rat3" />
-      <label className="material-icons" htmlFor="rat3">
-        star_rate
-      </label>
-      <input onClick={(e) => postRating(e)} value="2" type="radio" name="rating" id="rat2" />
-      <label className="material-icons" htmlFor="rat2">
-        star_rate
-      </label>
-      <input onClick={(e) => postRating(e)} value="1" type="radio" name="rating" id="rat1" />
-      <label className="material-icons" htmlFor="rat1">
-        star_rate
-      </label>
-    </div>
-  );
+    </Fragment>
+  ));
+  return <div className={ratingClassName}>{renderRadioGroup}</div>;
 };
 
 export default Rating;
-
-// const radioGroup = Array(5).map((_, i) => {
-//   const id = `rat${i + 1}`;
-//   return (
-//     <>
-//       <input type="radio" name="rating" id={id} />
-//       <label htmlFor={id}>{i + 1}</label>
-//     </>
-//   );
-// });

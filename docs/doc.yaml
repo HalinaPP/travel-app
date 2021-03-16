@@ -83,7 +83,7 @@ paths:
                           properties:
                             placeId:
                               type: string
-                            userId:
+                            nickName:
                               type: string
                             rating:
                               type: number

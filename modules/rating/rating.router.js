@@ -15,7 +15,7 @@ router.post(
     }
     const rating = new Rating({
       placeId,
-      userNickName: nickName,
+      nickName,
       rating: rtg,
     });
 
