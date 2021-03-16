@@ -1,11 +1,11 @@
 import './video.scss';
 import React, { FC } from 'react';
 import { VideoProps } from './Video.model';
-import CountriesNavigator from '../CountriesNavigator/CountriesNavigator';
+import { CountriesNavigatorContainer } from '../../containers/CountriesNavigator.container';
 
 const Video: FC<VideoProps> = ({ countryName, src }) => (
   <div className="container">
-    <CountriesNavigator></CountriesNavigator>
+    <CountriesNavigatorContainer currCountryName={countryName}></CountriesNavigatorContainer>
     <iframe
       title={`${countryName} video`}
       src={src}
