@@ -3,6 +3,7 @@ import './Rating.scss';
 import { RatingProps } from './Rating.model';
 import { findNickName } from '../../utils/helpers';
 import { LanguageContext } from '../../utils/LanguageContext';
+import { API_COUNTRIES_URLS } from '../../constants/constants';
 
 const Rating: FC<RatingProps> = ({ placeId, currCountry: { id, ratings }, getCountryByIdFromApi }) => {
   const { lang: currLang } = useContext(LanguageContext);
@@ -16,7 +17,7 @@ const Rating: FC<RatingProps> = ({ placeId, currCountry: { id, ratings }, getCou
       rating: e.target.value,
       avatar,
     };
-    await fetch(`http://localhost:3005/countries/${id}`, {
+    await fetch(`${API_COUNTRIES_URLS}${id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
