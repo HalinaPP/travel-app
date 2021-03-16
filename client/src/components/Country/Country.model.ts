@@ -3,6 +3,7 @@ import { Ratings, Sights } from '../SightsList/SightsList.model';
 export interface CountryProps {
   id: string;
   imageUrl: string;
+  imagePreviewUrl: string;
   videoUrl: string;
   currency: string;
   ISOCode: string;

@@ -45,8 +45,8 @@ const Country: FC<CurrCountryProps> = ({ currCountry, getCountryByIdFromApi }) =
     <main className="country">
       <section className="info-block" style={styleConfig}>
         <Weather />
-        <Time timeZone={currCountry.timezone}/>
-        <Currency currency={currCountry.currency}/>
+        <Time timeZone={currCountry.timezone} />
+        <Currency currency={currCountry.currency} />
       </section>
 
       <section className="video-block">

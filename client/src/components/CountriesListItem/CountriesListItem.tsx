@@ -12,7 +12,7 @@ const CountriesListItem: FC<{ country: CountryProps }> = ({ country }) => {
     <Link to={countryLink}>
       <div className="country-card">
         <div className="image-block">
-          <div className="image"></div>
+          <div className="image" style={{ backgroundImage: `url(${country.imagePreviewUrl})` }}></div>
           <div className="image-outline"></div>
         </div>
         <div className="title">{country.name}</div>
