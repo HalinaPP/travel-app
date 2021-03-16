@@ -1,5 +1,5 @@
 import './country.scss';
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import SightsList from '../SightsList/SightsList';
 import Weather from '../Weather/Weather';
@@ -7,36 +7,37 @@ import Currency from '../Currency/Currency';
 import Time from '../Time/Time';
 import Map from '../Map/Map';
 import Video from '../Video/Video';
-
 import { CurrCountryProps } from './Country.model';
 import { setInnerHtml } from '../../utils/helpers';
+import translation from '../../constants/translation';
+import { LanguageContext } from '../../utils/LanguageContext';
 
 const Country: FC<CurrCountryProps> = ({ currCountry, getCountryByIdFromApi }) => {
+  const { lang: currLang } = useContext(LanguageContext);
+  const langsInfo = translation[currLang];
   const { id }: { id: string } = useParams();
 
   const [mapProps, setMapProps] = useState({
     iso: currCountry.ISOCode,
     capitalName: currCountry.capital,
     capitalCoords: currCountry.capitalLocation.coordinates,
-    lang: 'ru',
-    imageHref: 'https://flagof.ru/wp-content/uploads/2018/10/1200px-Flag_of_Canada_1964.svg_.png',
+    lang: currLang,
+    imageHref: currCountry.flagUrl,
   });
 
   useEffect(() => {
-    /*
     setMapProps({
       iso: currCountry.ISOCode,
       capitalName: currCountry.capital,
       capitalCoords: currCountry.capitalLocation.coordinates,
-      lang: 'ru',
-      imageHref: 'https://flagof.ru/wp-content/uploads/2018/10/1200px-Flag_of_Canada_1964.svg_.png',
+      lang: currLang,
+      imageHref: currCountry.flagUrl,
     });
-    */
-  });
+  }, [currCountry]);
 
   useEffect(() => {
-    getCountryByIdFromApi(id);
-  }, [getCountryByIdFromApi, id]);
+    getCountryByIdFromApi(id, currLang);
+  }, [getCountryByIdFromApi, id, currLang]);
 
   const styleConfig = { backgroundImage: `url(${currCountry.imageUrl})` };
 
@@ -44,8 +45,8 @@ const Country: FC<CurrCountryProps> = ({ currCountry, getCountryByIdFromApi }) =
     <main className="country">
       <section className="info-block" style={styleConfig}>
         <Weather />
-        <Time />
-        <Currency currency={'BYN'}/>
+        <Time timeZone={currCountry.timezone} />
+        <Currency currency={currCountry.currency} />
       </section>
 
       <section className="video-block">
@@ -63,7 +64,7 @@ const Country: FC<CurrCountryProps> = ({ currCountry, getCountryByIdFromApi }) =
       <section className="about">
         <div className="wrapper">
           <div className="text-block">
-            <h2 className="title">Information</h2>
+            <h2 className="title">{langsInfo.information}</h2>
             <div className="about__text">
               <p className="content" dangerouslySetInnerHTML={setInnerHtml(currCountry.description)}></p>
             </div>

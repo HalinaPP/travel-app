@@ -1,6 +1,6 @@
 import './map.scss';
 
-import React, { FC, useCallback, Ref } from 'react';
+import React, { FC, useCallback, Ref, useEffect } from 'react';
 
 import {
   Map as MapYandex,
@@ -49,6 +49,7 @@ const balloonPlacemark = ({ coords, name, preset }: PlacemarkProps) => (
 const Map: FC<MapProps> = (props: MapProps) => {
   const { iso, capitalName, capitalCoords, lang, sights, imageHref } = props;
   const mapRef = React.useRef<any>(null);
+
   const setMapRef = useCallback((instance: Ref<any>) => {
     mapRef.current = instance;
   }, []);
@@ -82,6 +83,7 @@ const Map: FC<MapProps> = (props: MapProps) => {
         });
     }
   };
+
   return (
     <div className="map">
       <YMaps query={{ lang: queryLang, apikey: yaMapsApiKey }}>
