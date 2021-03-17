@@ -1,169 +1,178 @@
-.auth__modal {
-  height: 51.9rem;
-  width: 56.8rem;
-  padding: 4.6rem 6rem 4.5rem;
-  background-color: #ffffff;
-  border-radius: 2rem;
-  box-shadow: 0px 2px 1.5rem rgba(0, 0, 0, 0.06);
-
+.auth__overlay {
   position: fixed;
-  z-index: 1;
-  left: 50%;
-  top: 20%;
-  transform: translate(-50%);
-  overflow: auto;
-  .auth__block {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: flex-end;
-  }
-  .tabs {
-    .tab {
-      background-color: transparent;
-      margin: 0 3.8rem 0 0;
-      opacity: 0.5;
-      cursor: pointer;
-      transition: all 250ms linear;
-      &.active {
-        opacity: 1;
-        text-decoration: underline;
-      }
-      &:hover {
-        transition: all 250ms linear;
-        opacity: 1;
-      }
-    }
-  }
+  width: 99.9vw;
+  height: 99.9vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 
-  button {
-    border: none;
-    cursor: pointer;
-    &.btn {
-      width: 44.8rem;
-      height: 5.4rem;
-      &[disabled] {
-        background-color: #bababa;
-        cursor: auto;
+  .auth__modal {
+    height: 51.9rem;
+    width: 56.8rem;
+    padding: 4.6rem 6rem 4.5rem;
+    background-color: #ffffff;
+    border-radius: 2rem;
+    box-shadow: 0px 2px 1.5rem rgba(0, 0, 0, 0.06);
+
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    top: 20%;
+    transform: translate(-50%);
+    .auth__block {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: flex-end;
+    }
+    .tabs {
+      .tab {
+        background-color: transparent;
+        margin: 0 3.8rem 0 0;
+        opacity: 0.5;
+        cursor: pointer;
+        transition: all 250ms linear;
+        &.active {
+          opacity: 1;
+          text-decoration: underline;
+        }
         &:hover {
+          transition: all 250ms linear;
           opacity: 1;
         }
       }
     }
-    &:hover {
-      opacity: 0.8;
-    }
-  }
 
-  .modal-content {
-    .set-avatar,
-    .user-avatar {
-      display: block;
-      height: 10.27rem;
-      width: 10.6rem;
-      margin: 0.9rem auto 0.7rem;
-
-      background-image: url("../../assets/icons/set-foto.png");
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center;
-      transition: all 200ms linear;
+    button {
+      border: none;
       cursor: pointer;
-      &:hover {
-        transition: all 200ms linear;
-        opacity: 0.7;
-      }
-      #avatar {
-        display: none;
-      }
-    }
-
-    .user-avatar {
-      // if we want to give the opportunity to change the avatar => next line del
-      background-image: url("../../assets/avatar-mock.png");
-      border-radius: 50%;
-    }
-
-    .container {
-      input[type="text"],
-      input[type="password"] {
-        display: inline-block;
-        width: 100%;
+      &.btn {
+        width: 44.8rem;
         height: 5.4rem;
-        padding: 1.2rem 2rem;
-        margin: 0.8rem 0;
+        &[disabled] {
+          background-color: #bababa;
+          cursor: auto;
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+      &:hover {
+        opacity: 0.8;
+      }
+    }
 
-        background: #ffffff;
-        box-shadow: 0px 2px 30px rgba(0, 0, 0, 0.06);
-        border-radius: 1rem;
-        border: none;
+    .modal-content {
+      .set-avatar,
+      .user-avatar {
+        display: block;
+        height: 10.27rem;
+        width: 10.6rem;
+        margin: 0.9rem auto 0.7rem;
+
+        background-image: url("../../assets/icons/set-foto.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        transition: all 200ms linear;
+        cursor: pointer;
+        &:hover {
+          transition: all 200ms linear;
+          opacity: 0.7;
+        }
+        #avatar {
+          display: none;
+        }
       }
 
-      .uname,
-      .password {
-        font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell",
+      .user-avatar {
+        // if we want to give the opportunity to change the avatar => next line del
+        background-image: url("../../assets/avatar-mock.png");
+        border-radius: 50%;
+      }
+
+      .container {
+        input[type="text"],
+        input[type="password"] {
+          display: inline-block;
+          width: 100%;
+          height: 5.4rem;
+          padding: 1.2rem 2rem;
+          margin: 0.8rem 0;
+
+          background: #ffffff;
+          box-shadow: 0px 2px 30px rgba(0, 0, 0, 0.06);
+          border-radius: 1rem;
+          border: none;
+        }
+
+        .uname,
+        .password {
+          font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell",
           "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-        font-weight: 400;
-        font-size: 1.4rem;
-        line-height: 1.6rem;
-        text-transform: uppercase;
-        color: #0d444d;
-      }
-      .error {
-        text-align: center;
-        line-height: 1.6rem;
-        margin-bottom: 2rem;
-        font-size: 1.5rem;
-        color: #8a0303;
-      }
-      .success {
-        text-align: center;
-        line-height: 1.6rem;
-        margin-bottom: 2rem;
-        font-size: 1.5rem;
-        color: #357e00;
-      }
+          font-weight: 400;
+          font-size: 1.4rem;
+          line-height: 1.6rem;
+          text-transform: uppercase;
+          color: #0d444d;
+        }
+        .error {
+          text-align: center;
+          line-height: 1.6rem;
+          margin-bottom: 2rem;
+          font-size: 1.5rem;
+          color: #8a0303;
+        }
+        .success {
+          text-align: center;
+          line-height: 1.6rem;
+          margin-bottom: 2rem;
+          font-size: 1.5rem;
+          color: #357e00;
+        }
 
-      input[type="text"] {
-        margin-bottom: 2rem;
+        input[type="text"] {
+          margin-bottom: 2rem;
+        }
+        input[type="password"] {
+          margin-bottom: 4.6rem;
+        }
       }
-      input[type="password"] {
-        margin-bottom: 4.6rem;
+    }
+
+    /* Add Zoom Animation */
+    .animate {
+      -webkit-animation: animatezoom 0.6s;
+      animation: animatezoom 0.6s;
+    }
+
+    @-webkit-keyframes animatezoom {
+      from {
+        -webkit-transform: scale(0);
+      }
+      to {
+        -webkit-transform: scale(1);
       }
     }
-  }
 
-  /* Add Zoom Animation */
-  .animate {
-    -webkit-animation: animatezoom 0.6s;
-    animation: animatezoom 0.6s;
-  }
+    @keyframes animatezoom {
+      from {
+        transform: scale(0);
+      }
+      to {
+        transform: scale(1);
+      }
+    }
 
-  @-webkit-keyframes animatezoom {
-    from {
-      -webkit-transform: scale(0);
-    }
-    to {
-      -webkit-transform: scale(1);
-    }
-  }
-
-  @keyframes animatezoom {
-    from {
-      transform: scale(0);
-    }
-    to {
-      transform: scale(1);
-    }
-  }
-
-  @media screen and (max-width: 300px) {
-    span.psw {
-      display: block;
-      float: none;
-    }
-    .cancelbtn {
-      width: 100%;
+    @media screen and (max-width: 300px) {
+      span.psw {
+        display: block;
+        float: none;
+      }
+      .cancelbtn {
+        width: 100%;
+      }
     }
   }
 }
