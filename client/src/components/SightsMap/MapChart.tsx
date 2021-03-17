@@ -106,7 +106,7 @@ const MapChart = ({ setTooltipContent }: any) => (
         {markers.map(({ name, coordinates, markerOffset }) => (
           // @ts-ignore
           <Marker key={name} coordinates={coordinates}>
-            <circle r={5} fill="rgba(42, 128, 134, 0.7)" stroke="#0D444D" strokeWidth={1} className="mark" />
+            <circle r={2} fill="yellow" stroke="#0D444D" strokeWidth={1} className="mark" />
             <text className="tooltip_text" textAnchor="middle" y={markerOffset} style={{ fontFamily: 'system-ui' }}>
               {name}
             </text>
