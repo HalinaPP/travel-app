@@ -1,6 +1,7 @@
 @import './css/owfont-regular.css';
 
 .weather-container {
+  cursor:default;
   display: flex;
   flex-direction: row;
   background: rgba(255, 255, 255, 0.8);
