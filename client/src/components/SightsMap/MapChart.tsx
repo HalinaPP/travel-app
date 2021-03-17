@@ -15,12 +15,12 @@ const markers = [
   { markerOffset: 15, name: 'Petroglyphs of Tamgaly-Tas', coordinates: [76.996462, 44.061422] },
   { markerOffset: 15, name: 'Charyn canyon', coordinates: [79.095187, 43.353811] },
   // ICELAND
-  { markerOffset: 15, name: 'Whale Watching', coordinates: [21.9426, 64.1466] },
-  { markerOffset: 15, name: 'Geysers', coordinates: [20.3024, 64.3104] },
-  { markerOffset: 15, name: 'Landmannalaugar', coordinates: [19.067, 63.983] },
-  { markerOffset: 15, name: 'Waterfalls', coordinates: [17.869925, 63.855737] },
-  { markerOffset: 15, name: 'Ice Caves', coordinates: [16, 64] },
-  { markerOffset: 15, name: 'Head to the Hot Springs', coordinates: [22.4465, 63.8794] },
+  { markerOffset: 15, name: 'Whale Watching', coordinates: [-20.706012951412067, 65.87326452646111] },
+  { markerOffset: 15, name: 'Geysers', coordinates: [-20.482487370177076, 64.49379914366331] },
+  { markerOffset: 15, name: 'Landmannalaugar', coordinates: [-19.165008046301256, 64.29324430750243] },
+  { markerOffset: 15, name: 'Waterfalls', coordinates: [-20.96773563507064, 64.84866503612854] },
+  { markerOffset: 15, name: 'Ice Caves', coordinates: [-16.841916279661422, 64.56376525858055] },
+  { markerOffset: 15, name: 'Head to the Hot Springs', coordinates: [-20.33587484501688, 64.2566664917179] },
   // MEXICO
   { markerOffset: 15, name: 'Cancún and the Mayan Riviera', coordinates: [-86.84656, 21.17429] },
   { markerOffset: 15, name: 'Puerto Vallarta', coordinates: [-105.2253, 20.6534] },
