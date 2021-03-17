@@ -1,7 +1,8 @@
 import './header.scss';
 import { FC, useEffect, useState, useContext } from 'react';
 import { useLocation, Link, useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser } from '../../actions';
 import Search from '../Search';
 import { HeaderProps } from './Header.model';
 import Language from '../Language/Language';
@@ -13,8 +14,10 @@ import { LanguageContext } from '../../utils/LanguageContext';
 import useWindowSize from '../../utils/useWindowSize';
 import { AuthProps } from '../Auth/auth.model';
 import translation from '../../constants/translation';
+import { AuthConstants } from '../../constants/auth.constants';
 
 const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
+  const dispatch = useDispatch();
   const { lang: currLang } = useContext(LanguageContext);
   const linkMain = `/${currLang}`;
   const location = useLocation();
@@ -28,6 +31,9 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
     profileImage: {
       backgroundImage: `url(${isUserLogged ? isUserLogged.avatar : defaultImage})`,
     },
+  };
+  const logOut = () => {
+    dispatch(setUser(undefined));
   };
 
   const styles = {
@@ -80,7 +86,11 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
           <div className="search-block">{isMain && <Search inputText={inputText} onInputChange={onInputChange} />}</div>
           {isUserLogged ? (
             <div style={loggedStyles.profileImage} className="avatar">
-              <a href="#"></a>
+              <div className="settings__dropdown">
+                <button className="btn" onClick={logOut}>
+                  {AuthConstants.signOut[currLang]}
+                </button>
+              </div>
             </div>
           ) : (
             <div style={loggedStyles.profileImage} onClick={() => setAuthModalOpen(true)} className="avatar"></div>

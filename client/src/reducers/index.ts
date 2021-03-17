@@ -31,6 +31,7 @@ export const initialState: StateModel = {
     ratings: [],
     timezone: '',
     flagUrl: '',
+    promoDescription: '',
   },
   user: undefined,
   countriesWP: undefined,

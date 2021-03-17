@@ -18,6 +18,9 @@ const ratingSchema = new Schema({
     type: String,
     require: true,
   },
+  feedbackText: {
+    type: String,
+  },
 });
 
 const Rating = model('Rating', ratingSchema);
