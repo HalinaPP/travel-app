@@ -14,9 +14,9 @@ const requestLogMiddleware = require('./middleware/request-logger');
 
 const app = express();
 const swaggerDoc = YAML.load(path.join(__dirname, './docs/doc.yaml'));
-
+/*
 const buildPath = __dirname + '/client/build/';
-
+*/
 app.use(helmet());
 app.use(express.json());
 
@@ -32,10 +32,13 @@ app.use(cors({ credentials: true, origin: '*' }));
 app.use(formData.parse());
 app.options('*', cors());
 
+/*
 app.use(express.static(buildPath));
+*/
+
 app.use('/favicon.ico', (req, res) => res.sendStatus(StatusCodes.NO_CONTENT));
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
-
+/*
 app.get('/', async (req, res) => {
 	try {
 		res.sendFile(buildPath + 'index.html');
@@ -43,7 +46,7 @@ app.get('/', async (req, res) => {
 		res.status(StatusCodes.NO_CONTENT).send(ReasonPhrases.NO_CONTENT);
 	}
 });
-
+*/
 const countryRouter = require('./modules/countries/country.router');
 const authRouter = require('./modules/auth/auth.router');
 const ratingRouter = require('./modules/rating/rating.router');
