@@ -1,4 +1,4 @@
-import { countRate, findNickName } from './helpers';
+import { countRate, findNickName, decimalize } from './helpers';
 
 describe('тест функции countRate', () => {
   test('корректно возвращает среднее значение', () => {
@@ -34,5 +34,15 @@ describe('тест функции findNickName', () => {
         'awesomeplace',
       ),
     ).toBeFalsy();
+  });
+});
+
+describe('тест функции decimalize', () => {
+  test('добавляет к однозначному числу 0 впереди, не действует на двузначные числа', () => {
+    expect(decimalize(3)).toBe('03');
+    expect(decimalize(12)).toBe('12');
+    expect(decimalize(0)).toBe('00');
+    expect(decimalize(10)).toBe('10');
+    expect(decimalize(1)).toBe('01');
   });
 });
