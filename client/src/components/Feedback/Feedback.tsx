@@ -14,6 +14,10 @@ const Feedback: FC<FeedbackProps> = ({ setIsOpen, isOpen, sight, ratings }) => {
     }
   };
 
+  const addFeedback = (newFeedback: any) => {
+    ratings.push(newFeedback);
+  };
+
   const sightUserRatings = useCallback(
     () => (
       <div className="feedback_container">
@@ -63,7 +67,7 @@ const Feedback: FC<FeedbackProps> = ({ setIsOpen, isOpen, sight, ratings }) => {
         </div>
         <h2 className="popup_title">{sight.name}</h2>
         <div className="text" dangerouslySetInnerHTML={setInnerHtml(sight.description)} />
-        <RatingContainer placeId={sight.id} />
+        <RatingContainer placeId={sight.id} addFeedback={addFeedback} />
         {sightUserRatings()}
       </div>
     </div>

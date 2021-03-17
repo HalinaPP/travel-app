@@ -9,7 +9,7 @@ import { LanguageContext } from '../../utils/LanguageContext';
 import { API_COUNTRIES_URLS } from '../../constants/constants';
 import translation from '../../constants/translation';
 
-const Rating: FC<RatingProps> = ({ placeId, currCountry: { id, ratings }, getCountryByIdFromApi }) => {
+const Rating: FC<RatingProps> = ({ placeId, currCountry: { id, ratings }, getCountryByIdFromApi, addFeedback }) => {
   const user = useSelector((state: any) => state.user);
   const { nickname, avatar } = user || { nickname: null, avatar: null };
   const isUserLogged = !!user;
@@ -26,7 +26,6 @@ const Rating: FC<RatingProps> = ({ placeId, currCountry: { id, ratings }, getCou
       avatar,
       feedbackText,
     };
-    console.log(rating);
     await fetch(`${API_COUNTRIES_URLS}/${id}`, {
       method: 'POST',
       headers: {
@@ -35,6 +34,7 @@ const Rating: FC<RatingProps> = ({ placeId, currCountry: { id, ratings }, getCou
       body: JSON.stringify(rating),
     });
     getCountryByIdFromApi(id, currLang);
+    addFeedback(rating);
   };
 
   const handleRatingChange = (e: any) => {
