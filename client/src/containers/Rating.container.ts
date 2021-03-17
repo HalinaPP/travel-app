@@ -1,4 +1,4 @@
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { Dispatch } from 'redux';
 import { StateModel, getCountryByIdFromApi } from '../reducers/index';
 import Rating from '../components/Rating';
