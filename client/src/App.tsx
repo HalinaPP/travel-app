@@ -32,12 +32,10 @@ const App = () => {
             <Route exact path={`/${currLang}`}>
               <CountriesListContainer inputText={inputText} />
             </Route>
-            <Route exact path="/">
-              <Redirect to={'map'} />
+            <Route exact path="/map">
               <SightsMap />
             </Route>
           </Switch>
-          <SightsMap />
           <Footer />
         </Router>
       </LanguageContext.Provider>

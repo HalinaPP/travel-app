@@ -47,6 +47,8 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
     history.push(`/${currLang}${location.pathname.slice(3)}`);
   }, [currLang]);
 
+  const mapLink = `/${currLang}/map`;
+
   return (
     <header>
       <div className="wrapper">
@@ -58,31 +60,29 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
               </Link>
             </div>
             <li className="nav__item">
-              <a href="/map" className="link">
-                Map
-              </a>
+              <Link to={mapLink}>
+                <a href="/map" className="link">
+                  Map
+                </a>
+              </Link>
             </li>
           </ul>
         </nav>
         <div className="users-block">
           <div className="search-block">{isMain && <Search inputText={inputText} onInputChange={onInputChange} />}</div>
-          { isUserLogged ?
-            <div style={loggedStyles.profileImage}
-              className="avatar">
+          {isUserLogged ? (
+            <div style={loggedStyles.profileImage} className="avatar">
               <a href="#"></a>
-            </div> :
-            <div style={loggedStyles.profileImage}
-              onClick={() => setAuthModalOpen(true)}
-              className="avatar">
             </div>
-          }
-          { isAuthModalOpen && <Auth/> }
+          ) : (
+            <div style={loggedStyles.profileImage} onClick={() => setAuthModalOpen(true)} className="avatar"></div>
+          )}
+          {isAuthModalOpen && <Auth />}
           <div className="settings" onClick={() => langToggle()} style={styles.setting}>
             <a href="#"></a>
           </div>
 
           <Language />
-
         </div>
       </div>
     </header>
