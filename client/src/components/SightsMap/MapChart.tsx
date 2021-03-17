@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import React, { memo } from 'react';
+import React, { memo, useContext, useEffect, FC } from 'react';
 import { ZoomableGroup, ComposableMap, Geographies, Geography, Marker } from 'react-simple-maps';
 import { Link } from 'react-router-dom';
+import { MapAllListProps } from './MapChart.model';
+import { LanguageContext } from '../../utils/LanguageContext';
 
 const geoUrl = 'https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json';
 const countryLink = '/ru/country/604c9011d16ff03e6d7ae271';
@@ -24,57 +26,72 @@ const markers = [
 //   return `${Math.round(num / 100) / 10}K`;
 // };
 
-const MapChart = ({ setTooltipContent }: any) => (
-  <>
-    <ComposableMap data-tip="" projectionConfig={{ scale: 200 }}>
-      <ZoomableGroup>
-        <Geographies geography={geoUrl}>
-          {({ geographies }: any) =>
-            geographies.map(
-              (geo: { rsmKey: React.Key | null | undefined; properties: { NAME: any; POP_EST: any } }) => (
-                <Geography
-                  key={geo.rsmKey}
-                  geography={geo}
-                  onMouseEnter={() => {
-                    const { NAME, POP_EST } = geo.properties;
-                    // setTooltipContent(`${NAME} — ${rounded(POP_EST)}`);
-                  }}
-                  onMouseLeave={() => {
-                    setTooltipContent('');
-                  }}
-                  style={{
-                    default: {
-                      fill: '#D6D6DA',
-                      outline: 'none',
-                    },
-                    hover: {
-                      fill: '#F53',
-                      outline: 'none',
-                    },
-                    pressed: {
-                      fill: '#E42',
-                      outline: 'none',
-                    },
-                  }}
-                />
-              ),
-            )
-          }
-        </Geographies>
-        {markers.map(({ name, coordinates, markerOffset }) => (
-          <Link to={countryLink}>
-            {/* @ts-ignore */}
-            <Marker key={name} coordinates={coordinates}>
-              <circle r={10} fill="#F00" stroke="#fff" strokeWidth={2} />
-              <text textAnchor="middle" y={markerOffset} style={{ fontFamily: 'system-ui', fill: '#5D5A6D' }}>
-                {name}
-              </text>
-            </Marker>
-          </Link>
-        ))}
-      </ZoomableGroup>
-    </ComposableMap>
-  </>
-);
+const MapChart: FC<MapAllListProps> = ({ setTooltipContent, countriesWP, getCountriesWithPlacesInfoFromApi }) => {
+  const { lang: currLang } = useContext(LanguageContext);
+// это данные
+  console.log(countriesWP);
+  useEffect(() => {
+    const firstLoad = async () => {
+      await getCountriesWithPlacesInfoFromApi(currLang);
+    };
+    firstLoad();
+  }, []);
+
+  useEffect(() => {
+    getCountriesWithPlacesInfoFromApi(currLang);
+  }, [currLang]);
+  return (
+    <>
+      <ComposableMap data-tip="" projectionConfig={{ scale: 200 }}>
+        <ZoomableGroup>
+          <Geographies geography={geoUrl}>
+            {({ geographies }: any) =>
+              geographies.map(
+                (geo: { rsmKey: React.Key | null | undefined; properties: { NAME: any; POP_EST: any } }) => (
+                  <Geography
+                    key={geo.rsmKey}
+                    geography={geo}
+                    onMouseEnter={() => {
+                      const { NAME, POP_EST } = geo.properties;
+                      // setTooltipContent(`${NAME} — ${rounded(POP_EST)}`);
+                    }}
+                    onMouseLeave={() => {
+                      setTooltipContent('');
+                    }}
+                    style={{
+                      default: {
+                        fill: '#D6D6DA',
+                        outline: 'none',
+                      },
+                      hover: {
+                        fill: '#F53',
+                        outline: 'none',
+                      },
+                      pressed: {
+                        fill: '#E42',
+                        outline: 'none',
+                      },
+                    }}
+                  />
+                ),
+              )
+            }
+          </Geographies>
+          {markers.map(({ name, coordinates, markerOffset }) => (
+            <Link to={countryLink}>
+              {/* @ts-ignore */}
+              <Marker key={name} coordinates={coordinates}>
+                <circle r={10} fill="#F00" stroke="#fff" strokeWidth={2} />
+                <text textAnchor="middle" y={markerOffset} style={{ fontFamily: 'system-ui', fill: '#5D5A6D' }}>
+                  {name}
+                </text>
+              </Marker>
+            </Link>
+          ))}
+        </ZoomableGroup>
+      </ComposableMap>
+    </>
+  );
+};
 
 export default memo(MapChart);

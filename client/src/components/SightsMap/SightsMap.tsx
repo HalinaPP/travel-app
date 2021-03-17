@@ -3,14 +3,14 @@ import { FC, useCallback, useEffect, useState, useContext } from 'react';
 import ReactTooltip from 'react-tooltip';
 import { SightsMapProps } from './SightsMap.model';
 
-import MapChart from './MapChart';
+import { MapChartContainer } from '../../containers/MapChart.container';
 
 const SightsMap: FC<SightsMapProps> = () => {
   const [content, setContent] = useState('');
 
   return (
     <main className="map_chart">
-      <MapChart setTooltipContent={setContent} />
+      <MapChartContainer setTooltipContent={setContent} />
       <ReactTooltip>{content}</ReactTooltip>
     </main>
   );
