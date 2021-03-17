@@ -20,8 +20,14 @@ router.get(
 	'/',
 	wrap(async (req, res) => {
 		const lang = req.query.lang || DEFAULT_LANG;
-		const data = await countryService.getAll(lang);
-		res.send(data);
+		const isAll = req.query.all || false;
+		let data;
+		if(isAll){
+			data= await countryService.getAllWithPlaces(lang);
+		}else{
+			data = await countryService.getAll(lang);
+		}
+		res.json(data);
 	})
 );
 
