@@ -40,7 +40,7 @@ const CountriesList: FC<CountriesListProps> = ({ inputText, getCountriesFromApi,
       const randCountry = countries[randIndex];
       return {
         randCountryName: randCountry.name,
-        randCountryDescription: randCountry.description.slice(0, 300),
+        randCountryDescription: `${randCountry.description.slice(0, 300)}...`,
         randCountryLink: `${currLang}/country/${randCountry.id}`,
         randCountryImage: { backgroundImage: `url(${randCountry.imageUrl})` },
       };
