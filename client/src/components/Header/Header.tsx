@@ -11,6 +11,8 @@ import { StateModel } from '../../reducers';
 import defaultImage from '../../assets/auth-icon.png';
 import { LanguageContext } from '../../utils/LanguageContext';
 import useWindowSize from '../../utils/useWindowSize';
+import { AuthProps } from '../Auth/auth.model';
+import translation from '../../constants/translation';
 
 const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
   const { lang: currLang } = useContext(LanguageContext);
@@ -33,6 +35,14 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
       backgroundImage: "url('/icons/settings.png')",
     },
   };
+  const closeAuthModalOnClick = (e: any) => {
+    if (isAuthModalOpen && e.target.classList.contains('auth__overlay')) {
+      setAuthModalOpen(false);
+    }
+  };
+  const closeAuthModal = () => {
+    setAuthModalOpen(false);
+  };
 
   function langToggle() {
     setIsSettingOpen(prevState => !prevState);
@@ -50,7 +60,7 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
   const mapLink = `/${currLang}/map`;
 
   return (
-    <header>
+    <header onClick={closeAuthModalOnClick}>
       <div className="wrapper">
         <nav className="header__nav nav">
           <ul className="header__nav__list nav__list">
@@ -61,7 +71,7 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
             </div>
             <li className="nav__item">
               <Link to={mapLink} className="link">
-                Map
+                {translation[currLang].map}
               </Link>
             </li>
           </ul>
@@ -75,14 +85,10 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
           ) : (
             <div style={loggedStyles.profileImage} onClick={() => setAuthModalOpen(true)} className="avatar"></div>
           )}
-          {isAuthModalOpen && <Auth />}
-          <div className="settings" onClick={() => langToggle()} style={styles.setting}>
-            <a href="#"></a>
-          </div>
-
           <Language />
         </div>
       </div>
+      {isAuthModalOpen && <Auth closeAuthModal={closeAuthModal} />}
     </header>
   );
 };

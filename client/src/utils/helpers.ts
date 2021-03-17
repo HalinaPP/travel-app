@@ -8,7 +8,7 @@ export const getSightRatings = (id: string, ratings: Ratings[]): Ratings[] =>
 export const countRate = (ratings: Ratings[]): number =>
   Math.round(ratings.reduce((prev, curr) => prev + curr.rating / ratings.length, 0) * 10) / 10;
 
-export const findNickName = (arr: Ratings[], name: string): Ratings | undefined =>
-  arr.find((n: Ratings) => n.nickName === name);
+export const findNickName = (arr: Ratings[], name: string, plcId: string): Ratings | undefined =>
+  arr.find((n: Ratings) => n.nickName === name && n.placeId === plcId);
 
 export const decimalize = (n: number): string => (n < 10 ? `0${n}` : `${n}`);

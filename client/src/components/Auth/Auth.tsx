@@ -1,7 +1,7 @@
 import './auth.scss';
 import React, { FC, useState, useEffect, useContext, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ResponseErrorData, ResponseSuccessData, User } from './auth.model';
+import { AuthProps, ResponseErrorData, ResponseSuccessData, User } from './auth.model';
 import { ValidateDataParams, validateData } from '../../utils/inputsValidation';
 import { AuthConstants } from '../../constants/auth.constants';
 import { authApi } from '../../utils/apiConnect';
@@ -13,7 +13,7 @@ import { LanguageContext } from '../../utils/LanguageContext';
 import Spinner from '../AvatarUpload/spinner';
 import { returnSuccessAuthMessage, returnErrorAuthMessage } from '../../utils/returnAuthMessage';
 
-const Auth: FC = () => {
+const Auth: FC<AuthProps> = ({ closeAuthModal }: AuthProps) => {
   useSelector((state: StateModel) => state.user);
   const dispatch = useDispatch();
   const { lang: currLang } = useContext(LanguageContext);
@@ -99,6 +99,7 @@ const Auth: FC = () => {
   };
   const onSuccessLogin = (data: User) => {
     dispatch(setUser(data));
+    closeAuthModal();
     setNicknameInput(null);
     setPasswordInput(null);
     setTimeout(() => {
@@ -147,71 +148,74 @@ const Auth: FC = () => {
   };
 
   return (
-    <div className="auth__modal close">
-      <div className="tabs">
-        <button
-          className={`sign--up title tab ${tab === AuthConstants.signUp[currLang] ? 'active' : null}`}
-          onClick={() => setTab(AuthConstants.signUp[currLang])}
-        >
-          { AuthConstants.signUp[currLang] }
-        </button>
-        <button
-          className={`sign--in title tab ${tab === AuthConstants.signIn[currLang] ? 'active' : null}`}
-          onClick={() => setTab(AuthConstants.signIn[currLang])}
-        >
-          { AuthConstants.signIn[currLang] }
-        </button>
-      </div>
+    <div className="auth__overlay">
+      <div className="auth__modal">
+        <div className="tabs">
+          <button
+            className={`sign--up title tab ${tab === AuthConstants.signUp[currLang] ? 'active' : null}`}
+            onClick={() => setTab(AuthConstants.signUp[currLang])}
+          >
+            { AuthConstants.signUp[currLang] }
+          </button>
+          <button
+            className={`sign--in title tab ${tab === AuthConstants.signIn[currLang] ? 'active' : null}`}
+            onClick={() => setTab(AuthConstants.signIn[currLang])}
+          >
+            { AuthConstants.signIn[currLang] }
+          </button>
+        </div>
 
-      <div className="auth__block">
+        <div className="auth__block">
 
-        <form encType="multipart/form-data"
-          onSubmit={ tab === AuthConstants.signUp[currLang] ? onSignUp : onSignIn }
-          className="modal-content animate">
-          {
-            isSignUp ?
-              <AvatarUpload onImageReady={ (target) => onImageReady(target) } />
-              : null
-          }
-
-          <div className="container">
-            <label htmlFor="nickname">
-              <div className="uname">
-                { AuthConstants.nickname[currLang] }
-              </div>
-            </label>
-            <input value={ nicknameInput || ''}
-              onChange={ onNicknameChange }
-              type="text" name="nickname" required />
-
-            <label htmlFor="password">
-              <div className="password">
-                { AuthConstants.password[currLang] }
-              </div>
-            </label>
-            <input value={ passwordInput || ''}
-              onChange={ onPasswordChange }
-              type="password" name="password" required />
-
-            { error ? <div className="error">{error}</div> : null }
-
-            { success ? <div className="success">{success}</div> : null }
-
-            { loading ?
-              <Spinner/> :
-              <button disabled={disabledButton} type="submit" className="btn">
-                {
-                  isSignUp ?
-                    AuthConstants.signUp[currLang] :
-                    AuthConstants.signIn[currLang]
-                }
-              </button>
+          <form encType="multipart/form-data"
+            onSubmit={ tab === AuthConstants.signUp[currLang] ? onSignUp : onSignIn }
+            className="modal-content animate">
+            {
+              isSignUp ?
+                <AvatarUpload onImageReady={ (target) => onImageReady(target) } />
+                : null
             }
 
-          </div>
-        </form>
+            <div className="container">
+              <label htmlFor="nickname">
+                <div className="uname">
+                  { AuthConstants.nickname[currLang] }
+                </div>
+              </label>
+              <input value={ nicknameInput || ''}
+                onChange={ onNicknameChange }
+                type="text" name="nickname" required />
+
+              <label htmlFor="password">
+                <div className="password">
+                  { AuthConstants.password[currLang] }
+                </div>
+              </label>
+              <input value={ passwordInput || ''}
+                onChange={ onPasswordChange }
+                type="password" name="password" required />
+
+              { error ? <div className="error">{error}</div> : null }
+
+              { success ? <div className="success">{success}</div> : null }
+
+              { loading ?
+                <Spinner/> :
+                <button disabled={disabledButton} type="submit" className="btn">
+                  {
+                    isSignUp ?
+                      AuthConstants.signUp[currLang] :
+                      AuthConstants.signIn[currLang]
+                  }
+                </button>
+              }
+
+            </div>
+          </form>
+        </div>
       </div>
     </div>
+
   );
 };
 

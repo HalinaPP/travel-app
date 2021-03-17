@@ -9,8 +9,8 @@ import translation from '../../constants/translation';
 import { LanguageContext } from '../../utils/LanguageContext';
 
 const SightsList: FC<SightProps> = ({ sights, ratings }) => {
-  const { lang: currang } = useContext(LanguageContext);
-  const langsInfo = translation[currang];
+  const { lang: currLang } = useContext(LanguageContext);
+  const langsInfo = translation[currLang];
 
   const initialData = {
     sight: { id: '', name: '', description: '', imageUrl: '' },
@@ -18,6 +18,7 @@ const SightsList: FC<SightProps> = ({ sights, ratings }) => {
   };
   const [isOpen, setIsOpen] = useState(false);
   const [popupData, setPopupData] = useState(initialData);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   const openPopup = useCallback(
     (sight: Sights, currRatings: Ratings[]) => {
@@ -39,9 +40,7 @@ const SightsList: FC<SightProps> = ({ sights, ratings }) => {
             <div
               className="slide"
               style={{ backgroundImage: `url(${item.imageUrl})` }}
-              onClick={() => {
-                openPopup(item, sightRatings);
-              }}
+              onClick={() => openPopup(item, sightRatings)}
             >
               <div className="overlay"></div>
               <div className="slide__title">{item.name}</div>
@@ -56,6 +55,33 @@ const SightsList: FC<SightProps> = ({ sights, ratings }) => {
     [sights],
   );
 
+  const switchFullscreen = () => {
+    setIsFullscreen((fullscreen) => !fullscreen);
+  };
+
+  const expandButtonClass = isFullscreen
+    ? 'fullScr fullScr--exit'
+    : 'fullScr fullScr--enter';
+  const expandButtonIconSrc = isFullscreen
+    ? '/icons/fs--exit.png'
+    : '/icons/fs.png';
+  const expandButton = (<div className={expandButtonClass}>
+    <img src={expandButtonIconSrc} alt="full screen"
+      onClick={switchFullscreen} />
+  </div>);
+  const fullscreenElement = document.getElementById('wrapper');
+
+  const toggleFullscreen = () => {
+    if (isFullscreen) {
+      fullscreenElement?.requestFullscreen();
+    } else {
+      document.exitFullscreen()
+        .catch(err => Promise.resolve(err));
+    }
+  };
+
+  useEffect(() => toggleFullscreen(), [isFullscreen]);
+
   useEffect(() => {}, [popupData]);
 
   function getSliderCount() {
@@ -69,13 +95,25 @@ const SightsList: FC<SightProps> = ({ sights, ratings }) => {
     return 1;
   }
 
+  const carousel =
+    <Carousel className="slider" isRTL={false}
+      pagination={false} itemsToScroll={1}
+      itemsToShow={getSliderCount()} >
+      {getSightsList()}
+    </Carousel>;
+
+  const images = (
+    <div className="slider">
+      {getSightsList()}
+    </div>
+  );
+
   return (
     <section className="sight-slider" id="sight">
-      <div className="wrapper">
+      <div className="wrapper" id="wrapper">
         <h3 className="subtitle">{langsInfo.sights}</h3>
-        <Carousel itemsToScroll={1} itemsToShow={getSliderCount()} isRTL={false} pagination={false} className="slider">
-          {getSightsList()}
-        </Carousel>
+        {expandButton}
+        {isFullscreen ? images : carousel}
       </div>
       <Feedback isOpen={isOpen} setIsOpen={setIsOpen} sight={popupData.sight} ratings={popupData.ratings} />
     </section>
