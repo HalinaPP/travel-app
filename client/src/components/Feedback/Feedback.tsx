@@ -22,9 +22,16 @@ const Feedback: FC<FeedbackProps> = ({ setIsOpen, isOpen, sight, ratings }) => {
           const key = `rat_${index}`;
           return (
             <div className="user__block" key={key}>
-              <div className="rating">
-                {oneRating.rating}
-                <div className="icon--star icon" />
+              <div className="bubble">
+                <div className="date"> </div>
+                <div className="rating">
+                  {oneRating.rating}
+                  <div className="icon--star icon" />
+                </div>
+                <div className="text">
+                  Awesome place to observe my favourite aligators at Florida, the quality of the
+                  video is great.{' '}
+                </div>
               </div>
               <div className="user_data">
                 <img src={oneRating.avatar} alt="" className="avatar" />
