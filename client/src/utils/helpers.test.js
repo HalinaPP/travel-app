@@ -1,5 +1,5 @@
 import { countRate, findNickName, decimalize } from './helpers';
-import { validateData, ValidateDataParams } from './inputsValidation';
+import { validateData } from './inputsValidation';
 
 describe('тест функции countRate', () => {
   test('корректно возвращает среднее значение', () => {

@@ -63,6 +63,8 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
     history.push(`/${currLang}${location.pathname.slice(3)}`);
   }, [currLang]);
 
+  const mapLink = `/${currLang}/map`;
+
   return (
     <header onClick={closeAuthModalOnClick}>
       <div className="wrapper">
@@ -74,34 +76,29 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
               </Link>
             </div>
             <li className="nav__item">
-              <a href="#" className="link">
-                { translation[currLang].map }
-              </a>
+              <Link to={mapLink} className="link">
+                {translation[currLang].map}
+              </Link>
             </li>
           </ul>
         </nav>
         <div className="users-block">
           <div className="search-block">{isMain && <Search inputText={inputText} onInputChange={onInputChange} />}</div>
-          { isUserLogged ?
-            <div style={loggedStyles.profileImage}
-              className="avatar">
+          {isUserLogged ? (
+            <div style={loggedStyles.profileImage} className="avatar">
               <div className="settings__dropdown">
                 <button className="btn" onClick={logOut}>
-                  { AuthConstants.signOut[currLang] }
+                  {AuthConstants.signOut[currLang]}
                 </button>
               </div>
-            </div> :
-            <div style={loggedStyles.profileImage}
-              onClick={() => setAuthModalOpen(true)}
-              className="avatar">
             </div>
-          }
-
+          ) : (
+            <div style={loggedStyles.profileImage} onClick={() => setAuthModalOpen(true)} className="avatar"></div>
+          )}
           <Language />
-
         </div>
       </div>
-      { isAuthModalOpen && <Auth closeAuthModal={closeAuthModal}/> }
+      {isAuthModalOpen && <Auth closeAuthModal={closeAuthModal} />}
     </header>
   );
 };

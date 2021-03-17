@@ -12,6 +12,7 @@ main {
 footer {
   height: 20rem;
   background: #196469;
+  z-index: 10;
 }
 
 @media (max-width: 640px) {

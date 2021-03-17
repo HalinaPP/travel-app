@@ -3,8 +3,8 @@ import { ACTIONS } from '../actions/constants';
 
 import { LANGS } from '../constants/constants';
 import { authApi, travelApi } from '../utils/apiConnect';
-import { setCountries, setCountry, setUser } from '../actions/index';
-
+import { setCountries, setCountry, setUser, setCountriesWithPlaces } from '../actions/index';
+import { MapAllProps } from '../components/SightsMap/MapChart.model';
 import { CountryProps, CountryWithPlacesProps } from '../components/Country/Country.model';
 import { AuthData, User } from '../components/Auth/auth.model';
 
@@ -12,6 +12,7 @@ export interface StateModel {
   user?: User;
   countries?: CountryProps[];
   currCountry?: CountryWithPlacesProps;
+  countriesWP?: MapAllProps;
 }
 
 export const initialState: StateModel = {
@@ -33,6 +34,7 @@ export const initialState: StateModel = {
     promoDescription: '',
   },
   user: undefined,
+  countriesWP: undefined,
 };
 
 export const reducer = (state = initialState, action: any): StateModel => {
@@ -41,6 +43,11 @@ export const reducer = (state = initialState, action: any): StateModel => {
       return {
         ...state,
         countries: action.payload,
+      };
+    case ACTIONS.SET_COUNTRIES_WithPlaces_API:
+      return {
+        ...state,
+        countriesWP: action.payload,
       };
     case ACTIONS.SET_COUNTRY_API:
       return {
@@ -73,4 +80,11 @@ export const getCountryByIdFromApi = (id: string, lang: string) => async (dispat
   const country = await travelApi.getCountryById(id, lang);
   dispatch(setCountry(country));
   return country;
+};
+
+export const getCountriesWithPlacesInfoFromApi = (lang: string) => async (dispatch: Dispatch) => {
+  const countries = await travelApi.getCountriesWithPlacesInfo(lang);
+  console.log('ff=', lang, countries);
+  dispatch(setCountriesWithPlaces(countries));
+  return countries;
 };
