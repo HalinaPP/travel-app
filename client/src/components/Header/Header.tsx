@@ -12,6 +12,7 @@ import defaultImage from '../../assets/auth-icon.png';
 import { LanguageContext } from '../../utils/LanguageContext';
 import useWindowSize from '../../utils/useWindowSize';
 import { AuthProps } from '../Auth/auth.model';
+import translation from '../../constants/translation';
 
 const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
   const { lang: currLang } = useContext(LanguageContext);
@@ -68,7 +69,7 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
             </div>
             <li className="nav__item">
               <a href="#" className="link">
-                  Map
+                { translation[currLang].map }
               </a>
             </li>
           </ul>
