@@ -6,23 +6,23 @@ import { Link } from 'react-router-dom';
 const geoUrl = 'https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json';
 const countryLink = '/ru/country/604c9011d16ff03e6d7ae271';
 const markers = [
-  { markerOffset: 0, name: 'Астана-Байтерек', coordinates: [71.430411, 51.128207] },
-  { markerOffset: 0, name: 'Мавзолей Ходжи Ахмеда Ясави', coordinates: [71.430411, 51.128207] },
-  { markerOffset: 0, name: 'Космодром Байконур', coordinates: [63.286159, 45.926185] },
-  { markerOffset: 0, name: 'Карта Казахстана «Атамекен»', coordinates: [71.417565, 51.149306] },
-  { markerOffset: 0, name: 'Петроглифы Тамгалы-Тас', coordinates: [76.996462, 44.061422] },
-  { markerOffset: 0, name: 'Чарынский каньон', coordinates: [79.095187, 43.353811] },
+  { markerOffset: 15, name: 'Астана-Байтерек', coordinates: [71.430411, 51.128207] },
+  { markerOffset: 15, name: 'Мавзолей Ходжи Ахмеда Ясави', coordinates: [71.430411, 51.128207] },
+  { markerOffset: 15, name: 'Космодром Байконур', coordinates: [63.286159, 45.926185] },
+  { markerOffset: 15, name: 'Карта Казахстана «Атамекен»', coordinates: [71.417565, 51.149306] },
+  { markerOffset: 15, name: 'Петроглифы Тамгалы-Тас', coordinates: [76.996462, 44.061422] },
+  { markerOffset: 15, name: 'Чарынский каньон', coordinates: [79.095187, 43.353811] },
 ];
 
-const rounded = (num: number) => {
-  if (num > 1000000000) {
-    return `${Math.round(num / 100000000) / 10}Bn`;
-  }
-  if (num > 1000000) {
-    return `${Math.round(num / 100000) / 10}M`;
-  }
-  return `${Math.round(num / 100) / 10}K`;
-};
+// const rounded = (num: number) => {
+//   if (num > 1000000000) {
+//     return `${Math.round(num / 100000000) / 10}Bn`;
+//   }
+//   if (num > 1000000) {
+//     return `${Math.round(num / 100000) / 10}M`;
+//   }
+//   return `${Math.round(num / 100) / 10}K`;
+// };
 
 const MapChart = ({ setTooltipContent }: any) => (
   <>
@@ -37,7 +37,7 @@ const MapChart = ({ setTooltipContent }: any) => (
                   geography={geo}
                   onMouseEnter={() => {
                     const { NAME, POP_EST } = geo.properties;
-                    setTooltipContent(`${NAME} — ${rounded(POP_EST)}`);
+                    // setTooltipContent(`${NAME} — ${rounded(POP_EST)}`);
                   }}
                   onMouseLeave={() => {
                     setTooltipContent('');

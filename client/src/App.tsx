@@ -32,7 +32,8 @@ const App = () => {
             <Route exact path={`/${currLang}`}>
               <CountriesListContainer inputText={inputText} />
             </Route>
-            <Route path='/map'>
+            <Route exact path="/">
+              <Redirect to={'map'} />
               <SightsMap />
             </Route>
           </Switch>
