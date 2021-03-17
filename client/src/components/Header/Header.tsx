@@ -60,10 +60,8 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
               </Link>
             </div>
             <li className="nav__item">
-              <Link to={mapLink}>
-                <a href="/map" className="link">
-                  Map
-                </a>
+              <Link to={mapLink} className="link">
+                Map
               </Link>
             </li>
           </ul>

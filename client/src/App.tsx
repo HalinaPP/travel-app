@@ -26,14 +26,14 @@ const App = () => {
             <Route exact path="/">
               <Redirect to={`/${currLang}`} />
             </Route>
+            <Route path={`/${currLang}/map`}>
+              <SightsMap />
+            </Route>
             <Route path={`/${currLang}/country/:id`}>
               <CountryContainer />
             </Route>
             <Route exact path={`/${currLang}`}>
               <CountriesListContainer inputText={inputText} />
-            </Route>
-            <Route exact path="/map">
-              <SightsMap />
             </Route>
           </Switch>
           <Footer />
