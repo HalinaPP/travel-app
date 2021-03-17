@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useContext, useState } from 'react';
+import React, { FC, Fragment, useContext, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -9,15 +9,19 @@ import { LanguageContext } from '../../utils/LanguageContext';
 import { API_COUNTRIES_URLS } from '../../constants/constants';
 import translation from '../../constants/translation';
 
-const Rating: FC<RatingProps> = ({ placeId, currCountry: { id, ratings }, getCountryByIdFromApi, addFeedback }) => {
+const Rating: FC<RatingProps> = ({
+  placeId,
+  currCountry: { id, ratings },
+  getCountryByIdFromApi,
+  addFeedback,
+}) => {
   const user = useSelector((state: any) => state.user);
   const { nickname, avatar } = user || { nickname: null, avatar: null };
   const isUserLogged = !!user;
   const { lang: currLang } = useContext(LanguageContext);
   const alreadyRated = findNickName(ratings, nickname, placeId as string);
-  const [curRating, setCurRating] = useState(alreadyRated?.rating || 0);
-  const [feedbackText, setFeedbackText] = useState(alreadyRated?.feedbackText || '');
-
+  const [curRating, setCurRating] = useState(0);
+  const [feedbackText, setFeedbackText] = useState('');
   const postRating = async (e: any) => {
     const rating = {
       placeId,
@@ -35,6 +39,8 @@ const Rating: FC<RatingProps> = ({ placeId, currCountry: { id, ratings }, getCou
     });
     getCountryByIdFromApi(id, currLang);
     addFeedback(rating);
+    setFeedbackText('');
+    setCurRating(0);
   };
 
   const handleRatingChange = (e: any) => {
@@ -45,10 +51,10 @@ const Rating: FC<RatingProps> = ({ placeId, currCountry: { id, ratings }, getCou
   };
 
   const disabled = alreadyRated !== undefined || !isUserLogged;
-  const renderRadioGroup = [5, 4, 3, 2, 1].map(e => (
+  const renderRadioGroup = [5, 4, 3, 2, 1].map((e) => (
     <Fragment key={uuidv4()}>
       <input
-        onClick={evt => handleRatingChange(evt)}
+        onClick={(evt) => handleRatingChange(evt)}
         value={e}
         type="radio"
         name="rating"
@@ -73,10 +79,10 @@ const Rating: FC<RatingProps> = ({ placeId, currCountry: { id, ratings }, getCou
         wrap="off"
         rows={5}
         cols={33}
+        value={feedbackText}
         onChange={handleTextAreaChange}
-        defaultValue={feedbackText}
         disabled={disabled}
-      ></textarea>
+      />
       <button className={`btn btn--ghost ${disabled ? 'disabled' : ''}`} onClick={postRating}>
         leave feedback
       </button>
