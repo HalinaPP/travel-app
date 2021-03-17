@@ -21,20 +21,22 @@ const Time: FC<TimeProps> = ({ timeZone }) => {
   }, []);
 
   useEffect(() => {
-    const currentDateAndTime = new Date(new Date()
-      .toLocaleString('en-US', { timeZone }));
+    if (timeZone) {
+      const currentDateAndTime = new Date(new Date()
+        .toLocaleString('en-US', { timeZone }));
 
-    const date = currentDateAndTime.getDate();
-    const month = currentDateAndTime.getMonth();
-    const year = currentDateAndTime.getFullYear();
-    const day = currentDateAndTime.getDay();
+      const date = currentDateAndTime.getDate();
+      const month = currentDateAndTime.getMonth();
+      const year = currentDateAndTime.getFullYear();
+      const day = currentDateAndTime.getDay();
 
-    const hour = currentDateAndTime.getHours();
-    const min = currentDateAndTime.getMinutes();
-    const sec = currentDateAndTime.getSeconds();
+      const hour = currentDateAndTime.getHours();
+      const min = currentDateAndTime.getMinutes();
+      const sec = currentDateAndTime.getSeconds();
 
-    setCurrentDate(`${date} ${MONTHS[currLang][month].toUpperCase()} ${year}, ${DAYS[currLang][day].toUpperCase()}`);
-    setCurrentTime(`${hour}:${decimalize(min)}:${decimalize(sec)}`);
+      setCurrentDate(`${date} ${MONTHS[currLang][month].toUpperCase()} ${year}, ${DAYS[currLang][day].toUpperCase()}`);
+      setCurrentTime(`${hour}:${decimalize(min)}:${decimalize(sec)}`);
+    }
   }, [timerValue]);
 
   return (

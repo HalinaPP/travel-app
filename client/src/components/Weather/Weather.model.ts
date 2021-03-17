@@ -1,3 +1,3 @@
 export interface WeatherProps {
-  smr?: any
+  capital: string
 }

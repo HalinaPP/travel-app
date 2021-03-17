@@ -1,3 +1,7 @@
+import { CountryProps } from '../Country/Country.model';
+
 export interface CountriesNavigatorProps {
-  any?: any;
+  currCountryName: string;
+  countries?: CountryProps[];
+  getCountriesFromApi: (lang: string) => void;
 }
