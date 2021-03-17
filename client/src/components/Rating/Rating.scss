@@ -4,11 +4,13 @@
   justify-content: space-around;
   text-align: center;
   justify-items: center;
-  background: linear-gradient(91.97deg, #2a8086 14.73%, #0d444c 97.52%);
-  width: 25.5rem;
-  height: 5.2rem;
-  padding: 0 2rem;
-  margin: 3.4rem .9rem 6.3rem auto;
+  color: #616167;
+  border: 1px solid #ad954b;
+  background-color: transparent;
+  width: 20rem;
+  height: 4rem;
+  padding: 0 1rem;
+  margin: 1.4rem 0;
   border-radius: 4rem;
   z-index: 1;
 
@@ -18,7 +20,7 @@
   label {
     display: block;
     flex: 1;
-    font-size: 2.8rem;
+    font-size: 2.4rem;
     align-self: center;
     margin-bottom: 1px;
     cursor: pointer;
@@ -31,13 +33,30 @@
   & > input:checked ~ label:hover,
   & > label:hover ~ input:checked ~ label,
   & > input:checked ~ label:hover ~ label {
-    color: #ffb342;
+    color: #ad954b;
   }
   &.disabled {
-    background: transparent;
-    border: 2px solid #0d444c;
-    & > label {
-      cursor: not-allowed;
-    }
+    display: none;
+  }
+}
+
+.feedback__form {
+  margin: 1rem 0;
+}
+.feedback-textarea {
+  resize: none;
+  outline: none;
+  border: none;
+  position: relative;
+  width: 100%;
+  height: 19rem;
+  padding: 1.4rem 2.8rem;
+  margin-bottom: 1.4rem;
+
+  background: #ffffff;
+  box-shadow: 0px 2px 30px rgba(0, 0, 0, 0.06);
+  border-radius: 1rem;
+  &.disabled {
+    display: none;
   }
 }

@@ -122,6 +122,9 @@ paths:
                 avatar:
                   type: string
                   description: link to the user's avatar
+                feedbackText:
+                  type: string
+                  description: user's feedback
               required:
                 - placeId
                 - userId
@@ -303,3 +306,6 @@ components:
         avatar:
           type: string
           example: www.example.com/example.jpg
+        feedbackText:
+          type: string
+          example: I was eaten by a crocodile! 5 stars out of 5

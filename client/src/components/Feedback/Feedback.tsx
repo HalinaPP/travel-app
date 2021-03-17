@@ -5,7 +5,6 @@ import { setInnerHtml, countRate } from '../../utils/helpers';
 import { RatingContainer } from '../../containers/Rating.container';
 
 const Feedback: FC<FeedbackProps> = ({ setIsOpen, isOpen, sight, ratings }) => {
-  const avatar = '/images/avatar.png';
   const rate = countRate(ratings);
 
   const closeModal = (e: any) => {
@@ -15,6 +14,10 @@ const Feedback: FC<FeedbackProps> = ({ setIsOpen, isOpen, sight, ratings }) => {
     }
   };
 
+  const addFeedback = (newFeedback: any) => {
+    ratings.push(newFeedback);
+  };
+
   const sightUserRatings = useCallback(
     () => (
       <div className="feedback_container">
@@ -22,9 +25,13 @@ const Feedback: FC<FeedbackProps> = ({ setIsOpen, isOpen, sight, ratings }) => {
           const key = `rat_${index}`;
           return (
             <div className="user__block" key={key}>
-              <div className="rating">
-                {oneRating.rating}
-                <div className="icon--star icon" />
+              <div className="bubble">
+                <div className="date"> </div>
+                <div className="rating">
+                  {oneRating.rating}
+                  <div className="icon--star icon" />
+                </div>
+                <div className="text">{oneRating.feedbackText}</div>
               </div>
               <div className="user_data">
                 <img src={oneRating.avatar} alt="" className="avatar" />
@@ -60,7 +67,7 @@ const Feedback: FC<FeedbackProps> = ({ setIsOpen, isOpen, sight, ratings }) => {
         </div>
         <h2 className="popup_title">{sight.name}</h2>
         <div className="text" dangerouslySetInnerHTML={setInnerHtml(sight.description)} />
-        <RatingContainer placeId={sight.id} />
+        <RatingContainer placeId={sight.id} addFeedback={addFeedback} />
         {sightUserRatings()}
       </div>
     </div>
