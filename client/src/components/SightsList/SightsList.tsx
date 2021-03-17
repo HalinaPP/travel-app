@@ -1,7 +1,6 @@
 import './sightsList.scss';
 import { FC, useCallback, useEffect, useState, useContext, useRef } from 'react';
 import Carousel from 'react-elastic-carousel';
-import ImageGallery from 'react-image-gallery';
 import { Ratings, SightProps, Sights } from './SightsList.model';
 import { countRate, getSightRatings } from '../../utils/helpers';
 import Feedback from '../Feedback/Feedback';
@@ -10,8 +9,8 @@ import translation from '../../constants/translation';
 import { LanguageContext } from '../../utils/LanguageContext';
 
 const SightsList: FC<SightProps> = ({ sights, ratings }) => {
-  const { lang: currang } = useContext(LanguageContext);
-  const langsInfo = translation[currang];
+  const { lang: currLang } = useContext(LanguageContext);
+  const langsInfo = translation[currLang];
 
   const initialData = {
     sight: { id: '', name: '', description: '', imageUrl: '' },
