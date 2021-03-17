@@ -7,6 +7,7 @@ import { RatingProps } from './Rating.model';
 import { findNickName } from '../../utils/helpers';
 import { LanguageContext } from '../../utils/LanguageContext';
 import { API_COUNTRIES_URLS } from '../../constants/constants';
+import translation from '../../constants/translation';
 
 const Rating: FC<RatingProps> = ({ placeId, currCountry: { id, ratings }, getCountryByIdFromApi }) => {
   const user = useSelector((state: any) => state.user);
@@ -63,7 +64,7 @@ const Rating: FC<RatingProps> = ({ placeId, currCountry: { id, ratings }, getCou
   return (
     <div className="feedback__form">
       <label className="title" htmlFor="feedback-textarea">
-        {alreadyRated ? 'Thanks for your feedback' : 'Leave your feedback:'}
+        {alreadyRated ? translation[currLang].feedbackThanks : translation[currLang].feedbackLeave}
       </label>
       <div className={`Rating ${disabled ? 'disabled' : ''}`}>{renderRadioGroup}</div>
       <textarea
