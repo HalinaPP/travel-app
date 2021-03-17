@@ -11,6 +11,7 @@ export interface Ratings {
   nickName: string;
   rating: number;
   avatar: string;
+  feedbackText?: string;
 }
 
 export interface SightProps {

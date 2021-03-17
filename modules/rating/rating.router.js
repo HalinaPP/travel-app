@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.post(
   '/:id',
-  wrap(async ({ body: { placeId, nickName, avatar, rating: rtg } }, res) => {
+  wrap(async ({ body: { placeId, nickName, avatar, feedbackText, rating: rtg } }, res) => {
     if (!validateData(placeId, nickName, rtg, avatar)) {
       throw new InvalidRequestBodyError();
     }
@@ -17,7 +17,8 @@ router.post(
       placeId,
       nickName,
       rating: rtg,
-      avatar
+      avatar,
+      feedbackText,
     });
 
     await rating.save();
