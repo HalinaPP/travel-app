@@ -5,11 +5,14 @@
     fill: #2a8086 !important;
   }
   .tooltip_text {
+    cursor: default;
     fill: transparent;
+    z-index: -1;
   }
   .mark:hover+.tooltip_text {
     fill: #0D444D;
     font-weight: 700;
+    z-index: 100;
   }
   mark:hover+.tooltip {
 
