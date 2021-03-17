@@ -1,5 +1,5 @@
 import './sightsList.scss';
-import { FC, useCallback, useEffect, useState, useContext, useRef } from 'react';
+import { FC, useCallback, useEffect, useState, useContext } from 'react';
 import Carousel from 'react-elastic-carousel';
 import { Ratings, SightProps, Sights } from './SightsList.model';
 import { countRate, getSightRatings } from '../../utils/helpers';

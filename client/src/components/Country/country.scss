@@ -96,7 +96,16 @@ main.country {
     }
   }
 
-
+  .sight-slider {
+    position: relative;
+    margin: 13rem auto 4.5rem;
+    .subtitle {
+      margin-bottom: 2.2rem;
+      padding-left: 8.5rem;
+      color: #0d444d;
+      font-weight: 500;
+    }
+  }
 
   .about {
     & > .wrapper {
