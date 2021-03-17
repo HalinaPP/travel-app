@@ -36,7 +36,7 @@ const markers = [
   { markerOffset: 15, name: 'Matterhorn', coordinates: [7.6540745, 45.9765806] },
   { markerOffset: 15, name: 'The Dying Lion in Lucerne', coordinates: [8.3109151, 47.0584263] },
   // GEORGIA
-  { markerOffset: 15, name: 'Kazbek', coordinates: [32.0871179, 48.9359663] },
+  { markerOffset: 15, name: 'Kazbek', coordinates: [42.0871179, 42.9359663] },
   { markerOffset: 15, name: 'Svaneti', coordinates: [41.7949812, 42.6623328] },
   { markerOffset: 15, name: 'Andrew the First Called', coordinates: [44.7392383, 41.7109267] },
   { markerOffset: 15, name: 'Martvili Canyon', coordinates: [42.3735192, 42.4567207] },
@@ -106,7 +106,7 @@ const MapChart = ({ setTooltipContent }: any) => (
         {markers.map(({ name, coordinates, markerOffset }) => (
           // @ts-ignore
           <Marker key={name} coordinates={coordinates}>
-            <circle r={2} fill="yellow" stroke="#0D444D" strokeWidth={1} className="mark" />
+            <circle r={4} fill="yellow" stroke="#0D444D" strokeWidth={1} className="mark" />
             <text className="tooltip_text" textAnchor="middle" y={markerOffset} style={{ fontFamily: 'system-ui' }}>
               {name}
             </text>
