@@ -5,7 +5,6 @@ import { setInnerHtml, countRate } from '../../utils/helpers';
 import { RatingContainer } from '../../containers/Rating.container';
 
 const Feedback: FC<FeedbackProps> = ({ setIsOpen, isOpen, sight, ratings }) => {
-  const avatar = '/images/avatar.png';
   const rate = countRate(ratings);
 
   const closeModal = (e: any) => {

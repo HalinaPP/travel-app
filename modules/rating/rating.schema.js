@@ -20,7 +20,6 @@ const ratingSchema = new Schema({
   },
   feedbackText: {
     type: String,
-    require: false,
   },
 });
 

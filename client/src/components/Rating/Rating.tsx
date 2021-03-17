@@ -15,17 +15,18 @@ const Rating: FC<RatingProps> = ({ placeId, currCountry: { id, ratings }, getCou
   const { lang: currLang } = useContext(LanguageContext);
   const alreadyRated = findNickName(ratings, nickname, placeId as string);
   const [curRating, setCurRating] = useState(alreadyRated?.rating || 0);
-  const [feedbackText, setFeedbackText] = useState('');
+  const [feedbackText, setFeedbackText] = useState(alreadyRated?.feedbackText || '');
+
   const postRating = async (e: any) => {
     const rating = {
       placeId,
       nickName: nickname,
       rating: curRating,
       avatar,
-      feedbackText
+      feedbackText,
     };
     console.log(rating);
-    await fetch(`${API_COUNTRIES_URLS}${id}`, {
+    await fetch(`${API_COUNTRIES_URLS}/${id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -42,8 +43,7 @@ const Rating: FC<RatingProps> = ({ placeId, currCountry: { id, ratings }, getCou
     setFeedbackText(e.target.value);
   };
 
-  const ratingClassName = alreadyRated !== undefined || !isUserLogged ? 'Rating disabled' : 'Rating';
-
+  const disabled = alreadyRated !== undefined || !isUserLogged;
   const renderRadioGroup = [5, 4, 3, 2, 1].map(e => (
     <Fragment key={uuidv4()}>
       <input
@@ -63,19 +63,20 @@ const Rating: FC<RatingProps> = ({ placeId, currCountry: { id, ratings }, getCou
   return (
     <div className="feedback__form">
       <label className="title" htmlFor="feedback-textarea">
-        Leave your feedback:
+        {alreadyRated ? 'Thanks for your feedback' : 'Leave your feedback:'}
       </label>
-      <div className={ratingClassName}>{renderRadioGroup}</div>
+      <div className={`Rating ${disabled ? 'disabled' : ''}`}>{renderRadioGroup}</div>
       <textarea
-        className="feedback-textarea"
+        className={`feedback-textarea ${disabled ? 'disabled' : ''}`}
         name="feedback-textarea"
         wrap="off"
         rows={5}
         cols={33}
         onChange={handleTextAreaChange}
         defaultValue={feedbackText}
+        disabled={disabled}
       ></textarea>
-      <button className="btn btn--ghost" onClick={postRating}>
+      <button className={`btn btn--ghost ${disabled ? 'disabled' : ''}`} onClick={postRating}>
         leave feedback
       </button>
     </div>

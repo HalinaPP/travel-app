@@ -37,18 +37,19 @@
     color: #ad954b;
   }
   &.disabled {
-    border-color: #616167;
+    display: none;
+    // border-color: #616167;
 
-    & > input:checked ~ label,
-    & > input:checked + label:hover,
-    & > input:checked ~ label:hover,
-    & > label:hover ~ input:checked ~ label,
-    & > input:checked ~ label:hover ~ label {
-      color: white;
-    }
-    & > label {
-      cursor: not-allowed;
-    }
+    // & > input:checked ~ label,
+    // & > input:checked + label:hover,
+    // & > input:checked ~ label:hover,
+    // & > label:hover ~ input:checked ~ label,
+    // & > input:checked ~ label:hover ~ label {
+    //   color: #ad954b;
+    // }
+    // & > label {
+    //   cursor: not-allowed;
+    // }
   }
 }
 
@@ -68,4 +69,7 @@
   background: #ffffff;
   box-shadow: 0px 2px 30px rgba(0, 0, 0, 0.06);
   border-radius: 1rem;
+  &.disabled {
+    display: none;
+  }
 }
