@@ -15,6 +15,11 @@ export const AuthConstants: AuthConstantsType = {
     en: 'Sign up',
     bg: 'Регистрирай се',
   },
+  signOut: {
+    ru: 'Выйти',
+    en: 'Sign out',
+    bg: 'Отписване',
+  },
   nickname: {
     ru: 'Никнейм',
     en: 'Nickname',

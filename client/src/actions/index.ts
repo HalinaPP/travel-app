@@ -12,7 +12,7 @@ export const setCountry = (country: CountryProps): any => ({
   payload: country,
 });
 
-export const setUser = (user: User): any => ({
+export const setUser = (user: User | undefined): any => ({
   type: ACTIONS.SET_USERLOGIN,
   payload: user,
 });
