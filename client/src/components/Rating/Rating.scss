@@ -11,7 +11,6 @@
   height: 4rem;
   padding: 0 1rem;
   margin: 1.4rem 0;
-  // margin: 3.4rem 0 6.3rem auto;
   border-radius: 4rem;
   z-index: 1;
 
@@ -38,18 +37,6 @@
   }
   &.disabled {
     display: none;
-    // border-color: #616167;
-
-    // & > input:checked ~ label,
-    // & > input:checked + label:hover,
-    // & > input:checked ~ label:hover,
-    // & > label:hover ~ input:checked ~ label,
-    // & > input:checked ~ label:hover ~ label {
-    //   color: #ad954b;
-    // }
-    // & > label {
-    //   cursor: not-allowed;
-    // }
   }
 }
 
