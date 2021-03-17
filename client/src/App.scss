@@ -1,0 +1,22 @@
+#root {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+main {
+  background: #f6f9fa;
+}
+
+footer {
+  height: 20rem;
+  background: #196469;
+  z-index: 10;
+}
+
+@media (max-width: 640px) {
+  footer {
+    height: auto;
+  }
+}

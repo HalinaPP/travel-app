@@ -1,0 +1,249 @@
+@import './css/owfont-regular.css';
+
+.weather-container {
+  display: flex;
+  flex-direction: row;
+  background: rgba(255, 255, 255, 0.8);
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+  height: 16rem;
+  width: 40rem;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 0 1rem;
+}
+
+.city-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  padding-top: 1.5rem;
+  padding-right: 0;
+  padding-bottom: 1.5rem;
+  padding-left: 2.3rem;
+  width: 50%;
+  height: 100%;
+
+  .city {
+    padding-top: 0.5rem;
+
+    color: #DE6778;
+    font-weight: 700;
+    font-size: 2.4rem;
+    line-height: 2.8rem;
+  }
+
+  .temperature {
+    color: #0D444C;
+
+    font-weight: 300;
+    font-size: 4.8rem;
+    line-height: 5.6rem;
+  }
+}
+
+.icon-container {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  justify-content: flex-start;
+  align-items: center;
+
+  padding-top: 1rem;
+  padding-right: 1.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0;
+
+  height: 100%;
+  width: 50%;
+
+  color: #0D444C;
+
+  .weather-icon {
+    font-size: 12rem;
+    line-height: 10rem;
+  }
+
+  .icon-description {
+    margin-top: 0.3rem;
+    text-align: center;
+    font-size: 1.8rem;
+    line-height: 1.8rem;
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  .weather-container {
+    border-top-left-radius: 1.8rem;
+    border-top-right-radius: 1.8rem;
+    height: 14rem;
+    width: 35rem;
+  }
+
+  .city-container {
+
+    .city {
+      font-size: 2rem;
+      line-height: 2.4rem;
+    }
+    .temperature {
+      font-size: 4.2rem;
+      line-height: 5rem;
+    }
+  }
+
+  .icon-container {
+
+    .weather-icon {
+      font-size: 11rem;
+      line-height: 9rem;
+    }
+
+    .icon-description {
+      font-size: 1.6rem;
+      line-height: 1.6rem;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .weather-container {
+    border-top-left-radius: 1.6rem;
+    border-top-right-radius: 1.6rem;
+    height: 12rem;
+    width: 30rem;
+  }
+
+  .city-container {
+
+    .city {
+      font-size: 1.6rem;
+      line-height: 2rem;
+    }
+    .temperature {
+      font-size: 3.6rem;
+      line-height: 4.4rem;
+    }
+  }
+
+  .icon-container {
+
+    .weather-icon {
+      font-size: 10rem;
+      line-height: 8rem;
+    }
+
+    .icon-description {
+      font-size: 1.4rem;
+      line-height: 1.4rem;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .weather-container {
+    border-top-left-radius: 1.4rem;
+    border-top-right-radius: 1.4rem;
+    height: 11rem;
+    width: 25rem;
+  }
+
+  .city-container {
+    padding-bottom: 1.5rem;
+    padding-left: 1.5rem;
+
+    .city {
+      font-size: 1.4rem;
+      line-height: 1.8rem;
+    }
+    .temperature {
+      font-size: 3.2rem;
+      line-height: 4rem;
+    }
+  }
+
+  .icon-container {
+
+    .weather-icon {
+      font-size: 9rem;
+      line-height: 7rem;
+    }
+
+    .icon-description {
+      font-size: 1.3rem;
+      line-height: 1.3rem;
+    }
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .weather-container {
+    border-top-left-radius: 1.2rem;
+    border-top-right-radius: 1.2rem;
+    height: 10rem;
+    width: 20rem;
+  }
+
+  .city-container {
+    padding-bottom: 1rem;
+
+    .city {
+      font-size: 1.2rem;
+      line-height: 1.6rem;
+    }
+    .temperature {
+      font-size: 2.8rem;
+      line-height: 3.6rem;
+    }
+  }
+
+  .icon-container {
+
+    .weather-icon {
+      font-size: 8rem;
+      line-height: 6rem;
+    }
+
+    .icon-description {
+      font-size: 1.2rem;
+      line-height: 1.2rem;
+    }
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .weather-container {
+    border-top-left-radius: 1.4rem;
+    border-top-right-radius: 1.4rem;
+    height: 11rem;
+    width: 29rem;
+  }
+
+  .city-container {
+    padding-bottom: 1rem;
+
+    .city {
+      font-size: 1.6rem;
+      line-height: 2rem;
+    }
+    .temperature {
+      font-size: 3.6rem;
+      line-height: 4.4rem;
+    }
+  }
+
+  .icon-container {
+
+    .weather-icon {
+      font-size: 9rem;
+      line-height: 7rem;
+    }
+
+    .icon-description {
+      font-size: 1.3rem;
+      line-height: 1.3rem;
+    }
+  }
+}

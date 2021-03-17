@@ -1,0 +1,23 @@
+.map {
+  transition-property: none !important;
+  width: 50%;
+  height: 58rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 1.75rem;
+
+  margin-right: 8.5rem;
+  ymaps {
+    transition-property: none !important;
+  }
+
+  .ymaps-2-1-78-map-copyrights-promo,
+  .ymaps-2-1-78-copyright__link {
+    display: none;
+  }
+  .ymaps-2-1-78-inner-panes {
+    border-radius: 1.75rem;
+  }
+
+}

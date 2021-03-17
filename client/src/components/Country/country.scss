@@ -1,0 +1,216 @@
+body {
+  overflow: auto;
+}
+
+main.country {
+  background-color: #f6f9fa;
+  background-image: url("../../assets/ui/countries-bg.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: bottom;
+
+  width: 100%;
+  overflow: hidden;
+
+  .title {
+    font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+      "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.4rem;
+    text-transform: uppercase;
+    color: #0d444d;
+  }
+  .subtitle {
+    font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+      "Droid Sans", "Helvetica Neue", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 1.9rem;
+  }
+
+  .info-block {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100rem;
+    height: 75vh;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    .widget-block {
+      display: flex;
+      flex-direction: column;
+      background-color: transparent;
+      padding: 1rem;
+    }
+
+    @media screen and (max-width: 425px) {
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+
+      .widget-block {
+        align-items: center;
+        background-color: #488D92;
+        width: 100%;
+      }
+
+      .hidden {
+        display: none;
+      }
+    }
+  }
+
+  .video-block {
+    .title-block {
+      position: relative;
+      margin: 2.7rem 0 2.4rem;
+      .capital {
+        color: #8a8a8a;
+      }
+      .btn--ghost {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        width: 5.2rem;
+        height: 5.2rem;
+        color: transparent;
+        background-image: url("../../assets/icons/heart.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 2.4rem;
+
+        cursor: pointer;
+        transition: background-color 250ms linear;
+        &:hover {
+          background-color: rgba(25, 112, 125, 0.25);
+          transition: background-color 250ms linear;
+        }
+      }
+    }
+  }
+
+  .sight-slider {
+    position: relative;
+    margin: 13rem auto 4.5rem;
+    .subtitle {
+      margin-bottom: 2.2rem;
+      padding-left: 8.5rem;
+      color: #0d444d;
+      font-weight: 500;
+    }
+  }
+
+  .about {
+    & > .wrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding-bottom: 22%;
+      margin-bottom: 0;
+    }
+    .text-block {
+      width: 40%;
+      padding-left: 6rem;
+      margin-right: 3rem;
+      text-align: justify;
+      .title {
+        margin: 3rem 0 3.4rem;
+      }
+      .content {
+        font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell",
+          "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+        font-weight: 400;
+        font-size: 1.4rem;
+        line-height: 2rem;
+
+        margin: 0.8rem 0 3.3rem;
+        p {
+          margin: 1rem 0;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  main.country {
+    .sight-slider {
+      margin: 6rem auto 4.5rem;
+    }
+  }
+}
+
+@media (max-width: 980px) {
+  main.country .about {
+    & > .wrapper {
+      align-items: center;
+      flex-direction: column;
+      & > * {
+        width: 95vw;
+        margin: 1rem;
+      }
+    }
+    .text-block {
+      padding-left: 2rem;
+      margin-right: 1rem;
+      .content {
+        width: inherit;
+        max-width: inherit;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  main.country {
+    .info-block {
+      height: 50vh;
+    }
+  }
+}
+
+.dropdown {
+  display: flex;
+  height: 6.1rem;
+  width: 100%;
+  padding: 1rem 3.5rem;
+  justify-content: space-between;
+  align-items: center;
+
+  background: #488d92;
+  .country_block {
+    display: flex;
+    align-items: center;
+    & > * {
+      display: block;
+    }
+  }
+
+  .current_country_image {
+    width: 4.2rem;
+    height: 4.2rem;
+    border-radius: 50%;
+  }
+  .current_country_name {
+    font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+      "Droid Sans", "Helvetica Neue", sans-serif;
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    color: #f3f7f8;
+    margin-left: 1.9rem;
+  }
+  .arrow_toggle {
+    height: 1rem;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

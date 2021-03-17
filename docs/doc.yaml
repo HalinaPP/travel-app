@@ -1,0 +1,311 @@
+openapi: 3.0.0
+servers: [
+{
+  'url': '/',
+  "description": "",
+}
+]
+info:
+  description: This is a simple Travel App API
+  version: "1.0.0"
+  title: Travel App Demo API
+
+paths:
+  /countries:
+    get:
+      tags:
+        - countries
+      summary: list of countries
+      parameters:
+        - in: query
+          name: lang
+          description: optional language
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: list of all countries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Country'
+  /countries/{countryId}:
+    get:
+      tags:
+        - countries
+      summary: country details by id
+      parameters:
+        - in: path
+          name: countryId
+          required: true
+          schema:
+            type: string
+            format: objectId
+        - in: query
+          name: lang
+          description: optional language
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: country and array of places related to her
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Country'
+                  - type: object
+                    properties:
+                      places:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            photoUrl:
+                              type: string
+                            localizations:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  name:
+                                    type: string
+                                  description:
+                                    type: string
+                      ratings:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            placeId:
+                              type: string
+                            nickName:
+                              type: string
+                            rating:
+                              type: number
+        '404':
+          description: country not found
+        '400':
+          description: 'invalid Country ID. ID must be objectID'
+    post:
+      tags:
+        - rating
+      summary: create new rating for place
+      parameters:
+        - in: path
+          name: countryId
+          required: true
+          schema:
+            type: string
+            title: countryId
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              title: example
+              properties:
+                placeId:
+                  type: string
+                  description: The place's id
+                nickName:
+                  type: string
+                  description: The user's nickname
+                rating:
+                  type: integer
+                  description: The place's rating
+                avatar:
+                  type: string
+                  description: link to the user's avatar
+                feedbackText:
+                  type: string
+                  description: user's feedback
+              required:
+                - placeId
+                - userId
+                - rating
+                - avatar
+      responses:
+        '200':
+          description: The rating has been added
+        '400':
+          description: 'Bad request'
+  /auth/login:
+    post:
+      tags:
+        - login
+      summary: route to log in a user
+      description: route to send POST request and get response
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nickname:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '202':
+          description: Accepted - The data is accepted
+          content:
+            application/json:
+              schema:
+                properties:
+                  errors:
+                    type: integer
+                    nullable: true
+                  statusText:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                      data:
+                        type: object
+                        properties:
+                          token:
+                            type: string
+        '400':
+          description: Bad request - Provided data is invalid
+        '401':
+          description: Unathorised - Wrong password
+        '404':
+          description: Not found - There is no such user
+        '500':
+          description: Internal server error
+  /auth/register:
+    post:
+      tags:
+        - register
+      summary: route to register a user
+      description: route to send POST request and get response
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nickname:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '201':
+          description: Created - User is registered
+        '400':
+          description: Bad request - Provided data is invalid
+        '409':
+          description: Conflict - Such user already exists
+        '500':
+          description: Internal server error
+components:
+  schemas:
+    Country:
+      type: object
+      required:
+        - currency
+        - ISOCode
+        - capitalLocation
+        - coordinates
+
+      properties:
+        id:
+          type: string
+          format: objectId
+          example: 60250368d342c8267c02a558
+        imageUrl:
+          type: string
+          example: www.example.com/example.jpg
+        videoUrl:
+          type: string
+          example: www.example.com/example.mp4
+        ISOCode:
+          type: string
+          example: US
+        capitalLocation:
+          type: object
+          properties:
+            coordinates:
+              type: array
+              items:
+                type: number
+            type:
+              type: string
+              enum: [Point]
+        localizations:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              capital:
+                type: string
+              description:
+                type: string
+    Place:
+      type: object
+      required:
+        - countryId
+        - photoUrl
+      properties:
+        countryId:
+          type: string
+          format: objectId
+        photoUrl:
+          type: string
+        localizations:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+    User:
+      type: object
+      required:
+        - nickname
+        - password
+      properties:
+        nickname:
+          type: string
+          example: bramov
+        password:
+          type: string
+          example: $2a$10$ypwWQJDHE7ZS4pVu2EEvzuR2HR7K3.mp897TGBWLgm6kILEOlHviy
+    Rating:
+      type: object
+      required:
+          - placeId
+          - nickName
+          - rating
+          - avatar
+      properties:
+        placeId:
+          type: string
+          format: objectId
+        nickName:
+          type: string
+          example: bramov
+        rating:
+          type: integer
+          minimum: 1
+          maximum: 5
+        avatar:
+          type: string
+          example: www.example.com/example.jpg
+        feedbackText:
+          type: string
+          example: I was eaten by a crocodile! 5 stars out of 5

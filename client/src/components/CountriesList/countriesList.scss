@@ -1,0 +1,366 @@
+.promo {
+  height: 87rem;
+  background: url("../../assets/ui/promo-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+
+  color: #f3f7f8;
+
+  & > .wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex: 1;
+  }
+
+  .content-block {
+    width: 50%;
+
+    font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+      "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    color: #f3f7f8;
+    .title {
+      margin: 10rem 0 3rem;
+      width: 100%;
+      max-width: 75rem;
+      font-weight: 300;
+      font-size: 7.2rem;
+      line-height: 8.2rem;
+    }
+    .subtitle {
+      font-weight: 500;
+      font-size: 4.8rem;
+      line-height: 5.7rem;
+    }
+    .content {
+      font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+        "Droid Sans", "Helvetica Neue", sans-serif;
+      font-weight: 400;
+      font-size: 1.4rem;
+      line-height: 2rem;
+
+      margin: 2rem 2rem 3.7rem 0;
+      // height: 10rem;
+      p {
+        text-overflow: ellipsis;
+      }
+    }
+  }
+
+  .image-block {
+    flex-shrink: 1;
+    position: relative;
+    width: 80.4rem;
+    height: 66.6rem;
+    margin-top: 4.8rem;
+
+    .image {
+      display: block;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      width: 80.4rem;
+      height: 66.6rem;
+      margin: auto;
+
+      background: url("../../assets/ui/overlay-20.png"), url("../../assets/images/Georgia.jpeg");
+      background-size: cover;
+      background-repeat: repeat, no-repeat;
+    }
+
+    .image-outline {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    }
+  }
+}
+
+.countries {
+  & > .wrapper {
+    margin-top: 6.5rem;
+  }
+
+  height: 115rem;
+  background: url("../../assets/ui/countries-bg.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: bottom;
+
+  .btn {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding: 1.4rem 2.3rem;
+    margin: auto 7rem 5.6rem auto;
+    .icon {
+      width: 2.4rem;
+      height: 2.4rem;
+    }
+  }
+
+  .slider {
+    .slide {
+      height: 72.8rem;
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .rec-arrow {
+      background-color: transparent;
+      border-color: #19707d;
+      color: #19707d;
+      &:hover:enabled {
+        background-color: #19707d;
+      }
+    }
+
+    a {
+      text-decoration: none;
+    }
+  }
+}
+
+@media (max-width: 1500px) {
+  .promo {
+    .content-block {
+      .title {
+        margin-top: 9rem;
+        // width: 50vw;
+      }
+    }
+    .image-block {
+      width: 50vw;
+      margin-top: 11.6rem;
+      .image,
+      .image-outline {
+        width: 45vw;
+        height: unset;
+        aspect-ratio: 1.1 / 1;
+      }
+      .image {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 1300px) {
+  .promo {
+    height: 76rem;
+    .content-block {
+      .subtitle {
+        font-size: 4.5rem;
+      }
+      .title {
+        margin-top: 8rem;
+        margin-bottom: 3rem;
+        // width: 50vw;
+        font-size: 5.2rem;
+        line-height: 7.2rem;
+      }
+    }
+    .image-block {
+      width: 50vw;
+      height: unset;
+      .image,
+      .image-outline {
+        height: unset;
+      }
+    }
+  }
+
+  .countries {
+    height: auto;
+    padding-bottom: 25rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .promo {
+    .content-block {
+      .title {
+        margin-top: 6rem;
+        margin-bottom: 3rem;
+      }
+    }
+    height: 73.5rem;
+    .content-block .title,
+    .content-block .subtitle {
+      font-size: 4.5rem;
+    }
+  }
+
+  .countries {
+    padding-bottom: 19rem;
+  }
+}
+
+@media (max-width: 980px) {
+  .promo {
+    height: 68.5rem;
+    .content-block .title,
+    .content-block .subtitle {
+      font-size: 3.8rem;
+    }
+    .content-block {
+      width: 43vw;
+      .title {
+        margin-top: 5rem;
+        margin-bottom: 2rem;
+        // width: 54vw;
+        line-height: 4.8rem;
+      }
+      .subtitle {
+        line-height: 4rem;
+      }
+      .content {
+        // height: 13rem;
+        margin-bottom: 3rem;
+      }
+
+      & a {
+        padding: 1.2rem 0 1.5rem;
+        width: 23rem;
+        height: 5rem;
+      }
+    }
+    .image-block {
+      width: 53vw;
+      margin-top: 12.8rem;
+      .image,
+      .image-outline {
+        width: 52vw;
+      }
+    }
+  }
+
+  .countries {
+    .slider .slide {
+      height: auto;
+    }
+  }
+}
+
+@media (max-width: 810px) {
+  .promo .content-block {
+    .title {
+      width: 51vw;
+      margin-top: 5rem;
+      line-height: 4.8rem;
+    }
+    .subtitle {
+      line-height: 4rem;
+    }
+    .content {
+      // height: 15rem;
+        margin-bottom: 2rem;
+    }
+
+    & a {
+      padding: 0.75rem 0 1rem;
+      width: 17rem;
+      height: 4rem;
+    }
+  }
+  .countries {
+    height: auto;
+    padding-bottom: 17rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .promo {
+    background-image: url("../../assets/ui/promo-bg-640.png");
+    background-size: 65rem;
+    background-position: top;
+    .image-block {
+      width: 50vw;
+      .image-outline,
+      .image {
+        width: 50vw;
+      }
+    }
+    .content-block {
+      width: 44vw;
+      .title {
+        margin-top: 2.9rem;
+        margin-bottom: 0rem;
+        font-size: 3.6rem;
+        line-height: 4rem;
+      }
+      .subtitle {
+        line-height: 3.8rem;
+      }
+      .content {
+        // height: 23rem;
+        font-size: 1.4rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      & a {
+        padding: 0.75rem 0 1rem;
+        width: 17rem;
+        height: 4rem;
+      }
+    }
+
+    .btn--light {
+      width: 17.5rem;
+    }
+  }
+  .countries {
+    padding-bottom: 13rem;
+  }
+
+
+}
+
+@media (max-width: 500px) {
+  .promo {
+    height: 76rem;
+    background-size: 90rem;
+    & > .wrapper {
+      flex-direction: column-reverse;
+      align-items: center;
+    }
+    .image-block {
+      width: 70vw;
+      margin-top: 2.5rem;
+      .image-outline,
+      .image {
+        width: 70vw;
+      }
+    }
+    .content-block {
+      width: 100%;
+      margin-top: 1.6rem;
+      .title {
+        line-height: 4rem;
+        margin-bottom: 0.5rem;
+      }
+      .content {
+        margin: 1.4rem 0 1.8rem;
+        // height: 10rem;
+      }
+
+      & a {
+        padding: 0.75rem 0;
+        width: 14rem;
+        height: 4rem;
+        margin-right: auto;
+        margin-left: auto;
+      }
+    }
+  }
+  .countries {
+    padding-bottom: 10rem;
+  }
+}

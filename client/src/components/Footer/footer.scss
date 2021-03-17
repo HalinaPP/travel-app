@@ -1,0 +1,165 @@
+footer {
+  font-family: "Roboto Mono", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  background-color: #196469;
+  & > .wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    padding: 4rem 0.5rem;
+  }
+
+  .copyright {
+    color: #c5e1e5;
+    .developers {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
+
+    .dev-list {
+      display: flex;
+      flex-direction: row;
+    }
+    .author,
+    .RSS,
+    .youtube {
+      height: 10rem;
+      margin: auto;
+      text-align: center;
+
+      opacity: 0.7;
+      cursor: pointer;
+      transition: all 0.3s;
+      &:hover {
+        opacity: 1;
+        transition: all 0.3s;
+      }
+    }
+
+    .RSS,
+    .youtube {
+      margin: auto 2rem;
+    }
+
+    .RSS {
+      display: flex;
+      flex-direction: column;
+      & > .icon {
+        margin: 0;
+        margin-bottom: 0.3rem;
+      }
+    }
+    .link {
+      display: block;
+      margin: 1rem;
+
+      text-decoration: none;
+      text-transform: none;
+      border: none;
+      &:hover {
+        border: none;
+      }
+    }
+    .icon {
+      height: 4rem;
+    }
+
+    .design-copyright {
+      font-size: 1.4rem;
+      text-align: end;
+      opacity: 0.7;
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  footer .copyright .link {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 980px) {
+  footer {
+    .copyright .RSS,
+    .copyright .youtube {
+      margin: auto 0.5rem;
+    }
+    .copyright {
+      .icon {
+        height: 2.5rem;
+      }
+
+      .developers {
+        .link {
+          font-size: 1.4rem;
+        }
+      }
+    }
+    //need fix
+    .logo {
+      line-height: 3.1rem;
+    }
+  }
+}
+
+@media (max-width: 816px) {
+  footer {
+    .copyright {
+      .developers {
+        .RSS,
+        .youtube {
+          display: block;
+          .icon {
+            height: 4rem;
+          }
+        }
+        .dev-list {
+          flex-direction: column;
+          .author {
+            width: 18rem;
+            height: unset;
+            text-align: left;
+            .icon {
+              height: 1.5rem;
+              display: inline-block;
+            }
+            .link {
+              display: inline-block;
+              margin: 0.3rem 1rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  footer {
+    & > .wrapper {
+      flex-direction: column;
+    }
+    .logo {
+      margin: 0 auto 3rem;
+      width: 9rem;
+      img {
+        margin: 0;
+      }
+    }
+    .copyright {
+      .developers {
+        flex-direction: column-reverse;
+
+        .dev-list .author {
+          text-align: center;
+        }
+      }
+      .design-copyright {
+        text-align: center;
+      }
+    }
+  }
+}
