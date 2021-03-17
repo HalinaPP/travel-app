@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { CountryProps } from '../components/Country/Country.model';
+import { MapAllProps } from '../components/MapAll/MapAll.model';
 import { HEADER_JSON, API_COUNTRIES_URLS, API_COUNTRY_URLS, API_AUTH_URLS } from '../constants/constants';
 
 export interface HeaderValues {
@@ -77,5 +78,15 @@ const getCountryById = async (id: string, lang: string): Promise<CountryProps> =
   return apiObject;
 };
 
-export const travelApi = { getCountries, getCountryById };
+const getCountriesWithPlacesInfo = async (lang: string) => {
+  const requestInit = getRequestInit();
+  const apiObject = await fetch(`${API_COUNTRIES_URLS}?lang=${lang}&all=true`, requestInit)
+    .then((response: Response): Promise<MapAllProps> => response.json())
+    .then((countries: MapAllProps) => countries)
+    .catch(error => {
+      throw new Error(error);
+    });
+  return apiObject;
+};
+export const travelApi = { getCountries, getCountryById, getCountriesWithPlacesInfo };
 export const authApi = { loginUser, registerUser };

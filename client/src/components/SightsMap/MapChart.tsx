@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import React, { memo } from 'react';
+import React, { memo, useContext, useEffect, FC } from 'react';
 import { ZoomableGroup, ComposableMap, Geographies, Geography, Marker } from 'react-simple-maps';
 
 const geoUrl = 'https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json';
