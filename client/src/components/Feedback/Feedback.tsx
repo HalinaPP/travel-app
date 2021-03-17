@@ -28,10 +28,7 @@ const Feedback: FC<FeedbackProps> = ({ setIsOpen, isOpen, sight, ratings }) => {
                   {oneRating.rating}
                   <div className="icon--star icon" />
                 </div>
-                <div className="text">
-                  Awesome place to observe my favourite aligators at Florida, the quality of the
-                  video is great.{' '}
-                </div>
+                <div className="text">{oneRating.feedbackText}</div>
               </div>
               <div className="user_data">
                 <img src={oneRating.avatar} alt="" className="avatar" />
