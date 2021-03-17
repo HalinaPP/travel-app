@@ -67,8 +67,8 @@ const Rating: FC<RatingProps> = ({ placeId, currCountry: { id, ratings }, getCou
         rows={5}
         cols={33}
         onChange={handleTextAreaChange}
+        defaultValue={feedbackText}
       >
-        {feedbackText}
       </textarea>
       <button className="btn btn--ghost" onClick={postRating}>
         leave feedback
