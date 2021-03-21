@@ -3,8 +3,8 @@ import UseWindowProps from './UseWindowSize.model';
 
 export default function useWindowSize(): any {
   const [windowSize, setWindowSize] = useState<UseWindowProps>({
-    width: undefined,
-    height: undefined,
+    width: window.innerWidth,
+    height: window.innerHeight,
   });
 
   useEffect(() => {
