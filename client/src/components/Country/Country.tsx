@@ -18,16 +18,26 @@ import arrowClose from '../../assets/icons/arrow_close.png';
 const Country: FC<CurrCountryProps> = ({ currCountry, getCountryByIdFromApi }) => {
   const { lang: currLang } = useContext(LanguageContext);
   const langsInfo = translation[currLang];
+
   const { id }: { id: string } = useParams();
 
-  const [isDropdownFolded, setIsDropdownFolded] = useState(true);
-  const [mapProps, setMapProps] = useState({
+  const initialMapProps = {
+    iso: '',
+    capitalName: '',
+    capitalCoords: [0, 0],
+    lang: currLang,
+    imageHref: '',
+  };
+  const oMapProps = {
     iso: currCountry.ISOCode,
     capitalName: currCountry.capital,
     capitalCoords: currCountry.capitalLocation.coordinates,
     lang: currLang,
     imageHref: currCountry.flagUrl,
-  });
+  };
+
+  const [isDropdownFolded, setIsDropdownFolded] = useState(true);
+  const [mapProps, setMapProps] = useState(oMapProps);
 
   useEffect(() => {
     setMapProps({
@@ -40,14 +50,20 @@ const Country: FC<CurrCountryProps> = ({ currCountry, getCountryByIdFromApi }) =
   }, [currCountry]);
 
   useEffect(() => {
+    setMapProps(initialMapProps);
     getCountryByIdFromApi(id, currLang);
-  }, [getCountryByIdFromApi, id, currLang]);
+  }, [id, currLang]);
 
   const styleConfig = { backgroundImage: `url(${currCountry.imageUrl})` };
-  const arrow = <img src={isDropdownFolded ? arrowOpen : arrowClose}
-    alt="open/close" className="arrow_toggle"
-    onClick={() => setIsDropdownFolded((fold: boolean) => !fold)} />;
-
+  const arrow = (
+    <img
+      src={isDropdownFolded ? arrowOpen : arrowClose}
+      alt="open/close"
+      className="arrow_toggle"
+      onClick={() => setIsDropdownFolded((fold: boolean) => !fold)}
+    />
+  );
+  
   return (
     <main className="country">
       <section className="info-block" style={styleConfig}>
@@ -60,10 +76,10 @@ const Country: FC<CurrCountryProps> = ({ currCountry, getCountryByIdFromApi }) =
             {arrow}
           </div>
         )}
-        <div className={(useWindowSize().width <= 425 && isDropdownFolded) ? 'hidden widget-block' : 'widget-block'}>
-          <Weather capital={currCountry.capital}/>
-          <Time timeZone={currCountry.timezone}/>
-          <Currency currency={currCountry.currency}/>
+        <div className={useWindowSize().width <= 425 && isDropdownFolded ? 'hidden widget-block' : 'widget-block'}>
+          <Weather capital={currCountry.capital} />
+          <Time timeZone={currCountry.timezone} />
+          <Currency currency={currCountry.currency} />
         </div>
       </section>
 
@@ -88,7 +104,7 @@ const Country: FC<CurrCountryProps> = ({ currCountry, getCountryByIdFromApi }) =
             </div>
           </div>
 
-          <Map {...mapProps} />
+          {mapProps.imageHref && <Map {...mapProps} />}
         </div>
       </section>
     </main>

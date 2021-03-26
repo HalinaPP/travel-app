@@ -56,64 +56,49 @@ const SightsList: FC<SightProps> = ({ sights, ratings }) => {
   );
 
   const switchFullscreen = () => {
-    setIsFullscreen((fullscreen) => !fullscreen);
+    setIsFullscreen(fullscreen => !fullscreen);
   };
 
-  const expandButtonClass = isFullscreen
-    ? 'fullScr fullScr--exit'
-    : 'fullScr fullScr--enter';
-  const expandButtonIconSrc = isFullscreen
-    ? '/icons/fs--exit.png'
-    : '/icons/fs.png';
-  const expandButton = (<div className={expandButtonClass}>
-    <img src={expandButtonIconSrc} alt="full screen"
-      onClick={switchFullscreen} />
-  </div>);
+  const expandButtonClass = isFullscreen ? 'fullScr fullScr--exit' : 'fullScr fullScr--enter';
+  const expandButtonIconSrc = isFullscreen ? '/icons/fs--exit.png' : '/icons/fs.png';
+  const expandButton = (
+    <div className={expandButtonClass}>
+      <img src={expandButtonIconSrc} alt="full screen" onClick={switchFullscreen} />
+    </div>
+  );
   const fullscreenElement = document.getElementById('wrapper');
 
-  const toggleFullscreen = () => {
+  useEffect(() => {
     if (isFullscreen) {
       fullscreenElement?.requestFullscreen();
     } else {
-      document.exitFullscreen()
-        .catch(err => Promise.resolve(err));
+      document.exitFullscreen().catch(err => Promise.resolve(err));
     }
-  };
-
-  useEffect(() => toggleFullscreen(), [isFullscreen]);
+  }, [isFullscreen]);
 
   useEffect(() => {}, [popupData]);
 
-  function getSliderCount() {
-    const windowWidth = useWindowSize().width;
-    if (windowWidth >= '785') {
-      return 3;
-    }
-    if (windowWidth >= '435' && windowWidth < '785') {
-      return 2;
-    }
-    return 1;
-  }
+  const windowWidth = useWindowSize().width;
 
-  const carousel =
-    <Carousel className="slider" isRTL={false}
-      pagination={false} itemsToScroll={1}
-      itemsToShow={getSliderCount()} >
-      {getSightsList()}
-    </Carousel>;
-
-  const images = (
-    <div className="slider">
-      {getSightsList()}
-    </div>
-  );
+  const carousel = () =>
+    sights.length > 0 && (
+      <Carousel
+        className="slider"
+        isRTL={false}
+        pagination={false}
+        itemsToScroll={1}
+        itemsToShow={windowWidth >= 1500 ? 3 : windowWidth > 1030 ? 2 : 1}
+      >
+        {getSightsList()}
+      </Carousel>
+    );
 
   return (
     <section className="sight-slider" id="sight">
       <div className="wrapper" id="wrapper">
         <h3 className="subtitle">{langsInfo.sights}</h3>
         {expandButton}
-        {isFullscreen ? images : carousel}
+        {isFullscreen ? <div className="slider">{getSightsList()}</div> : carousel()}
       </div>
       <Feedback isOpen={isOpen} setIsOpen={setIsOpen} sight={popupData.sight} ratings={popupData.ratings} />
     </section>

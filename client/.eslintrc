@@ -18,12 +18,13 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "no-trailing-spaces": "off",
     "object-curly-newline": "off",
     "implicit-arrow-linebreak":"off",
     "operator-linebreak" : "off",
     "arrow-parens":"off",
     "no-plusplus": "off",
-    "no-nested-ternary": "warn",
+    "no-nested-ternary": "off",
     "no-console": "warn",
     "linebreak-style": ["warn", "unix"],
     "@typescript-eslint/no-empty-interface": [

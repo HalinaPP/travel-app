@@ -1,8 +1,7 @@
-import { connect, useSelector } from 'react-redux';
-import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
 import { StateModel, getCountryByIdFromApi } from '../reducers/index';
 import Rating from '../components/Rating';
-
+/* eslint-disable  @typescript-eslint/no-non-null-assertion */
 const mapStateToProps = (state: StateModel) => ({
   currCountry: state.currCountry!,
 });

@@ -5,6 +5,7 @@ enum WeekDayEN {Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday}
 enum WeekDayRU {Воскресенье, Понедельник, Вторник, Среда, Четверг, Пятница, Суббота}
 enum WeekDayBG {Неделя, Понеделник, Вторник, Сряда, Четвъртък, Петък, Събота}
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const MONTHS: any = {
   en: MonthNameEN,
   ru: MonthNameRU,

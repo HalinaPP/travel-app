@@ -1,7 +1,7 @@
-import React, { FC, Fragment, useContext, useState, useEffect } from 'react';
+import React, { FC, Fragment, useContext, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-
+import { StateModel } from '../../reducers/index';
 import './Rating.scss';
 import { RatingProps } from './Rating.model';
 import { findNickName } from '../../utils/helpers';
@@ -9,20 +9,16 @@ import { LanguageContext } from '../../utils/LanguageContext';
 import { API_COUNTRIES_URLS } from '../../constants/constants';
 import translation from '../../constants/translation';
 
-const Rating: FC<RatingProps> = ({
-  placeId,
-  currCountry: { id, ratings },
-  getCountryByIdFromApi,
-  addFeedback,
-}) => {
-  const user = useSelector((state: any) => state.user);
+const Rating: FC<RatingProps> = ({ placeId, currCountry: { id, ratings }, getCountryByIdFromApi, addFeedback }) => {
+  const user = useSelector((state: StateModel) => state.user);
   const { nickname, avatar } = user || { nickname: null, avatar: null };
   const isUserLogged = !!user;
   const { lang: currLang } = useContext(LanguageContext);
-  const alreadyRated = findNickName(ratings, nickname, placeId as string);
+  /* eslint-disable @typescript-eslint/no-non-null-assertion */
+  const alreadyRated = findNickName(ratings, nickname!, placeId as string);
   const [curRating, setCurRating] = useState(0);
   const [feedbackText, setFeedbackText] = useState('');
-  const postRating = async (e: any) => {
+  const postRating = async () => {
     const rating = {
       placeId,
       nickName: nickname,
@@ -42,19 +38,19 @@ const Rating: FC<RatingProps> = ({
     setFeedbackText('');
     setCurRating(0);
   };
-
-  const handleRatingChange = (e: any) => {
-    setCurRating(e.target.value);
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  const handleRatingChange = ({ target }: any) => {
+    setCurRating(target.value);
   };
-  const handleTextAreaChange = (e: any) => {
-    setFeedbackText(e.target.value);
+  const handleTextAreaChange = ({ target }: any) => {
+    setFeedbackText(target.value);
   };
 
   const disabled = alreadyRated !== undefined || !isUserLogged;
-  const renderRadioGroup = [5, 4, 3, 2, 1].map((e) => (
+  const renderRadioGroup = [5, 4, 3, 2, 1].map(e => (
     <Fragment key={uuidv4()}>
       <input
-        onClick={(evt) => handleRatingChange(evt)}
+        onClick={evt => handleRatingChange(evt)}
         value={e}
         type="radio"
         name="rating"

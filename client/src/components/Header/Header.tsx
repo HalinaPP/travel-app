@@ -1,5 +1,5 @@
 import './header.scss';
-import { FC, useEffect, useState, useContext } from 'react';
+import { FC, useEffect, useState, useContext, useCallback } from 'react';
 import { useLocation, Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../../actions';
@@ -11,8 +11,6 @@ import logo from '../../assets/images/logo2.png';
 import { StateModel } from '../../reducers';
 import defaultImage from '../../assets/auth-icon.png';
 import { LanguageContext } from '../../utils/LanguageContext';
-import useWindowSize from '../../utils/useWindowSize';
-import { AuthProps } from '../Auth/auth.model';
 import translation from '../../constants/translation';
 import { AuthConstants } from '../../constants/auth.constants';
 
@@ -23,7 +21,6 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
   const location = useLocation();
   const history = useHistory();
   const [isMain, setIsMain] = useState(location.pathname === linkMain);
-  const [isSettingOpen, setIsSettingOpen] = useState(false);
   const [isAuthModalOpen, setAuthModalOpen] = useState(false);
   const isUserLogged = useSelector((state: StateModel) => state.user) ?? false;
 
@@ -36,23 +33,15 @@ const Header: FC<HeaderProps> = ({ inputText, onInputChange }) => {
     dispatch(setUser(undefined));
   };
 
-  const styles = {
-    setting: {
-      backgroundImage: "url('/icons/settings.png')",
-    },
-  };
-  const closeAuthModalOnClick = (e: any) => {
-    if (isAuthModalOpen && e.target.classList.contains('auth__overlay')) {
+  const closeAuthModalOnClick = useCallback(({ target }) => {
+    if (isAuthModalOpen && target.classList.contains('auth__overlay')) {
       setAuthModalOpen(false);
     }
-  };
+  }, []);
+
   const closeAuthModal = () => {
     setAuthModalOpen(false);
   };
-
-  function langToggle() {
-    setIsSettingOpen(prevState => !prevState);
-  }
 
   useEffect(() => {
     setIsMain(location.pathname === linkMain);

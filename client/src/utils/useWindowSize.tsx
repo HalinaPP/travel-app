@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import UseWindowProps from './UseWindowSize.model';
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export default function useWindowSize(): any {
   const [windowSize, setWindowSize] = useState<UseWindowProps>({
     width: undefined,

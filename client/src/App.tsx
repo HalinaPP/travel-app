@@ -1,5 +1,5 @@
 import { Provider } from 'react-redux';
-import { useState } from 'react';
+import React, { useState, FC } from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import { store } from './store';
 import { CountryContainer } from './containers/Country.container';
@@ -11,7 +11,7 @@ import { LanguageContext } from './utils/LanguageContext';
 import ScrollToTop from './components/ScrollToTop';
 import SightsMap from './components/SightsMap';
 
-const App = () => {
+const App: FC = () => {
   const initialLang = localStorage.getItem('currLangTravelApp') || 'ru';
   const [inputText, setInputText] = useState<string>('');
   const [currLang, setCurrLang] = useState<string>(initialLang);

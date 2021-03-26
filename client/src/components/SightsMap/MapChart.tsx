@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import React, { memo, useContext, useEffect, FC } from 'react';
+import React, { memo } from 'react';
 import { ZoomableGroup, ComposableMap, Geographies, Geography, Marker } from 'react-simple-maps';
 
 const geoUrl = 'https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json';
@@ -64,7 +64,7 @@ const markers = [
   { markerOffset: 15, name: 'Craigmore Viaduct', coordinates: [-6.3700117, 54.1942724] },
   { markerOffset: 15, name: 'Mourne Mountains', coordinates: [-6.0750296, 54.1533145] },
 ];
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const MapChart = ({ setTooltipContent }: any) => (
   <>
     <ComposableMap data-tip="" projectionConfig={{ scale: 200 }}>
@@ -78,7 +78,7 @@ const MapChart = ({ setTooltipContent }: any) => (
                   geography={geo}
                   stroke="#2A8086"
                   onMouseEnter={() => {
-                    const { NAME, POP_EST } = geo.properties;
+                    const { NAME } = geo.properties;
                     setTooltipContent(`${NAME}`);
                   }}
                   onMouseLeave={() => {

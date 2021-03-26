@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
 import { StateModel, getCountriesWithPlacesInfoFromApi } from '../reducers/index';
 import MapChart from '../components/SightsMap/MapChart';
 

@@ -7,16 +7,16 @@ import { RatingContainer } from '../../containers/Rating.container';
 const Feedback: FC<FeedbackProps> = ({ setIsOpen, isOpen, sight, ratings }) => {
   const rate = countRate(ratings);
 
-  const closeModal = (e: any) => {
+  const closeModal = useCallback(({ target }) => {
     setIsOpen(true);
-    if (e.target.classList.contains('feedback__overlay')) {
+    if (target.classList.contains('feedback__overlay')) {
       setIsOpen(false);
     }
-  };
+  }, []);
 
-  const addFeedback = (newFeedback: any) => {
+  const addFeedback = useCallback(newFeedback => {
     ratings.push(newFeedback);
-  };
+  }, []);
 
   const sightUserRatings = useCallback(
     () => (
@@ -44,17 +44,16 @@ const Feedback: FC<FeedbackProps> = ({ setIsOpen, isOpen, sight, ratings }) => {
     ),
     [ratings],
   );
-  useEffect(
-    () => {
-      document.body.style.overflow = isOpen ? 'hidden' : 'auto';
-      document.body.style.paddingRight = isOpen ? '17px' : '0';
-    },
-    [isOpen],
-  );
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+    document.body.style.paddingRight = isOpen ? '17px' : '0';
+  }, [isOpen]);
+
   return (
     <div
       className={isOpen ? 'fadeIn feedback__overlay' : 'fadeOut feedback__overlay'}
-      onClick={(e) => {
+      onClick={e => {
         closeModal(e);
       }}
     >

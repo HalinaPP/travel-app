@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
 import { StateModel, getCountriesFromApi } from '../reducers/index';
 import CountriesNavigator from '../components/CountriesNavigator';
 

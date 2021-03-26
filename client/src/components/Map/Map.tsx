@@ -1,6 +1,6 @@
 import './map.scss';
 
-import React, { FC, useCallback, Ref, useEffect, useState } from 'react';
+import React, { FC, useCallback, Ref, useState, useEffect } from 'react';
 
 import {
   Map as MapYandex,
@@ -11,7 +11,8 @@ import {
   ObjectManagerFeature,
   ObjectManagerFeatureCollection,
   PolygonGeometry,
-  TypeSelector, GeoObjectGeometry,
+  TypeSelector,
+  GeoObjectGeometry,
 } from 'react-yandex-maps';
 
 import { MapProps, PlacemarkProps } from './Map.model';
@@ -48,9 +49,11 @@ const balloonPlacemark = ({ coords, name, preset }: PlacemarkProps) => (
 
 const Map: FC<MapProps> = (props: MapProps) => {
   const { iso, capitalName, capitalCoords, lang, sights, imageHref } = props;
+  /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
   const mapRef = React.useRef<any>(null);
-  const [zoomCustom, setZoomCustom] = useState<number>(zoom);
 
+  const [zoomCustom, setZoomCustom] = useState<number>(zoom);
+  const [ymapsP, setYmapsP] = useState<YMapsApi>({});
   const getZoom = () => {
     if (mapRef.current) {
       if (mapRef.current.getZoom() >= 6) {

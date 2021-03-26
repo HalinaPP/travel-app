@@ -1,5 +1,5 @@
 import './sightsMap.scss';
-import { FC, useCallback, useEffect, useState, useContext } from 'react';
+import { FC, useState } from 'react';
 import ReactTooltip from 'react-tooltip';
 import { SightsMapProps } from './SightsMap.model';
 
