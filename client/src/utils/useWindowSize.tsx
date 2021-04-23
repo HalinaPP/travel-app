@@ -7,14 +7,13 @@ export default function useWindowSize(): any {
     height: window.innerHeight,
   });
 
+  function handleResize() {
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  }
   useEffect(() => {
-    function handleResize() {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    }
-
     window.addEventListener('resize', handleResize);
 
     handleResize();
