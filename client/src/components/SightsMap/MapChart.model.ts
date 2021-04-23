@@ -1,4 +1,4 @@
-export interface countryMainInfo {
+export interface CountryMainInfo {
   id: string;
   name: string;
   capital: string;
@@ -11,7 +11,7 @@ export interface countryMainInfo {
   timezone: string;
   imagePreviewUrl: string;
 }
-export interface placeMainInfo {
+export interface PlaceMainInfo {
   id: string;
   name: string;
   countryId: string;
@@ -20,12 +20,12 @@ export interface placeMainInfo {
 }
 
 export interface MapAllProps {
-  countries: countryMainInfo[];
-  allPlaces: placeMainInfo[];
+  countries: CountryMainInfo[];
+  allPlaces: PlaceMainInfo[];
 }
 
 export interface MapAllListProps {
-  setTooltipContent:any;
+  setTooltipContent: any;
   countriesWP?: MapAllProps;
   getCountriesWithPlacesInfoFromApi: (lang: string) => void;
 }
