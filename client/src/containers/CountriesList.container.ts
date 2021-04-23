@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
 import { StateModel, getCountriesFromApi } from '../reducers/index';
 import CountriesList from '../components/CountriesList';
 

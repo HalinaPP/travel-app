@@ -43,7 +43,7 @@ const Footer: FC = () => {
             </div>
             <div className="youtube">
               <img src={youtubeLogo} className="icon" alt="youtube link" />
-              <a href="https://youtu.be/TA-sqieWo9k" className="link">
+              <a href="https://www.youtube.com/watch?v=oLc4CqQjSAw" className="link">
                 {langsInfo.review}
               </a>
             </div>

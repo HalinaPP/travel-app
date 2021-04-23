@@ -10,12 +10,14 @@
   z-index: -1;
 
   .feedback__popup {
+    overflow: auto;
+    height: 100vh;
     position: absolute;
     right: 0;
     top: 0;
-    height: 100vh;
     width: 54.1rem;
     padding: 2.8rem;
+    font-size: 1.6rem;
 
     z-index: 11;
     background-color: #f6f9fa;
@@ -45,8 +47,8 @@
       box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
       border-radius: 4rem;
 
-      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
-        'Droid Sans', 'Helvetica Neue', sans-serif;
+      font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu",
+        "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
       font-style: normal;
       font-weight: 900;
       font-size: 1.2rem;
@@ -66,7 +68,7 @@
       .icon--star {
         height: 2rem;
         width: 2rem;
-        background: url('../../assets/icons/star.png');
+        background: url("../../assets/icons/star.png");
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center;
@@ -76,8 +78,8 @@
     .popup_title {
       margin: 2.2rem auto 3.4rem;
 
-      font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
-        'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+      font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
       font-style: normal;
       font-weight: 400;
       font-size: 4.8rem;
@@ -86,20 +88,12 @@
       text-transform: uppercase;
       color: #0d444d;
     }
-    .text {
-      margin: 0.9rem 0 0;
-      font-style: italic;
-      font-weight: 400;
-      font-size: 1.6rem;
-      line-height: 1.9rem;
-      color: #2d2d2d;
-    }
+
     .btn {
       display: block;
       right: 3rem;
       position: inherit;
       width: 25.5rem;
-      padding-left: 4rem;
 
       color: #ad954b;
       border: 1px solid #ad954b;
@@ -118,19 +112,23 @@
         width: 2.4rem;
         height: 2.4rem;
       }
+      &.disabled {
+        display: none;
+      }
     }
   }
 
   .feedback_container {
     overflow: auto;
-    height: calc(100vh - 61.7rem);
-    margin-top: 1rem;
+    height: auto;
+    margin-top: 13rem;
     .user__block {
       position: relative;
-      margin-bottom: 3rem;
+      height: 26rem;
+      margin-bottom: 6.5rem;
 
-      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
-        'Droid Sans', 'Helvetica Neue', sans-serif;
+      font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu",
+        "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
       .rating {
         top: 1.2rem;
         right: 0.9rem;
@@ -144,7 +142,7 @@
       .bubble {
         position: relative;
         width: 100%;
-        height: 19rem;
+        height: auto;
         padding: 2.8rem 4.5rem;
 
         background: #ffffff;
@@ -153,7 +151,7 @@
 
         &::after {
           position: absolute;
-          content: '';
+          content: "";
           left: 8rem;
           bottom: -1rem;
 
@@ -170,6 +168,15 @@
           font-size: 1.4rem;
           line-height: 1.6rem;
           color: #b3b3b3;
+        }
+
+        .text {
+          margin: 2.5rem 0 0;
+          font-style: italic;
+          font-weight: 400;
+          font-size: 1.6rem;
+          line-height: 1.9rem;
+          color: #2d2d2d;
         }
       }
       .user_data {

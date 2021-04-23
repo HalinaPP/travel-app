@@ -7,4 +7,5 @@ export interface RatingProps {
   countryId?: string;
   currCountry: CountryWithPlacesProps;
   getCountryByIdFromApi: (id: string, lang: string) => Promise<CountryProps>;
+  addFeedback: any;
 }

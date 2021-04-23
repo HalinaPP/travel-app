@@ -1,6 +1,6 @@
 import './map.scss';
 
-import React, { FC, useCallback, Ref, useEffect } from 'react';
+import React, { FC, useCallback, Ref, useState, useEffect } from 'react';
 
 import {
   Map as MapYandex,
@@ -12,6 +12,7 @@ import {
   ObjectManagerFeatureCollection,
   PolygonGeometry,
   TypeSelector,
+  GeoObjectGeometry,
 } from 'react-yandex-maps';
 
 import { MapProps, PlacemarkProps } from './Map.model';
@@ -48,7 +49,28 @@ const balloonPlacemark = ({ coords, name, preset }: PlacemarkProps) => (
 
 const Map: FC<MapProps> = (props: MapProps) => {
   const { iso, capitalName, capitalCoords, lang, sights, imageHref } = props;
+  /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
   const mapRef = React.useRef<any>(null);
+
+  const [zoomCustom, setZoomCustom] = useState<number>(zoom);
+  const [ymapsP, setYmapsP] = useState<YMapsApi>({});
+  const getZoom = () => {
+    if (mapRef.current) {
+      if (mapRef.current.getZoom() >= 6) {
+        mapRef.current.geoObjects.each((el: GeoObjectGeometry) => {
+          if (el.options.get('fillOpacity')) {
+            el.options.set('fillOpacity', 0.1);
+          }
+        });
+      } else {
+        mapRef.current.geoObjects.each((el: GeoObjectGeometry) => {
+          if (el.options.get('fillOpacity')) {
+            el.options.set('fillOpacity', fillOpacity);
+          }
+        });
+      }
+    }
+  };
 
   const setMapRef = useCallback((instance: Ref<any>) => {
     mapRef.current = instance;
@@ -88,13 +110,14 @@ const Map: FC<MapProps> = (props: MapProps) => {
     <div className="map">
       <YMaps query={{ lang: queryLang, apikey: yaMapsApiKey }}>
         <MapYandex
-          state={{ center: capitalCoords, zoom }}
+          state={{ center: capitalCoords, zoom: zoomCustom }}
           options={{ minZoom }}
           width="100%"
           height="58rem"
           onLoad={ymaps => getRegion(ymaps)}
           instanceRef={setMapRef}
           modules={loadingModules}
+          onBoundsChange={getZoom}
         >
           <FullscreenControl />
           <Placemark

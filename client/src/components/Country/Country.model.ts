@@ -13,6 +13,7 @@ export interface CountryProps {
   description: string;
   timezone: string;
   flagUrl: string;
+  promoDescription: string;
 }
 
 export interface CountryWithPlacesProps extends CountryProps {

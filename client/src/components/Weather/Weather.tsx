@@ -7,6 +7,7 @@ import { LanguageContext } from '../../utils/LanguageContext';
 const Weather: FC<WeatherProps> = ({ capital }) => {
   const { lang: currLang } = useContext(LanguageContext);
   const [loading, setLoading] = useState(true);
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   const [weatherData, setWeatherData] = useState<any>(null);
 
   const urlQueryOptions = capital

@@ -5,15 +5,18 @@ import { setInnerHtml, countRate } from '../../utils/helpers';
 import { RatingContainer } from '../../containers/Rating.container';
 
 const Feedback: FC<FeedbackProps> = ({ setIsOpen, isOpen, sight, ratings }) => {
-  const avatar = '/images/avatar.png';
   const rate = countRate(ratings);
 
-  const closeModal = (e: any) => {
+  const closeModal = useCallback(({ target }) => {
     setIsOpen(true);
-    if (e.target.classList.contains('feedback__overlay')) {
+    if (target.classList.contains('feedback__overlay')) {
       setIsOpen(false);
     }
-  };
+  }, []);
+
+  const addFeedback = useCallback(newFeedback => {
+    ratings.push(newFeedback);
+  }, []);
 
   const sightUserRatings = useCallback(
     () => (
@@ -22,9 +25,13 @@ const Feedback: FC<FeedbackProps> = ({ setIsOpen, isOpen, sight, ratings }) => {
           const key = `rat_${index}`;
           return (
             <div className="user__block" key={key}>
-              <div className="rating">
-                {oneRating.rating}
-                <div className="icon--star icon" />
+              <div className="bubble">
+                <div className="date"> </div>
+                <div className="rating">
+                  {oneRating.rating}
+                  <div className="icon--star icon" />
+                </div>
+                <div className="text">{oneRating.feedbackText}</div>
               </div>
               <div className="user_data">
                 <img src={oneRating.avatar} alt="" className="avatar" />
@@ -37,17 +44,16 @@ const Feedback: FC<FeedbackProps> = ({ setIsOpen, isOpen, sight, ratings }) => {
     ),
     [ratings],
   );
-  useEffect(
-    () => {
-      document.body.style.overflow = isOpen ? 'hidden' : 'auto';
-      document.body.style.paddingRight = isOpen ? '17px' : '0';
-    },
-    [isOpen],
-  );
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+    document.body.style.paddingRight = isOpen ? '17px' : '0';
+  }, [isOpen]);
+
   return (
     <div
       className={isOpen ? 'fadeIn feedback__overlay' : 'fadeOut feedback__overlay'}
-      onClick={(e) => {
+      onClick={e => {
         closeModal(e);
       }}
     >
@@ -60,7 +66,7 @@ const Feedback: FC<FeedbackProps> = ({ setIsOpen, isOpen, sight, ratings }) => {
         </div>
         <h2 className="popup_title">{sight.name}</h2>
         <div className="text" dangerouslySetInnerHTML={setInnerHtml(sight.description)} />
-        <RatingContainer placeId={sight.id} />
+        <RatingContainer placeId={sight.id} addFeedback={addFeedback} />
         {sightUserRatings()}
       </div>
     </div>

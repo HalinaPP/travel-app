@@ -68,37 +68,27 @@
   }
 }
 
-@media (max-width: 1150px) {
+@media (max-width: 1040px) {
   .country-card {
-    width: 27vw;
-  }
-}
-
-@media (max-width: 980px) {
-  .country-card {
-    width: 26vw;
-    height: unset;
-    aspect-ratio: 1.5 / 1;
+    width: 45vw;
+       aspect-ratio: 1.5 / 1;
 
     .image-block {
-      height: unset;
-      width: 22vw;
+      width:  22.9rem;
       aspect-ratio: 1 / 1;
       padding: 1rem 0 0;
       margin: 0 auto 2rem;
 
       .image {
-        height: unset;
         margin-top: 1rem;
-        width: 22vw;
+        width:  22.9rem;
         aspect-ratio: 1 / 1;
         display: block;
         margin: auto;
       }
       .image-outline {
         top: 1rem;
-        height: unset;
-        width: 22vw;
+        width:  22.9rem;
         aspect-ratio: 1 / 1;
       }
     }
@@ -111,26 +101,14 @@
   }
 }
 
-@media (max-width: 640px) {
-  .country-card {
-    width: 38vw;
-    margin: 0.5rem;
-  }
-}
 
-@media (max-width: 450px) {
-  .country-card {
-    width: 35vw;
-  }
-}
-
-@media (max-width: 420px) {
+@media (max-width: 768px) {
   .country-card {
     width: 80vw;
     .image-block {
-      width: 60vw;
+      width: 21rem;
       .image-outline, .image {
-        width: 60vw;
+        width: 21rem;
       }
     }
   }

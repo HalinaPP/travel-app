@@ -1,6 +1,6 @@
-import { useSelector } from 'react-redux';
 import { CountryProps } from '../components/Country/Country.model';
-import { HEADER_JSON, API_COUNTRIES_URLS, API_COUNTRY_URLS, API_AUTH_URLS } from '../constants/constants';
+import { MapAllProps } from '../components/MapAll/MapAll.model';
+import { HEADER_JSON, API_COUNTRIES_URLS, API_AUTH_URLS } from '../constants/constants';
 
 export interface HeaderValues {
   [key: string]: string;
@@ -25,8 +25,8 @@ const getRequestInit = (method = 'GET'): RequestInit => {
     cache: 'default',
   };
 };
-
-const loginUser = async (body: any): Promise<any> => {
+/* eslint-disable @typescript-eslint/no-explicit-any */
+const loginUser = async (body: FormData): Promise<any> => {
   const apiObject = await fetch(`${API_AUTH_URLS}/login`, {
     body,
     method: 'POST',
@@ -41,7 +41,7 @@ const loginUser = async (body: any): Promise<any> => {
   return apiObject;
 };
 
-const registerUser = async (body: any): Promise<any> => {
+const registerUser = async (body: FormData): Promise<any> => {
   const apiObject = await fetch(`${API_AUTH_URLS}/register`, {
     body,
     method: 'POST',
@@ -77,5 +77,15 @@ const getCountryById = async (id: string, lang: string): Promise<CountryProps> =
   return apiObject;
 };
 
-export const travelApi = { getCountries, getCountryById };
+const getCountriesWithPlacesInfo = async (lang: string):Promise<MapAllProps> => {
+  const requestInit = getRequestInit();
+  const apiObject = await fetch(`${API_COUNTRIES_URLS}?lang=${lang}&all=true`, requestInit)
+    .then((response: Response): Promise<MapAllProps> => response.json())
+    .then((countries: MapAllProps) => countries)
+    .catch(error => {
+      throw new Error(error);
+    });
+  return apiObject;
+};
+export const travelApi = { getCountries, getCountryById, getCountriesWithPlacesInfo };
 export const authApi = { loginUser, registerUser };

@@ -6,6 +6,7 @@
   "scripts": {
     "start:dev": "nodemon ./bin/www",
     "start": "node ./bin/www",
+    "start:prod": "node ./bin/www",
     "test": "jest"
   },
   "devDependencies": {
@@ -13,7 +14,7 @@
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.3.1",
-    "jest": "^26.6.0",
+    "jest": "26.6.0",
     "nodemon": "^2.0.7",
     "prettier": "2.2.1"
   },

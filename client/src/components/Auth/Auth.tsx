@@ -1,7 +1,7 @@
 import './auth.scss';
 import React, { FC, useState, useEffect, useContext, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ResponseErrorData, ResponseSuccessData, User } from './auth.model';
+import { AuthProps, ResponseErrorData, ResponseSuccessData, User } from './auth.model';
 import { ValidateDataParams, validateData } from '../../utils/inputsValidation';
 import { AuthConstants } from '../../constants/auth.constants';
 import { authApi } from '../../utils/apiConnect';
@@ -13,10 +13,12 @@ import { LanguageContext } from '../../utils/LanguageContext';
 import Spinner from '../AvatarUpload/spinner';
 import { returnSuccessAuthMessage, returnErrorAuthMessage } from '../../utils/returnAuthMessage';
 
-const Auth: FC = () => {
+const Auth: FC<AuthProps> = ({ closeAuthModal }: AuthProps) => {
   useSelector((state: StateModel) => state.user);
   const dispatch = useDispatch();
+
   const { lang: currLang } = useContext(LanguageContext);
+
   const [tab, setTab] = useState<string>(AuthConstants.signIn[currLang]);
   const [nicknameInput, setNicknameInput] = useState<string | null>(null);
   const [passwordInput, setPasswordInput] = useState<string | null>(null);
@@ -28,13 +30,16 @@ const Auth: FC = () => {
 
   const isSignUp = tab === AuthConstants.signUp[currLang];
 
-  const checkFields = useCallback(([...args]: Array<ValidateDataParams>):Array<string> => {
-    const data:Array<string> = [];
-    args.forEach((elem: ValidateDataParams) => {
-      data.push(validateData(elem));
-    });
-    return data.filter((el: string) => el !== '');
-  }, [nicknameInput, passwordInput, image]);
+  const checkFields = useCallback(
+    ([...args]: Array<ValidateDataParams>): Array<string> => {
+      const data: Array<string> = [];
+      args.forEach((elem: ValidateDataParams) => {
+        data.push(validateData(elem));
+      });
+      return data.filter((el: string) => el !== '');
+    },
+    [nicknameInput, passwordInput, image],
+  );
 
   useEffect(() => {
     let errorsList;
@@ -54,7 +59,8 @@ const Auth: FC = () => {
           currentInput: 'avatar',
           value: image,
           currLang,
-        }]);
+        },
+      ]);
     } else {
       errorsList = checkFields([
         {
@@ -66,7 +72,8 @@ const Auth: FC = () => {
           currentInput: 'password',
           value: passwordInput,
           currLang,
-        }]);
+        },
+      ]);
     }
     const valid = errorsList.length === 0;
     setDisabledButton(!valid);
@@ -83,8 +90,8 @@ const Auth: FC = () => {
   }, [tab]);
 
   // type-guard i need to correctly detect response type
-  const isResponseSuccess = (data : ResponseSuccessData | ResponseErrorData):
-    data is ResponseSuccessData => Object.prototype.hasOwnProperty.call(data, 'data');
+  const isResponseSuccess = (data: ResponseSuccessData | ResponseErrorData): data is ResponseSuccessData =>
+    Object.prototype.hasOwnProperty.call(data, 'data');
 
   const onNicknameChange = (e: React.FormEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
@@ -99,6 +106,7 @@ const Auth: FC = () => {
   };
   const onSuccessLogin = (data: User) => {
     dispatch(setUser(data));
+    closeAuthModal();
     setNicknameInput(null);
     setPasswordInput(null);
     setTimeout(() => {
@@ -133,8 +141,7 @@ const Auth: FC = () => {
   };
   const onSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     const formData = await onFormSubmit(e);
-    await authApi.loginUser(formData)
-      .then(res => onAuthApiCall(res));
+    await authApi.loginUser(formData).then(res => onAuthApiCall(res));
   };
 
   const onSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -142,74 +149,60 @@ const Auth: FC = () => {
     if (image) {
       formData.append('avatar', image);
     }
-    await authApi.registerUser(formData)
-      .then(res => onAuthApiCall(res));
+    await authApi.registerUser(formData).then(res => onAuthApiCall(res));
   };
 
   return (
-    <div className="auth__modal close">
-      <div className="tabs">
-        <button
-          className={`sign--up title tab ${tab === AuthConstants.signUp[currLang] ? 'active' : null}`}
-          onClick={() => setTab(AuthConstants.signUp[currLang])}
-        >
-          { AuthConstants.signUp[currLang] }
-        </button>
-        <button
-          className={`sign--in title tab ${tab === AuthConstants.signIn[currLang] ? 'active' : null}`}
-          onClick={() => setTab(AuthConstants.signIn[currLang])}
-        >
-          { AuthConstants.signIn[currLang] }
-        </button>
-      </div>
+    <div className="auth__overlay">
+      <div className="auth__modal">
+        <div className="tabs">
+          <button
+            className={`sign--up title tab ${tab === AuthConstants.signUp[currLang] ? 'active' : null}`}
+            onClick={() => setTab(AuthConstants.signUp[currLang])}
+          >
+            {AuthConstants.signUp[currLang]}
+          </button>
+          <button
+            className={`sign--in title tab ${tab === AuthConstants.signIn[currLang] ? 'active' : null}`}
+            onClick={() => setTab(AuthConstants.signIn[currLang])}
+          >
+            {AuthConstants.signIn[currLang]}
+          </button>
+        </div>
 
-      <div className="auth__block">
+        <div className="auth__block">
+          <form
+            encType="multipart/form-data"
+            onSubmit={tab === AuthConstants.signUp[currLang] ? onSignUp : onSignIn}
+            className="modal-content animate"
+          >
+            {isSignUp ? <AvatarUpload onImageReady={target => onImageReady(target)} /> : null}
 
-        <form encType="multipart/form-data"
-          onSubmit={ tab === AuthConstants.signUp[currLang] ? onSignUp : onSignIn }
-          className="modal-content animate">
-          {
-            isSignUp ?
-              <AvatarUpload onImageReady={ (target) => onImageReady(target) } />
-              : null
-          }
+            <div className="container">
+              <label htmlFor="nickname">
+                <div className="uname">{AuthConstants.nickname[currLang]}</div>
+              </label>
+              <input value={nicknameInput || ''} onChange={onNicknameChange} type="text" name="nickname" required />
 
-          <div className="container">
-            <label htmlFor="nickname">
-              <div className="uname">
-                { AuthConstants.nickname[currLang] }
-              </div>
-            </label>
-            <input value={ nicknameInput || ''}
-              onChange={ onNicknameChange }
-              type="text" name="nickname" required />
+              <label htmlFor="password">
+                <div className="password">{AuthConstants.password[currLang]}</div>
+              </label>
+              <input value={passwordInput || ''} onChange={onPasswordChange} type="password" name="password" required />
 
-            <label htmlFor="password">
-              <div className="password">
-                { AuthConstants.password[currLang] }
-              </div>
-            </label>
-            <input value={ passwordInput || ''}
-              onChange={ onPasswordChange }
-              type="password" name="password" required />
+              {error ? <div className="error">{error}</div> : null}
 
-            { error ? <div className="error">{error}</div> : null }
+              {success ? <div className="success">{success}</div> : null}
 
-            { success ? <div className="success">{success}</div> : null }
-
-            { loading ?
-              <Spinner/> :
-              <button disabled={disabledButton} type="submit" className="btn">
-                {
-                  isSignUp ?
-                    AuthConstants.signUp[currLang] :
-                    AuthConstants.signIn[currLang]
-                }
-              </button>
-            }
-
-          </div>
-        </form>
+              {loading ? (
+                <Spinner />
+              ) : (
+                <button disabled={disabledButton} type="submit" className="btn">
+                  {isSignUp ? AuthConstants.signUp[currLang] : AuthConstants.signIn[currLang]}
+                </button>
+              )}
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

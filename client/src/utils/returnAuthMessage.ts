@@ -1,6 +1,7 @@
 import { AuthConstants } from '../constants/auth.constants';
 import { ResponseErrorData, ResponseSuccessData } from '../components/Auth/auth.model';
 
+/* eslint-disable @typescript-eslint/no-explicit-any,@typescript-eslint/explicit-module-boundary-types */
 export const returnSuccessAuthMessage = (response: ResponseSuccessData, callback: any, lang: string) => {
   if (response.statusText === 'Accepted') {
     callback(AuthConstants.userLogged[lang]);

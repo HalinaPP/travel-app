@@ -1,5 +1,5 @@
 export interface AuthProps {
-  smt?: any,
+  closeAuthModal: () => void,
 }
 export interface AuthData {
   nickname: string,

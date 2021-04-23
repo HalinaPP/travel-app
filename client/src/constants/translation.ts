@@ -10,6 +10,9 @@ const translation: LangObj = {
     search: 'Search',
     information: 'Information',
     sights: 'Showplace',
+    feedbackThanks: 'Thanks for your feedback',
+    feedbackLeave: 'Leave your feedback:',
+    map: 'Map',
   },
   ru: {
     choose: 'Выбери следущее путешествие',
@@ -19,6 +22,9 @@ const translation: LangObj = {
     search: 'Поиск',
     information: 'Информация',
     sights: 'Достопримечательности',
+    feedbackThanks: 'Спасибо за ваш отзыв',
+    feedbackLeave: 'Оставьте ваш отзыв:',
+    map: 'Карта',
   },
   bg: {
     choose: 'Изберете следващото си пътуване',
@@ -28,6 +34,9 @@ const translation: LangObj = {
     search: 'Търсене',
     information: 'Информация',
     sights: 'Гледки',
+    feedbackThanks: 'Благодаря за отзивите ви',
+    feedbackLeave: 'Оставете отзивите си:',
+    map: 'Карта',
   },
 };
 export default translation;
