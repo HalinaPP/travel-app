@@ -24,9 +24,11 @@ const CountriesList: FC<CountriesListProps> = ({ inputText, getCountriesFromApi,
         ?.filter(filterByNameAndCapital)
         .map((country: CountryProps, index: number, array): JSX.Element | null => {
           if (index % 2 !== 0 || index === array.length - 1) {
+            const countryIndex = index - 1;
+            const countryListItem = array[countryIndex];
             return (
               <div className="slide" key={index}>
-                {array[index - 1] && <CountriesListItem country={array[index - 1]} />}
+                {countryListItem && <CountriesListItem country={countryListItem} />}
                 <CountriesListItem country={country} />
               </div>
             );
@@ -41,7 +43,7 @@ const CountriesList: FC<CountriesListProps> = ({ inputText, getCountriesFromApi,
   }, [currLang]);
 
   const windowWidth = useWindowSize().width;
-  
+
   return (
     <main>
       <MainCountry countries={countries} />
