@@ -1,4 +1,4 @@
-.map_chart {
+.map-chart {
   height: 80.5vh;
   background-color: #2a8086;
   rect {
@@ -9,13 +9,11 @@
     fill: transparent;
     z-index: -1;
   }
-  .mark:hover+.tooltip_text {
+  .mark:hover + .tooltip_text {
     fill: rgb(180, 108, 0);
     font-weight: 700;
     z-index: 100;
   }
-  mark:hover+.tooltip {
-
+  mark:hover + .tooltip {
   }
 }
-
