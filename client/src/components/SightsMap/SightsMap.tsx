@@ -9,7 +9,7 @@ const SightsMap: FC<SightsMapProps> = () => {
   const [content, setContent] = useState('');
 
   return (
-    <main className="map_chart">
+    <main className="map-chart">
       <MapChartContainer setTooltipContent={setContent} />
       <ReactTooltip>{content}</ReactTooltip>
     </main>

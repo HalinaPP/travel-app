@@ -1,20 +1,19 @@
 import { useState, useEffect } from 'react';
 import UseWindowProps from './UseWindowSize.model';
-/* eslint-disable @typescript-eslint/no-explicit-any */
-export default function useWindowSize(): any {
+
+export default function useWindowSize(): UseWindowProps {
   const [windowSize, setWindowSize] = useState<UseWindowProps>({
     width: window.innerWidth,
     height: window.innerHeight,
   });
 
+  function handleResize() {
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  }
   useEffect(() => {
-    function handleResize() {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    }
-
     window.addEventListener('resize', handleResize);
 
     handleResize();

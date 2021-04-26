@@ -11,18 +11,14 @@ const MainCountry: FC<MainCountryProps> = ({ countries }) => {
   const langsInfo = translation[currLang];
 
   const getRandomCountry = useCallback(() => {
-    if (countries && countries.length > 0) {
-      const randIndex = countries?.length - 1;
-      /* пока не определилась можно ли побороть перерендеринг с рандомом
-      Math.trunc(Math.random() * countries?.length);
-      */
-      const randCountry = countries[randIndex];
+    if (countries?.length) {
+      const randIndex = countries.length - 1;
+      const { name, promoDescription, id, imageUrl } = countries[randIndex];
       return {
-        randCountryName: randCountry.name,
-        randCountryDescription: `${randCountry.promoDescription}`,
-        // randCountryDescription: `${randCountry.description.slice(0, 300)}...`,
-        randCountryLink: `${currLang}/country/${randCountry.id}`,
-        randCountryImage: { backgroundImage: `url(${randCountry.imageUrl})` },
+        randCountryName: name,
+        randCountryDescription: `${promoDescription}`,
+        randCountryLink: `${currLang}/country/${id}`,
+        randCountryImage: { backgroundImage: `url(${imageUrl})` },
       };
     }
     return {
