@@ -1,3 +1,3 @@
 export default interface UseWindowProps {
-  [key: string]: number | undefined;
+  [key: string]: number;
 }
